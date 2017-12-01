@@ -8,21 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="Navn_textbox" HorizontalAlignment="Left" Height="93" Margin="519,212,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="571" PlaceholderText="Kunde"/>
-        <TextBox x:Name="ATT_textbox" HorizontalAlignment="Left" Height="93" Margin="519,328,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="571" PlaceholderText="ATT"/>
-        <TextBox x:Name="Adresse_textbox" HorizontalAlignment="Left" Height="92" Margin="519,444,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="571" PlaceholderText="Adresse"/>
-        <TextBox x:Name="Post__nr_textbox" HorizontalAlignment="Left" Height="93" Margin="519,559,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="571" PlaceholderText="Post nr."/>
-        <TextBox x:Name="Tlf__nr__textbox" HorizontalAlignment="Left" Height="92" Margin="519,675,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="571" PlaceholderText="Tlf. nr."/>
-        <TextBlock x:Name="kundenavn_textblock" HorizontalAlignment="Left" Height="93" Margin="409,212,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" Width="110"/>
-        <TextBlock x:Name="Kunden_textblock" HorizontalAlignment="Left" Height="92" Margin="409,120,0,0" TextWrapping="Wrap" Text="Kunden" VerticalAlignment="Top" Width="110"/>
-        <TextBlock x:Name="ATT_textblock" HorizontalAlignment="Left" Height="93" Margin="409,328,0,0" TextWrapping="Wrap" Text="ATT." VerticalAlignment="Top" Width="110"/>
-        <TextBlock x:Name="Adresse_textblock" HorizontalAlignment="Left" Height="92" Margin="409,444,0,0" TextWrapping="Wrap" Text="Adresse" VerticalAlignment="Top" Width="110"/>
-        <TextBlock x:Name="Post_nr_textblock" HorizontalAlignment="Left" Height="93" Margin="409,559,0,0" TextWrapping="Wrap" Text="Post Nr." VerticalAlignment="Top" Width="110"/>
-        <TextBlock x:Name="Tlf_nr_textblock" HorizontalAlignment="Left" Height="92" Margin="409,675,0,0" TextWrapping="Wrap" Text="Telefon Nr." VerticalAlignment="Top" Width="110"/>
-        <Button x:Name="Tilbage_Button" Content="Tilbage" HorizontalAlignment="Left" Height="80" Margin="120,871,0,0" VerticalAlignment="Top" Width="295"/>
-        <Button x:Name="Opret_kunde_og_tilføg_ordre_button" Content="Opret kunde/Tilføj ordre" HorizontalAlignment="Left" Height="80" Margin="1151,871,0,0" VerticalAlignment="Top" Width="295"/>
-        <Button x:Name="Opret_kunde_Button" Content="Opret kunde" HorizontalAlignment="Left" Height="80" Margin="633,871,0,0" VerticalAlignment="Top" Width="295"/>
-
 
     </Grid>
 </Page>
