@@ -8,37 +8,37 @@ namespace NewAmazingLAKS_Project.Model
 {
     class Product
     {
-        #region PRODUKTET
+        #region PRODUCT
 
-        public string Produktnavn { get; set; }
-        public double Produktmaal { get; set; }
-        public int Antal { get; set; }
-        public string Medie { get; set; }
+        public string Productname { get; set; }
+        public double Productsize { get; set; }
+        public int Amount { get; set; }
+        public string Media { get; set; }
         public string Folie { get; set; }
-        public string Laminering { get; set; }
-        public string Produkttype { get; set; }
-        public double Produktpris { get; set; }
-        public double Fragtpris { get; set; }
-        public int Levantal { get; set; }
-        public int Procent { get; set; }
+        public string Laminate { get; set; }
+        public string Producttype { get; set; }
+        public double Productprice { get; set; }
+        public double Levprice { get; set; }
+        public int Levamount { get; set; }
+        public double Procent { get; set; }
 
         #endregion
 
-        #region KONSTRUKTØR
+        #region CONSTRUCTOR
 
-        public Product(string produktnavn, double produktmaal, int antal, string medie, string folie, string laminering, string produkttype, double produktpris, double fragtpris, int levantal, int procent)
+        public Product(string productname, double productsize, int amount, string media, string folie, string laminate, string producttype, double productprice, double levprice, int levamount, int procent)
         {
-            Produktnavn = produktnavn;
-            Produktmaal = produktmaal;
-            Antal = antal;
-            Medie = medie;
+            Productname = productname;
+            Productsize = productsize;
+            Amount = amount;
+            Media = media;
             Folie = folie;
-            Laminering = laminering;
-            Procent = procent;
-            Produkttype = produkttype;
-            Produktpris = produktpris + (produktpris / 100 * procent);
-            Fragtpris = fragtpris;
-            Levantal = levantal;
+            Laminate = laminate;
+            Producttype = producttype;
+            Productprice = productprice;
+            Levprice = levprice;
+            Levamount = levamount;
+            Procent = Productprice + (Productprice/100*Procent);
         }
 
         #endregion

@@ -6,8 +6,47 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="CustomerDataTemplate">
+
+            <StackPanel Orientation="Vertical">
+
+                <Grid/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <!--<TextBlock TextWrapping="Wrap" Text="Sorter"/>-->
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                        <TextBlock TextWrapping="Wrap" Text=""/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Page.DataContext>
+        <local:ViewModel/>
+    </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Button Content="Kundearkiv" HorizontalAlignment="Left" Height="81" Margin="51,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20" />
+        <Button Content="Opret kunde" HorizontalAlignment="Left" Height="81" Margin="381,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20" />
+        <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" VerticalAlignment="Top" Width="886" ItemTemplate="{StaticResource CustomerDataTemplate}"/>
     </Grid>
 </Page>
