@@ -8,6 +8,8 @@
     x:Class="NewAmazingLAKS_Project.MainPage"
     mc:Ignorable="d">
     <Page.Resources>
+        
+        <!--DataTemplates til Expanding nedenunder-->
         <DataTemplate x:Key="NoSelectDataTemplate">
             <Grid>
                 <Grid.RowDefinitions>
@@ -33,6 +35,7 @@
                 </ListView>
             </Grid>
         </DataTemplate>
+        
         <DataTemplate x:Key="CustomerDataTemplate">
 
             <StackPanel Orientation="Vertical">
@@ -85,6 +88,8 @@
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
+        
+        <!--Expandable Listview-->
         <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" Width="886" VerticalAlignment="Top" ItemsSource="{Binding CustomerList.CustomerList}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource NoSelectDataTemplate}">
             <ListView.ItemContainerStyle >
                 <Style TargetType="ListViewItem">
@@ -94,6 +99,11 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+
+        <!--gammelt Listview uden expand
+        <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" VerticalAlignment="Top" Width="886" ItemTemplate="{StaticResource CustomerDataTemplate}" ItemsSource="{Binding CustomerList.CustomerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+
         <Button Content="Lol" HorizontalAlignment="Left" Height="85" Margin="51,833,0,0" VerticalAlignment="Top" Width="226"/>
 
     </Grid>
