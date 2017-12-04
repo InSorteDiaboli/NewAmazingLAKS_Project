@@ -65,8 +65,14 @@ namespace NewAmazingLAKS_Project
             _removeCommand = new RelayCommand(Remove);
             _loadCommand = new RelayCommand(Load);
             //_saveCommand = new RelayCommand(Save);
-            OrderList = new ObservableCollection<Order>();
-            CustomerList.Add("name", "att", "adr", 4000, "tlf");
+            CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
+            foreach (var customer in CustomerList.CustomerList)
+            {
+                customer.OrderList.Add(new Order("some date", 4, "filedate"));
+                OrderList = customer.OrderList;
+            }
+       
+
 
         }
 

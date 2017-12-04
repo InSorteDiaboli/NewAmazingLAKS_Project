@@ -32,6 +32,7 @@ namespace NewAmazingLAKS_Project.Model
         {
             CustomerList = new ObservableCollection<Customer>();
             LoadCustomersAsync();
+
         }
 
 
@@ -61,7 +62,6 @@ namespace NewAmazingLAKS_Project.Model
             }
 
         }
-
 
 
         public void Add(Customer newCustomer)
