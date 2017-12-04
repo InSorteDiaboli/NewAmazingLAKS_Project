@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -37,18 +38,28 @@ namespace NewAmazingLAKS_Project.Model
 
         public async void LoadCustomersAsync()
         {
-            var events = await PersistencyService.LoadKundeListeFromJsonAsync();
-            if (events != null)
-                foreach (var ev in events)
-                {
-                    CustomerList.Add(ev);
-                }
-            else
+            try
             {
-                //Data til testformål
-                CustomerList.Add(new Customer("1", "Pitching 2end semester Projects", "Auditorium 202",12, "De studerende fremlægger deres eksamensprojekt"));
+                var events = await PersistencyService.LoadKundeListeFromJsonAsync();
+                if (events != null)
+                    foreach (var ev in events)
+                    {
+                        CustomerList.Add(ev);
+                    }
+                else
+                {
+                    //Data til testformål
+                    CustomerList.Add(new Customer("1", "Pitching 2end semester Projects", "Auditorium 202", 12,
+                        "De studerende fremlægger deres eksamensprojekt"));
+                    CustomerList.Add(new Customer("2", "Eksamen", "lokale 122", 12, "Eksamen 1. semester"));
+                }
+            }
+            catch (Newtonsoft.Json.JsonReaderException ex)
+            {
+                Debug.WriteLine("Something went wrong with the load");
                 CustomerList.Add(new Customer("2", "Eksamen", "lokale 122", 12, "Eksamen 1. semester"));
             }
+
         }
 
 

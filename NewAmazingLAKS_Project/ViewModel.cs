@@ -28,6 +28,8 @@ namespace NewAmazingLAKS_Project
         public string PhoneNo { get; set; }
         private static int _count;
 
+        public CustomerCatalog CustomerList => CustomerCatalog.Instance;
+
         public ObservableCollection<Order> OrderList { get; set; }
         #endregion
 
@@ -64,6 +66,7 @@ namespace NewAmazingLAKS_Project
             _loadCommand = new RelayCommand(Load);
             //_saveCommand = new RelayCommand(Save);
             OrderList = new ObservableCollection<Order>();
+            CustomerList.Add("name", "att", "adr", 4000, "tlf");
 
         }
 

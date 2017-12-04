@@ -14,7 +14,7 @@
 
                 <Grid/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock TextWrapping="Wrap" Text=""/>
                     <TextBlock TextWrapping="Wrap" Text=""/>
                     <TextBlock TextWrapping="Wrap" Text=""/>
@@ -60,7 +60,7 @@
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
-        <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" VerticalAlignment="Top" Width="886" ItemTemplate="{StaticResource CustomerDataTemplate}"/>
+        <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" VerticalAlignment="Top" Width="886" ItemTemplate="{StaticResource CustomerDataTemplate}" ItemsSource="{Binding CustomerList.CustomerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Button Content="Lol" HorizontalAlignment="Left" Height="85" Margin="51,833,0,0" VerticalAlignment="Top" Width="226"/>
 
     </Grid>
