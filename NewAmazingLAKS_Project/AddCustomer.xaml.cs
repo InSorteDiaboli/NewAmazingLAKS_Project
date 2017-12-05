@@ -20,9 +20,9 @@ namespace NewAmazingLAKS_Project
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddProduct : Page
+    public sealed partial class AddCustomer : Page
     {
-        public AddProduct()
+        public AddCustomer()
         {
             this.InitializeComponent();
         }
