@@ -5,9 +5,28 @@
     xmlns:local="using:NewAmazingLAKS_Project"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="Kundearkiv" HorizontalAlignment="Left" Height="81" Margin="51,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Click">
+                    <core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.MainPage"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </Button>
+        <Button Content="Opret kunde" HorizontalAlignment="Left" Height="81" Margin="381,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20" >
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Click">
+                    <core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.AddCustomer"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
 
+        </Button>
     </Grid>
 </Page>
+
+
+

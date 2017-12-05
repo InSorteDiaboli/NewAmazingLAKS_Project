@@ -26,7 +26,6 @@ namespace NewAmazingLAKS_Project
         public string Address { get; set; }
         public int PostalNo { get; set; }
         public string PhoneNo { get; set; }
-        private static int _count;
 
         public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
 

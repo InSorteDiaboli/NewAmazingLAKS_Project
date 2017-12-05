@@ -30,12 +30,11 @@ namespace NewAmazingLAKS_Project.Model
 
         public Order(string levDate, int blok, string fileDate)
         {
-            OrderNo = _count;
+            OrderNo = _count++;
             OrderDate = DateTime.Now;
             LevDate = levDate;
             Blok = blok;
             FileDate = fileDate;
-            _count++;
             ProductList = new ObservableCollection<Product>();
             ProductList.Add(new Product("Test123", 1.23, 5, "Salt", "Folie", "", "Type", 123.4, 49, 10, 5));
             ProductList.Add(new Product("Test12333", 13.23, 53, "aaa", "Folie2", "", "Type3", 1234.4, 49, 10, 5));
