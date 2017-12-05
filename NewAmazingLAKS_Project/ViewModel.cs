@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Eventmaker.Common;
 using NewAmazingLAKS_Project.Annotations;
 using NewAmazingLAKS_Project.Model;
 
@@ -21,7 +20,19 @@ namespace NewAmazingLAKS_Project
 
         #region Customer
         public int CustomerNo { get; set; }
-        public string CustomerName { get; set; }
+
+        public string CustomerName
+        {
+            get
+            {
+                foreach (var customer in CustomerList.CustomerList)
+                {
+                    int i = customer.CustomerNo;
+                    return CustomerList.CustomerList[i].CustomerName;
+                }
+                return CustomerName;
+            }
+        }
         public string Att { get; set; }
         public string Address { get; set; }
         public int PostalNo { get; set; }
@@ -29,7 +40,18 @@ namespace NewAmazingLAKS_Project
 
         public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
 
-        public ObservableCollection<Order> OrderList { get; set; }
+        public ObservableCollection<Order> OrderList
+        {
+            get
+            {
+                foreach (var customer in CustomerList.CustomerList)
+                {
+                    int i = customer.CustomerNo;
+                    return CustomerList.CustomerList[i].OrderList;
+                }
+                return OrderList;
+            }
+        }
         #endregion
 
         #region Order
@@ -38,7 +60,20 @@ namespace NewAmazingLAKS_Project
         public string LevDate { get; set; }
         public int Blok { get; set; }
         public string FileDate { get; set; }
-        public ObservableCollection<Product> ProductList { get; set; }
+
+        public ObservableCollection<Product> ProductList
+        {
+            get
+            {
+                foreach (var order in OrderList)
+                {
+                    int i = order.OrderNo;
+                    return OrderList[i].ProductList;
+                }
+                return ProductList;
+            }
+            
+        }
 
         #endregion
 
@@ -64,12 +99,12 @@ namespace NewAmazingLAKS_Project
             _removeCommand = new RelayCommand(Remove);
             _loadCommand = new RelayCommand(Load);
             //_saveCommand = new RelayCommand(Save);
-            CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
-            foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
-            {
-                customer.OrderList.Add(new Order("some date", 4, "filedate"));
-                OrderList = customer.OrderList;
-            }
+            //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
+            //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
+            //{
+            //    customer.OrderList.Add(new Order("some date", 4, "filedate"));
+            //    OrderList = customer.OrderList;
+            //}
        
 
 
