@@ -28,7 +28,7 @@ namespace NewAmazingLAKS_Project.Model
             PostalNo = postnummer;
             PhoneNo = tlfnr;
             OrderList = new ObservableCollection<Order>();
-            OrderList.Add(new Order("20/8/2016", 5, "1/1/2017")); //Dummydata
+            OrderList.Add(new Order("levDate", 1, "fileDate")); //Dummydata
             OrderList.Add(new Order("20/8/2016", 5, "1/1/2017"));
         }
 

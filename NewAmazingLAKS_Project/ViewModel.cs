@@ -20,7 +20,19 @@ namespace NewAmazingLAKS_Project
 
         #region Customer
         public int CustomerNo { get; set; }
-        public string CustomerName { get; set; }
+
+        public string CustomerName
+        {
+            get
+            {
+                foreach (var customer in CustomerList.CustomerList)
+                {
+                    int i = customer.CustomerNo;
+                    return CustomerList.CustomerList[i].CustomerName;
+                }
+                return CustomerName;
+            }
+        }
         public string Att { get; set; }
         public string Address { get; set; }
         public int PostalNo { get; set; }
@@ -88,7 +100,7 @@ namespace NewAmazingLAKS_Project
             _removeCommand = new RelayCommand(Remove);
             _loadCommand = new RelayCommand(Load);
             //_saveCommand = new RelayCommand(Save);
-            CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
+            //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
             //{
             //    customer.OrderList.Add(new Order("some date", 4, "filedate"));
