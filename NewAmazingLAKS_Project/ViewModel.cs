@@ -14,7 +14,7 @@ namespace NewAmazingLAKS_Project
 {
     class ViewModel : INotifyPropertyChanged
     {
-        private ICommand _removeCommand;
+        private ICommand _removeOrderCommand;
         private ICommand _loadCommand;
         private ICommand _saveCommand;
 
@@ -97,7 +97,7 @@ namespace NewAmazingLAKS_Project
 
         public ViewModel()
         {
-            _removeCommand = new RelayCommand(Remove);
+            _removeOrderCommand = new RelayCommand(RemoveOrder);
             _loadCommand = new RelayCommand(Load);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
@@ -111,10 +111,10 @@ namespace NewAmazingLAKS_Project
 
         }
 
-        public ICommand RemoveCommand
+        public ICommand RemoveOrderCommand
         {
-            get { return _removeCommand; }
-            set { _removeCommand = value; }
+            get { return _removeOrderCommand; }
+            set { _removeOrderCommand = value; }
         }
 
         public ICommand LoadCommand
@@ -142,15 +142,15 @@ namespace NewAmazingLAKS_Project
 
         public async void Load()
         {
-            var orders = await PersistencyService.LoadKundeListeFromJsonAsync();
+            var customers = await PersistencyService.LoadKundeListeFromJsonAsync();
             OrderList.Clear();
-            foreach (var order in orders)
+            foreach (var customer in customers)
             {
-                orders.Add(order);
+                customers.Add(customer);
             }
         }
 
-        public async void Remove()
+        public async void RemoveOrder()
         {
             foreach (var order in OrderList)
             {
