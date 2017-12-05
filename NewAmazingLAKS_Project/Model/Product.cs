@@ -26,7 +26,7 @@ namespace NewAmazingLAKS_Project.Model
 
         #region CONSTRUCTOR
 
-        public Product(string productname, double productsize, int amount, string media, string folie, string laminate, string producttype, double productprice, double levprice, int levamount, int procent)
+        public Product(string productname, double productsize, int amount, string media, string folie, string laminate, string producttype, double productprice, double levprice, int levamount, double procent)
         {
             Productname = productname;
             Productsize = productsize;
@@ -38,7 +38,7 @@ namespace NewAmazingLAKS_Project.Model
             Productprice = productprice;
             Levprice = levprice;
             Levamount = levamount;
-            Procent = Productprice + (Productprice/100*Procent);
+            Procent = Productprice + (Productprice/100*procent);
         }
 
         #endregion

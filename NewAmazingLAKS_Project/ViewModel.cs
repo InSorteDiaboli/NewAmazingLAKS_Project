@@ -28,6 +28,8 @@ namespace NewAmazingLAKS_Project
         public string PhoneNo { get; set; }
         private static int _count;
 
+        public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
+
         public ObservableCollection<Order> OrderList { get; set; }
         #endregion
 
@@ -63,7 +65,14 @@ namespace NewAmazingLAKS_Project
             _removeCommand = new RelayCommand(Remove);
             _loadCommand = new RelayCommand(Load);
             //_saveCommand = new RelayCommand(Save);
-            OrderList = new ObservableCollection<Order>();
+            CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
+            foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
+            {
+                customer.OrderList.Add(new Order("some date", 4, "filedate"));
+                OrderList = customer.OrderList;
+            }
+       
+
 
         }
 
