@@ -32,10 +32,10 @@ namespace NewAmazingLAKS_Project.Model
             OrderList.Add(new Order("20/8/2016", 5, "1/1/2017"));
         }
 
-        public override string ToString()
-        {
-            return "Navn: " + CustomerName + " ATT: " + Att + " Adresse: " + Address + " Postnummer: " + PostalNo +
-                   " Telefon: " + PhoneNo;
-        }
+        //public override string ToString()
+        //{
+        //    return "Navn: " + CustomerName + " ATT: " + Att + " Adresse: " + Address + " Postnummer: " + PostalNo +
+        //           " Telefon: " + PhoneNo;
+        //}
     }
 }

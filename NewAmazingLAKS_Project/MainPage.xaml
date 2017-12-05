@@ -16,7 +16,13 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding CustomerName}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <TextBlock TextWrapping="Wrap" Text=""/>
+                    <!--<TextBlock TextWrapping="Wrap" Text="Sorter"/>-->
+                </StackPanel>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SelectDataTemplate">
@@ -74,6 +80,13 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Horizontal" Margin="56,160,0,0">
+            <TextBlock TextWrapping="Wrap" Text="Navn" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Kundenr" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Adresse" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Oprettet" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <!--<TextBlock TextWrapping="Wrap" Text="Sorter"/>-->
+        </StackPanel>
         <Button Content="Kundearkiv" HorizontalAlignment="Left" Height="81" Margin="51,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
