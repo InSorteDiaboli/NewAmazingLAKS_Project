@@ -40,8 +40,15 @@ namespace NewAmazingLAKS_Project
             }
 
             ListViewItem item = (lv.ContainerFromIndex(lv.SelectedIndex)) as ListViewItem;
-            item.ContentTemplate = Resources["SelectDataTemplate"] as DataTemplate;
-
+            if (item != null)
+            {
+                item.ContentTemplate = Resources["SelectDataTemplate"] as DataTemplate;
+            }
+            else
+            {
+                item = (lv.ContainerFromIndex(PreviousIndex)) as ListViewItem;
+                item.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
+            }
             PreviousIndex = lv.SelectedIndex;
         }
     }

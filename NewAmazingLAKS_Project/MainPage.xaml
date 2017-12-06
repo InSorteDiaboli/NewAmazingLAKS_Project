@@ -109,10 +109,10 @@
         <!--gammelt Listview uden expand
         <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" VerticalAlignment="Top" Width="886" ItemTemplate="{StaticResource CustomerDataTemplate}" ItemsSource="{Binding CustomerList.CustomerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
-        <Button Content="Opret ordre" HorizontalAlignment="Left" Height="85" Margin="50,833,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
-        <Button Content="Rediger" HorizontalAlignment="Left" Height="85" Margin="220,833,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
-        <Button Content="Slet" HorizontalAlignment="Left" Height="85" Margin="390,833,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
-        <Button Content="Godkend" HorizontalAlignment="Left" Height="85" Margin="560,833,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button Content="Opret ordre" HorizontalAlignment="Left" Height="85" Margin="56,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button Content="Rediger" HorizontalAlignment="Left" Height="85" Margin="226,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button Content="Slet" HorizontalAlignment="Left" Height="85" Margin="396,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button Content="Godkend" HorizontalAlignment="Left" Height="85" Margin="566,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
 
     </Grid>
 </Page>

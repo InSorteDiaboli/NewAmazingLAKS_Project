@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Eventmaker.Common;
 using NewAmazingLAKS_Project.Annotations;
 using NewAmazingLAKS_Project.Model;
 
