@@ -8,6 +8,9 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <local:ViewModel/>
+    </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button Content="Kundearkiv" HorizontalAlignment="Left" Height="81" Margin="51,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20">
@@ -25,11 +28,11 @@
             </interactivity:Interaction.Behaviors>
 
         </Button>
-        <TextBox x:Name="Navn_textbox" HorizontalAlignment="Left" Height="51" Margin="280,209,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="323" PlaceholderText="Navn"/>
-        <TextBox x:Name="ATT_textbox" HorizontalAlignment="Left" Height="51" Margin="280,272,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="323" PlaceholderText="ATT"/>
-        <TextBox x:Name="Adresse_textbox" HorizontalAlignment="Left" Height="50" Margin="280,336,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="323" PlaceholderText="Adresse"/>
-        <TextBox x:Name="Post__nr_textbox" HorizontalAlignment="Left" Height="51" Margin="280,398,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="323" PlaceholderText="Post nr."/>
-        <TextBox x:Name="Tlf__nr__textbox" HorizontalAlignment="Left" Height="51" Margin="280,462,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="323" PlaceholderText="Tlf. nr."/>
+        <TextBox x:Name="Navn_textbox" HorizontalAlignment="Left" Height="51" Margin="280,209,0,0" TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay}" VerticalAlignment="Top" Width="323" PlaceholderText="Navn"/>
+        <TextBox x:Name="ATT_textbox" HorizontalAlignment="Left" Height="51" Margin="280,272,0,0" TextWrapping="Wrap" Text="{Binding Att, Mode=TwoWay}" VerticalAlignment="Top" Width="323" PlaceholderText="ATT"/>
+        <TextBox x:Name="Adresse_textbox" HorizontalAlignment="Left" Height="50" Margin="280,336,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay}" VerticalAlignment="Top" Width="323" PlaceholderText="Adresse"/>
+        <TextBox x:Name="Post__nr_textbox" HorizontalAlignment="Left" Height="51" Margin="280,398,0,0" TextWrapping="Wrap" Text="{Binding PostalNo, Mode=TwoWay}" VerticalAlignment="Top" Width="323" PlaceholderText="Post nr."/>
+        <TextBox x:Name="Tlf__nr__textbox" HorizontalAlignment="Left" Height="51" Margin="280,462,0,0" TextWrapping="Wrap" Text="{Binding PhoneNo, Mode=TwoWay}" VerticalAlignment="Top" Width="323" PlaceholderText="Tlf. nr."/>
         <TextBlock x:Name="kundenavn_textblock" HorizontalAlignment="Left" Height="51" Margin="120,209,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" Width="160"/>
         <TextBlock x:Name="Kunden_textblock" HorizontalAlignment="Left" Height="50" Margin="120,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="20">
             <Run Text="Kunde "/>
