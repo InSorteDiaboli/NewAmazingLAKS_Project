@@ -30,10 +30,12 @@ namespace NewAmazingLAKS_Project
         public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
 
         public ObservableCollection<Order> OrderList { get; set; }
+        public Customer SelectedCustomer { get; set; }
         #endregion
 
         #region Order
 
+        
         public int OrderNo { get; set; }
         public string LevDate { get; set; }
         public int Blok { get; set; }
@@ -52,7 +54,9 @@ namespace NewAmazingLAKS_Project
         public string Laminate { get; set; }
         public string Producttype { get; set; }
         public double Productprice { get; set; }
+        public double Dtpprice { get; set; }
         public double Levprice { get; set; }
+        public double Percent { get; set; }
         public int Levamount { get; set; }
 
         #endregion
@@ -103,6 +107,11 @@ namespace NewAmazingLAKS_Project
         //{
         //    PersistencyService.SaveKundeListeAsJsonAsync();
         //}
+
+        public void OpretOrdre()
+        {
+            
+        }
 
         public async void Load()
         {
