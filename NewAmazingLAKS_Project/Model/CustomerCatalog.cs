@@ -50,9 +50,9 @@ namespace NewAmazingLAKS_Project.Model
                 else
                 {
                     //Data til testformål
-                    CustomerList.Add(new Customer("1", "Pitching 2end semester Projects", "Auditorium 202", 12,
-                        "De studerende fremlægger deres eksamensprojekt"));
-                    CustomerList.Add(new Customer("2", "Eksamen", "lokale 122", 12, "Eksamen 1. semester"));
+                    CustomerList.Add(new Customer("Lars Højer", "", "Kildeager 2", 4600,
+                        "28282828"));
+                    CustomerList.Add(new Customer("Kevin Madsen", "Din mor", "Vejen 5", 2690, "46343434"));
                 }
             }
             catch (Newtonsoft.Json.JsonReaderException ex)

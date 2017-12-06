@@ -20,6 +20,7 @@ namespace NewAmazingLAKS_Project.Model
         public string LevDate { get; set; }
         public int Blok { get; set; }
         public string FileDate { get; set; }
+        public bool OrderStatus { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
         #endregion
 
@@ -41,7 +42,7 @@ namespace NewAmazingLAKS_Project.Model
         }
         #endregion
 
-        public override string ToString()
+        public override string ToString() // Redundant tostring metode, vi bruger jo t3mpl4t3z
         {
             return "Ordrenr: " + OrderNo + " Ordredato: " + OrderDate + " Leveringsdato: " + LevDate + " Blok: " + Blok + " Dato for fil: " + FileDate;
         }
