@@ -125,20 +125,7 @@ namespace NewAmazingLAKS_Project
 
         public async void Remove()
         {
-            foreach (var order in OrderList)
-            {
-
-                if (order.OrderNo == SelectedOrder.OrderNo)
-                {
-
-                    OrderList.Remove(SelectedOrder);
-                    break;
-
-                }
-                OnPropertyChanged();
-
-            }
-
+             CustomerList.Remove(SelectedCustomer);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
