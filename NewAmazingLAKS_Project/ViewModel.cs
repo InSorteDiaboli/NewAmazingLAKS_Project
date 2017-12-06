@@ -35,7 +35,7 @@ namespace NewAmazingLAKS_Project
         public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
 
         public ObservableCollection<Order> OrderList { get; set; }
-        public Customer SelectedCustomer { get; set; }
+ 
         #endregion
 
         #region Order
