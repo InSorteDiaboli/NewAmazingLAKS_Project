@@ -6,8 +6,65 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <local:ViewModel/>
+    </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,-24,0,24">
+        <TextBlock HorizontalAlignment="Left" Margin="42,88,0,0" TextWrapping="Wrap" Text="Ordre Nr." VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.364,0.4" Height="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,123,0,0" TextWrapping="Wrap" Text="Ordre Dato" VerticalAlignment="Top" Height="25" Width="80" RenderTransformOrigin="0.5,0.5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,159,0,0" TextWrapping="Wrap" Text="Lev. Dato" VerticalAlignment="Top" Height="25" Width="80" RenderTransformOrigin="0.5,0.5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,195,0,0" TextWrapping="Wrap" Text="Blok" VerticalAlignment="Top" RenderTransformOrigin="0.429,0.65" Height="25" Width="80"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,236,0,0" TextWrapping="Wrap" Text="Dato for Fil" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="#FF7E6D6D" Height="30" Width="126" FontSize="22" Text="OrdreInfo"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,274,0,0" TextWrapping="Wrap" Text="Produktet" VerticalAlignment="Top" Height="32" Width="126" FontSize="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="80">
+            <Run Text="Produk"/>
+            <Run Text="t"/>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="42,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="80">
+            <Run Text="Produktmål"/>
+            <LineBreak/>
+            <Run/>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="42,399,0,0" TextWrapping="Wrap" Text="Antal" VerticalAlignment="Top" Height="25" Width="80"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,435,0,0" TextWrapping="Wrap" Text="Medie" VerticalAlignment="Top" Height="25" Width="80"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,475,0,0" TextWrapping="Wrap" Text="Folie" VerticalAlignment="Top" Height="25" Width="80"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,515,0,0" TextWrapping="Wrap" Text="Laminering" VerticalAlignment="Top" Height="25" Width="80"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,555,0,0" TextWrapping="Wrap" Text="Type" VerticalAlignment="Top" Height="25" Width="80"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,595,0,0" TextWrapping="Wrap" Text="Pris kr." VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,635,0,0" TextWrapping="Wrap" Text="Dtp. Pris" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,675,0,0" TextWrapping="Wrap" Text="Fragt Pris" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,715,0,0" TextWrapping="Wrap" Text="Op til 10%" VerticalAlignment="Top" Height="25" Width="80"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,755,0,0" TextWrapping="Wrap" Text="Lev. Antal" VerticalAlignment="Top" Height="25" Width="80"/>
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="10,887,0,0" VerticalAlignment="Top"/>
+        <Button Content="Godkend Ordre" HorizontalAlignment="Left" Margin="100,887,0,0" VerticalAlignment="Top"/>
+        <Path Data="M244,674" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="0" Margin="244,674,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="0"/>
+        <Button Content="Opret Ordre" HorizontalAlignment="Left" Margin="244,887,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,79,0,0" TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,116,0,0" TextWrapping="Wrap" Text="{Binding FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,154,0,0" TextWrapping="Wrap" Text="{Binding LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,192,0,0" TextWrapping="Wrap" Text="{Binding Blok, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="23" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,229,0,0" TextWrapping="Wrap" Text="{Binding FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,318,0,0" TextWrapping="Wrap" Text="{Binding Productname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,355,0,0" TextWrapping="Wrap" Text="{Binding Productsize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,428,0,0" TextWrapping="Wrap" Text="{Binding Media, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,468,0,0" TextWrapping="Wrap" Text="{Binding Folie, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" RenderTransformOrigin="0.535,0.531" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,392,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="262,392,0,0" VerticalAlignment="Top" Height="32" Width="32"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="304,392,0,0" VerticalAlignment="Top" Width="32"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,508,0,0" TextWrapping="Wrap" Text="{Binding Laminate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,548,0,0" TextWrapping="Wrap" Text="{Binding Producttype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,588,0,0" TextWrapping="Wrap" Text="{Binding Productprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,630,0,0" TextWrapping="Wrap" Text="{Binding Dtpprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,672,0,0" TextWrapping="Wrap" Text="{Binding Levprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,708,0,0" TextWrapping="Wrap" Text="{Binding Percent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="186,748,0,0" TextWrapping="Wrap" Text="{Binding Levamount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <CheckBox Content="Solv." HorizontalAlignment="Left" Margin="347,430,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="52" Height="30"/>
+        <CheckBox Content="SUV" HorizontalAlignment="Left" Margin="467,430,0,0" VerticalAlignment="Top"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="347,467,0,0" VerticalAlignment="Top" Width="32"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="347,508,0,0" VerticalAlignment="Top" Width="32"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="347,549,0,0" VerticalAlignment="Top" Width="32"/>
 
     </Grid>
 </Page>
