@@ -16,7 +16,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="42,159,0,0" TextWrapping="Wrap" Text="Lev. Dato" VerticalAlignment="Top" Height="25" Width="80" RenderTransformOrigin="0.5,0.5"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,195,0,0" TextWrapping="Wrap" Text="Blok" VerticalAlignment="Top" RenderTransformOrigin="0.429,0.65" Height="25" Width="80"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,236,0,0" TextWrapping="Wrap" Text="Dato for Fil" VerticalAlignment="Top" Width="80" Height="25"/>
-        <TextBlock HorizontalAlignment="Left" Margin="42,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FocusVisualPrimaryBrush="#FF7E6D6D" Height="30" Width="126" FontSize="22" Text="OrdreInfo"/>
+        <TextBlock HorizontalAlignment="Left" Margin="42,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Height="30" Width="126" FontSize="22" Text="OrdreInfo"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,274,0,0" TextWrapping="Wrap" Text="Produktet" VerticalAlignment="Top" Height="32" Width="126" FontSize="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="80">
             <Run Text="Produk"/>
