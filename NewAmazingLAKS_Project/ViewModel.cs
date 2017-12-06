@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Eventmaker.Common;
 using NewAmazingLAKS_Project.Annotations;
 using NewAmazingLAKS_Project.Model;
 
@@ -125,20 +124,7 @@ namespace NewAmazingLAKS_Project
 
         public async void Remove()
         {
-            foreach (var order in OrderList)
-            {
-
-                if (order.OrderNo == SelectedOrder.OrderNo)
-                {
-
-                    OrderList.Remove(SelectedOrder);
-                    break;
-
-                }
-                OnPropertyChanged();
-
-            }
-
+             CustomerList.Remove(SelectedCustomer);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

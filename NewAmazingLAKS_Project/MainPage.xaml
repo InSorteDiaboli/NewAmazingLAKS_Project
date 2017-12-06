@@ -8,7 +8,7 @@
     x:Class="NewAmazingLAKS_Project.MainPage"
     mc:Ignorable="d">
     <Page.Resources>
-        
+
         <!--DataTemplates til Expanding nedenunder-->
         <DataTemplate x:Key="NoSelectDataTemplate">
             <Grid>
@@ -16,7 +16,12 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding CustomerName}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,65,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                </StackPanel>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SelectDataTemplate">
@@ -25,48 +30,41 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding CustomerNo}" />
-                <ListView ItemsSource="{Binding OrderList}" Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,65,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                    <TextBlock TextWrapping="Wrap" Text="Ordrenr" Margin="0,0,160,0" TextDecorations="Underline"/>
+                    <TextBlock TextWrapping="Wrap" Text="Produkt" Margin="0,0,160,0" TextDecorations="Underline"/>
+                    <TextBlock TextWrapping="Wrap" Text="Oprettet" Margin="0,0,160,0" TextDecorations="Underline"/>
+                    <TextBlock TextWrapping="Wrap" Text="Status" Margin="0,0,160,0" TextDecorations="Underline"/>
+                </StackPanel>
+
+                <ListView ItemsSource="{Binding OrderList}" Grid.Row="1" SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding OrderNo}" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,190,0"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding ProductList[0].Productname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,110,0"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,120,0"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding OrderStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,100,0"/>
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
         </DataTemplate>
-        
+
         <DataTemplate x:Key="CustomerDataTemplate">
 
-            <StackPanel Orientation="Vertical">
 
-                <Grid/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock TextWrapping="Wrap" Text=""/>
-                    <TextBlock TextWrapping="Wrap" Text=""/>
-                    <TextBlock TextWrapping="Wrap" Text=""/>
-                    <!--<TextBlock TextWrapping="Wrap" Text="Sorter"/>-->
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderNo}"/>
-                    <TextBlock TextWrapping="Wrap" Text=""/>
-                    <TextBlock TextWrapping="Wrap" Text=""/>
-                    <TextBlock TextWrapping="Wrap" Text=""/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                        <TextBlock TextWrapping="Wrap" Text=""/>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
+            <Grid/>
+
+
         </DataTemplate>
     </Page.Resources>
     <Page.DataContext>
@@ -74,6 +72,13 @@
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Horizontal" Margin="56,160,0,0">
+            <TextBlock TextWrapping="Wrap" Text="Navn" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Kundenr" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Adresse" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Oprettet" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+            <!--<TextBlock TextWrapping="Wrap" Text="Sorter"/>-->
+        </StackPanel>
         <Button Content="Kundearkiv" HorizontalAlignment="Left" Height="81" Margin="51,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
@@ -89,9 +94,9 @@
             </Interactivity:Interaction.Behaviors>
 
         </Button>
-        
+
         <!--Expandable Listview-->
-        <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" Width="886" VerticalAlignment="Top" ItemsSource="{Binding CustomerList.CustomerList}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource NoSelectDataTemplate}">
+        <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" Width="886" VerticalAlignment="Top" ItemsSource="{Binding CustomerList.CustomerList}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource NoSelectDataTemplate}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemContainerStyle >
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -104,8 +109,10 @@
         <!--gammelt Listview uden expand
         <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" VerticalAlignment="Top" Width="886" ItemTemplate="{StaticResource CustomerDataTemplate}" ItemsSource="{Binding CustomerList.CustomerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
-
-        <Button Content="Lol" HorizontalAlignment="Left" Height="85" Margin="51,833,0,0" VerticalAlignment="Top" Width="226"/>
+        <Button Content="Opret ordre" HorizontalAlignment="Left" Height="85" Margin="56,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button Content="Rediger" HorizontalAlignment="Left" Height="85" Margin="226,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button Content="Slet" HorizontalAlignment="Left" Height="85" Margin="396,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button Content="Godkend" HorizontalAlignment="Left" Height="85" Margin="566,734,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
 
     </Grid>
 </Page>

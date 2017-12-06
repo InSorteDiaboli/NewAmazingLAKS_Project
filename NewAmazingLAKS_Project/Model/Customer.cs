@@ -28,14 +28,14 @@ namespace NewAmazingLAKS_Project.Model
             PostalNo = postnummer;
             PhoneNo = tlfnr;
             OrderList = new ObservableCollection<Order>();
-            OrderList.Add(new Order("20/8/2016", 5, "1/1/2017")); //Dummydata
+            OrderList.Add(new Order("levDate", 1, "fileDate")); //Dummydata
             OrderList.Add(new Order("20/8/2016", 5, "1/1/2017"));
         }
 
-        public override string ToString()
-        {
-            return "Navn: " + CustomerName + " ATT: " + Att + " Adresse: " + Address + " Postnummer: " + PostalNo +
-                   " Telefon: " + PhoneNo;
-        }
+        //public override string ToString()
+        //{
+        //    return "Navn: " + CustomerName + " ATT: " + Att + " Adresse: " + Address + " Postnummer: " + PostalNo +
+        //           " Telefon: " + PhoneNo;
+        //}
     }
 }
