@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -23,16 +24,9 @@ namespace NewAmazingLAKS_Project
 
         public string CustomerName
         {
-            get
-            {
-                foreach (var customer in CustomerList.CustomerList)
-                {
-                    int i = customer.CustomerNo;
-                    return CustomerList.CustomerList[i].CustomerName;
-                }
-                return CustomerName;
-            }
+            get { return CustomerList.CustomerList[0].CustomerName; }
         }
+
         public string Att { get; set; }
         public string Address { get; set; }
         public int PostalNo { get; set; }
@@ -60,7 +54,7 @@ namespace NewAmazingLAKS_Project
         public string LevDate { get; set; }
         public int Blok { get; set; }
         public string FileDate { get; set; }
-
+        public bool OrderStatus { get; set; }
         public ObservableCollection<Product> ProductList
         {
             get
@@ -72,7 +66,7 @@ namespace NewAmazingLAKS_Project
                 }
                 return ProductList;
             }
-            
+
         }
 
         #endregion
@@ -94,10 +88,18 @@ namespace NewAmazingLAKS_Project
 
         public Order SelectedOrder { get; set; }
 
+        public Customer SelectedCustomer { get; set; }
+
         public ViewModel()
         {
             _removeCommand = new RelayCommand(Remove);
             _loadCommand = new RelayCommand(Load);
+
+            //foreach (var customer in CustomerList.CustomerList)
+            //{
+            //    int i = customer.CustomerNo;
+            //    CustomerName = CustomerList.CustomerList[i].CustomerName;
+            //}
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -105,7 +107,7 @@ namespace NewAmazingLAKS_Project
             //    customer.OrderList.Add(new Order("some date", 4, "filedate"));
             //    OrderList = customer.OrderList;
             //}
-       
+
 
 
         }
@@ -151,20 +153,34 @@ namespace NewAmazingLAKS_Project
 
         public async void Remove()
         {
-            foreach (var order in OrderList)
+            if (SelectedOrder != null)
             {
-
-                if (order.OrderNo == SelectedOrder.OrderNo)
+                foreach (var order in OrderList)
                 {
-
-                    OrderList.Remove(SelectedOrder);
-                    break;
-
+                    if (order.OrderNo == SelectedOrder.OrderNo)
+                    {
+                        OrderList.Remove(SelectedOrder);
+                        break;
+                    }
+                    OnPropertyChanged();
                 }
-                OnPropertyChanged();
-
             }
-
+            else if (SelectedCustomer != null)
+            {
+                foreach (var customer in CustomerList.CustomerList)
+                {
+                    if (customer.CustomerNo == SelectedCustomer.CustomerNo)
+                    {
+                        CustomerList.CustomerList.Remove(SelectedCustomer);
+                        break;
+                    }
+                    OnPropertyChanged();
+                }
+            }
+            else
+            {
+                Debug.WriteLine("no order/customer selected");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

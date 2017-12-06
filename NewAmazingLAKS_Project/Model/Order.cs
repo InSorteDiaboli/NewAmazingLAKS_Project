@@ -20,6 +20,7 @@ namespace NewAmazingLAKS_Project.Model
         public string LevDate { get; set; }
         public int Blok { get; set; }
         public string FileDate { get; set; }
+        public bool OrderStatus { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
         #endregion
 
