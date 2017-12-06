@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -21,12 +20,7 @@ namespace NewAmazingLAKS_Project
 
         #region Customer
         public int CustomerNo { get; set; }
-
-        public string CustomerName
-        {
-            get { return CustomerList.CustomerList[0].CustomerName; }
-        }
-
+        public string CustomerName { get; set; }
         public string Att { get; set; }
         public string Address { get; set; }
         public int PostalNo { get; set; }
@@ -35,7 +29,7 @@ namespace NewAmazingLAKS_Project
         public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
 
         public ObservableCollection<Order> OrderList { get; set; }
- 
+        public Customer SelectedCustomer { get; set; }
         #endregion
 
         #region Order
@@ -45,20 +39,7 @@ namespace NewAmazingLAKS_Project
         public string LevDate { get; set; }
         public int Blok { get; set; }
         public string FileDate { get; set; }
-        public bool OrderStatus { get; set; }
-        public ObservableCollection<Product> ProductList
-        {
-            get
-            {
-                foreach (var order in OrderList)
-                {
-                    int i = order.OrderNo;
-                    return OrderList[i].ProductList;
-                }
-                return ProductList;
-            }
-
-        }
+        public ObservableCollection<Product> ProductList { get; set; }
 
         #endregion
 
@@ -81,26 +62,18 @@ namespace NewAmazingLAKS_Project
 
         public Order SelectedOrder { get; set; }
 
-        public Customer SelectedCustomer { get; set; }
-
         public ViewModel()
         {
             _removeCommand = new RelayCommand(Remove);
             _loadCommand = new RelayCommand(Load);
-
-            //foreach (var customer in CustomerList.CustomerList)
-            //{
-            //    int i = customer.CustomerNo;
-            //    CustomerName = CustomerList.CustomerList[i].CustomerName;
-            //}
             //_saveCommand = new RelayCommand(Save);
-            //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
-            //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
-            //{
-            //    customer.OrderList.Add(new Order("some date", 4, "filedate"));
-            //    OrderList = customer.OrderList;
-            //}
-
+            CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
+            foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
+            {
+                customer.OrderList.Add(new Order("some date", 4, "filedate"));
+                OrderList = customer.OrderList;
+            }
+       
 
 
         }
@@ -151,34 +124,7 @@ namespace NewAmazingLAKS_Project
 
         public async void Remove()
         {
-            if (SelectedOrder != null)
-            {
-                foreach (var order in OrderList)
-                {
-                    if (order.OrderNo == SelectedOrder.OrderNo)
-                    {
-                        OrderList.Remove(SelectedOrder);
-                        break;
-                    }
-                    OnPropertyChanged();
-                }
-            }
-            else if (SelectedCustomer != null)
-            {
-                foreach (var customer in CustomerList.CustomerList)
-                {
-                    if (customer.CustomerNo == SelectedCustomer.CustomerNo)
-                    {
-                        CustomerList.CustomerList.Remove(SelectedCustomer);
-                        break;
-                    }
-                    OnPropertyChanged();
-                }
-            }
-            else
-            {
-                Debug.WriteLine("no order/customer selected");
-            }
+             CustomerList.Remove(SelectedCustomer);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
