@@ -144,6 +144,7 @@ namespace NewAmazingLAKS_Project
         {
             OrderList.Add(new Order(LevDate, Blok, FileDate));
             OnPropertyChanged();
+            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
             PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Msg");
         }
 
@@ -152,6 +153,7 @@ namespace NewAmazingLAKS_Project
             SelectedCustomer.SelectedOrder.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Folie,
                 Laminate, Producttype, Productprice, Levprice, Levamount, Percent));
             OnPropertyChanged();
+            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
             PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
         }
 
@@ -187,7 +189,8 @@ namespace NewAmazingLAKS_Project
             {
                 Debug.WriteLine("No customer or order select");
             }
-         }
+            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
