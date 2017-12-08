@@ -22,6 +22,8 @@ namespace NewAmazingLAKS_Project.Model
         public string FileDate { get; set; }
         public bool OrderStatus { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
+
+        public Product SelectedProduct { get; set; }
         #endregion
 
 

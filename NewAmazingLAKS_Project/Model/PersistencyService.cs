@@ -34,8 +34,17 @@ namespace NewAmazingLAKS_Project.Model
 
         private static async void SerializeKundeListeFileAsync(string kundeListeJsonString, string fileName)
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(localFile, kundeListeJsonString);
+            try
+            {
+                StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(localFile, kundeListeJsonString);
+            }
+            catch (System.IO.FileLoadException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
         }
 
 

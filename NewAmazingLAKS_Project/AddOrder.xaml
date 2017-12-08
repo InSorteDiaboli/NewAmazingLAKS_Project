@@ -7,6 +7,66 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d" Height="966">
+    <Page.Resources>
+
+        <!--DataTemplates til Expanding nedenunder-->
+        <DataTemplate x:Key="NoSelectDataTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,65,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Blok, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="SelectDataTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,65,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Blok, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                    <TextBlock TextWrapping="Wrap" Text="Ordrenr" Margin="0,0,160,0" TextDecorations="Underline"/>
+                    <TextBlock TextWrapping="Wrap" Text="Produkt" Margin="0,0,160,0" TextDecorations="Underline"/>
+                    <TextBlock TextWrapping="Wrap" Text="Oprettet" Margin="0,0,160,0" TextDecorations="Underline"/>
+                    <TextBlock TextWrapping="Wrap" Text="Status" Margin="0,0,160,0" TextDecorations="Underline"/>
+                </StackPanel>
+
+                <ListView ItemsSource="{Binding ProductList}" Grid.Row="1" SelectedItem="{Binding SelectedProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,190,0"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,110,0"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,120,0"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding OrderStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,100,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CustomerDataTemplate">
+
+
+            <Grid/>
+
+
+        </DataTemplate>
+    </Page.Resources>
     <Page.DataContext>
         <local:ViewModel/>
     </Page.DataContext>
@@ -72,6 +132,15 @@
         <Button Content="+" HorizontalAlignment="Left" Margin="347,467,0,0" VerticalAlignment="Top" Width="32"/>
         <Button Content="+" HorizontalAlignment="Left" Margin="347,508,0,0" VerticalAlignment="Top" Width="32"/>
         <Button Content="+" HorizontalAlignment="Left" Margin="347,549,0,0" VerticalAlignment="Top" Width="32"/>
+        <ListView HorizontalAlignment="Left" Height="283" Margin="547,53,0,0" Width="627" VerticalAlignment="Top" ItemsSource="{Binding OrderList}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource NoSelectDataTemplate}" SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ItemContainerStyle >
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="BorderThickness" Value="0,.5,0,0" />
+                    <Setter Property="BorderBrush" Value="Gainsboro" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
     </Grid>
 </Page>
