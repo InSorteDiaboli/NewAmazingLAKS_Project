@@ -39,7 +39,7 @@
         <TextBlock x:Name="Tlf_nr_textblock" HorizontalAlignment="Left" Height="32" Margin="119,378,0,0" TextWrapping="Wrap" Text="Telefon Nr." VerticalAlignment="Top" Width="158"/>
         <Button x:Name="Tilbage_Button" Content="Tilbage" HorizontalAlignment="Left" Height="47" Margin="71,487,0,0" VerticalAlignment="Top" Width="119"/>
         <Button x:Name="Opret_kunde_og_tilføg_ordre_button" Content="Opret kunde/Tilføj ordre" HorizontalAlignment="Left" Height="47" Margin="488,487,0,0" VerticalAlignment="Top" Width="118"/>
-        <Button x:Name="Opret_kunde_Button" Content="Opret kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119"/>
+        <Button x:Name="Opret_kunde_Button" Content="Opret kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding AddCustomerCommand}"/>
 
     </Grid>
 </Page>
