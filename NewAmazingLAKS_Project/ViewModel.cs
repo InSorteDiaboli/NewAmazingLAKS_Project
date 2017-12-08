@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -17,6 +18,8 @@ namespace NewAmazingLAKS_Project
         private ICommand _removeCommand;
         private ICommand _loadCommand;
         private ICommand _saveCommand;
+        private Order _selectedOrder;
+        private Customer _selectedCustomer;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -29,7 +32,17 @@ namespace NewAmazingLAKS_Project
         public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
 
         public ObservableCollection<Order> OrderList { get; set; }
-        public Customer SelectedCustomer { get; set; }
+
+        public Customer SelectedCustomer
+        {
+            get { return _selectedCustomer; }
+            set
+            {
+                _selectedCustomer = value;
+                Debug.WriteLine($"set customer to {CustomerName}");
+            }
+        }
+
         #endregion
 
         #region Order
@@ -60,7 +73,15 @@ namespace NewAmazingLAKS_Project
 
         #endregion
 
-        public Order SelectedOrder { get; set; }
+        //public Order SelectedOrder
+        //{
+        //    get { return _selectedOrder; }
+        //    set
+        //    {
+        //        _selectedOrder = value;
+        //        Debug.WriteLine($"set order to no {SelectedOrder.OrderNo}");
+        //    }
+        //}
 
         public ViewModel()
         {
@@ -124,8 +145,21 @@ namespace NewAmazingLAKS_Project
 
         public async void Remove()
         {
-             CustomerList.Remove(SelectedCustomer);
-        }
+            if (SelectedCustomer.SelectedOrder != null)
+            {
+                Debug.WriteLine("removing order");
+                SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
+            }
+            else if (SelectedCustomer != null)
+            {
+                Debug.WriteLine("removing customer");
+                CustomerList.Remove(SelectedCustomer);
+            }
+            else
+            {
+                Debug.WriteLine("No customer or order select");
+            }
+    }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

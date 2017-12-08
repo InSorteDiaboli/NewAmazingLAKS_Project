@@ -43,6 +43,7 @@ namespace NewAmazingLAKS_Project
             if (item != null)
             {
                 item.ContentTemplate = Resources["SelectDataTemplate"] as DataTemplate;
+                //lv.IsItemClickEnabled = false;
             }
             else
             {
