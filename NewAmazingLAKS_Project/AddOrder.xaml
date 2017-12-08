@@ -5,7 +5,8 @@
     xmlns:local="using:NewAmazingLAKS_Project"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+	xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    mc:Ignorable="d" Height="966">
     <Page.DataContext>
         <local:ViewModel/>
     </Page.DataContext>
@@ -37,10 +38,16 @@
         <TextBlock HorizontalAlignment="Left" Margin="42,675,0,0" TextWrapping="Wrap" Text="Fragt Pris" VerticalAlignment="Top" Width="80" Height="25"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,715,0,0" TextWrapping="Wrap" Text="Op til 10%" VerticalAlignment="Top" Height="25" Width="80"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,755,0,0" TextWrapping="Wrap" Text="Lev. Antal" VerticalAlignment="Top" Height="25" Width="80"/>
-        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="10,887,0,0" VerticalAlignment="Top"/>
-        <Button Content="Godkend Ordre" HorizontalAlignment="Left" Margin="100,887,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="547,628,0,0" VerticalAlignment="Top">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.MainPage"/>
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+        </Button>
+        <Button Content="Godkend Ordre" HorizontalAlignment="Left" Margin="637,628,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
         <Path Data="M244,674" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="0" Margin="244,674,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="0"/>
-        <Button Content="Opret Ordre" HorizontalAlignment="Left" Margin="244,887,0,0" VerticalAlignment="Top"/>
+        <Button Content="Opret Ordre" HorizontalAlignment="Left" Margin="781,628,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
         <TextBox HorizontalAlignment="Left" Margin="186,79,0,0" TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
         <TextBox HorizontalAlignment="Left" Margin="186,116,0,0" TextWrapping="Wrap" Text="{Binding FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
         <TextBox HorizontalAlignment="Left" Margin="186,154,0,0" TextWrapping="Wrap" Text="{Binding LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="150"/>

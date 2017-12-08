@@ -21,6 +21,7 @@ namespace NewAmazingLAKS_Project
         //private Order _selectedOrder;
         private Customer _selectedCustomer;
         private ICommand _addCustomerCommand;
+        private ICommand _addOrderCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -89,6 +90,7 @@ namespace NewAmazingLAKS_Project
             _removeCommand = new RelayCommand(Remove);
             _addCustomerCommand = new RelayCommand(AddCustomer);
             _loadCommand = new RelayCommand(Load);
+            _addOrderCommand = new RelayCommand(AddOrder);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -125,6 +127,12 @@ namespace NewAmazingLAKS_Project
             set { _addCustomerCommand = value; }
         }
 
+        public ICommand AddOrderCommand
+        {
+            get { return _addOrderCommand; }
+            set { _addOrderCommand = value; }
+        }
+
         public void AddCustomer()
         {
             CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
@@ -134,7 +142,7 @@ namespace NewAmazingLAKS_Project
 
         public void AddOrder()
         {
-            SelectedCustomer.OrderList.Add(new Order(LevDate, Blok, FileDate));
+            OrderList.Add(new Order(LevDate, Blok, FileDate));
             OnPropertyChanged();
             PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Msg");
         }
