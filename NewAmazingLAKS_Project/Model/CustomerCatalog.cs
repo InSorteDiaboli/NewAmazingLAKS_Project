@@ -50,15 +50,13 @@ namespace NewAmazingLAKS_Project.Model
                 else
                 {
                     //Data til testformål
-                    CustomerList.Add(new Customer("Lars Højer", "", "Kildeager 2", 4600,
-                        "28282828"));
-                    CustomerList.Add(new Customer("Kevin Madsen", "Din mor", "Vejen 5", 2690, "46343434"));
+                    CustomerList.Add(new Customer("kundenavn", "att", "address", 4000, "tlfnr"));
                 }
             }
             catch (Newtonsoft.Json.JsonReaderException ex)
             {
                 Debug.WriteLine("Something went wrong with the load");
-                CustomerList.Add(new Customer("2", "Eksamen", "lokale 122", 12, "Eksamen 1. semester"));
+                //CustomerList.Add(new Customer("2", "Eksamen", "lokale 122", 12, "Eksamen 1. semester"));
             }
 
         }

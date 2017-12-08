@@ -18,8 +18,9 @@ namespace NewAmazingLAKS_Project
         private ICommand _removeCommand;
         private ICommand _loadCommand;
         private ICommand _saveCommand;
-        private Order _selectedOrder;
+        //private Order _selectedOrder;
         private Customer _selectedCustomer;
+        private ICommand _addCustomerCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -86,12 +87,13 @@ namespace NewAmazingLAKS_Project
         public ViewModel()
         {
             _removeCommand = new RelayCommand(Remove);
+            _addCustomerCommand = new RelayCommand(AddCustomer);
             _loadCommand = new RelayCommand(Load);
             //_saveCommand = new RelayCommand(Save);
-            CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
+            //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
             {
-                customer.OrderList.Add(new Order("some date", 4, "filedate"));
+                //customer.OrderList.Add(new Order("some date", 4, "filedate"));
                 OrderList = customer.OrderList;
             }
        
@@ -117,21 +119,38 @@ namespace NewAmazingLAKS_Project
             set { _saveCommand = value; }
         }
 
-        public void Add()
+        public ICommand AddCustomerCommand
         {
-            OrderList.Add(new Order(LevDate, Blok, FileDate));
+            get { return _addCustomerCommand; }
+            set { _addCustomerCommand = value; }
+        }
+
+        public void AddCustomer()
+        {
+            CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
             OnPropertyChanged();
+            PersistencyService.MessageDialogHelper.Show("Kunde tilføjet", "Msg");
+        }
+
+        public void AddOrder()
+        {
+            SelectedCustomer.OrderList.Add(new Order(LevDate, Blok, FileDate));
+            OnPropertyChanged();
+            PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Msg");
+        }
+
+        public void AddProduct()
+        {
+            SelectedCustomer.SelectedOrder.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Folie,
+                Laminate, Producttype, Productprice, Levprice, Levamount, Percent));
+            OnPropertyChanged();
+            PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
         }
 
         //public async void Save()
         //{
         //    PersistencyService.SaveKundeListeAsJsonAsync();
         //}
-
-        public void OpretOrdre()
-        {
-            
-        }
 
         public async void Load()
         {
@@ -145,6 +164,7 @@ namespace NewAmazingLAKS_Project
 
         public async void Remove()
         {
+
             if (SelectedCustomer.SelectedOrder != null)
             {
                 Debug.WriteLine("removing order");
@@ -159,7 +179,7 @@ namespace NewAmazingLAKS_Project
             {
                 Debug.WriteLine("No customer or order select");
             }
-    }
+         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

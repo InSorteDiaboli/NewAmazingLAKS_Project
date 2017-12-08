@@ -38,7 +38,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="42,715,0,0" TextWrapping="Wrap" Text="Op til 10%" VerticalAlignment="Top" Height="25" Width="80"/>
         <TextBlock HorizontalAlignment="Left" Margin="42,755,0,0" TextWrapping="Wrap" Text="Lev. Antal" VerticalAlignment="Top" Height="25" Width="80"/>
         <Button Content="Tilbage" HorizontalAlignment="Left" Margin="10,887,0,0" VerticalAlignment="Top"/>
-        <Button Content="Godkend Ordre" HorizontalAlignment="Left" Margin="100,887,0,0" VerticalAlignment="Top"/>
+        <Button Content="Godkend Ordre" HorizontalAlignment="Left" Margin="100,887,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
         <Path Data="M244,674" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="0" Margin="244,674,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="0"/>
         <Button Content="Opret Ordre" HorizontalAlignment="Left" Margin="244,887,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="186,79,0,0" TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
