@@ -17,7 +17,7 @@ namespace NewAmazingLAKS_Project
     {
         private ICommand _removeCommand;
         private ICommand _loadCommand;
-        private ICommand _saveCommand;
+        private ICommand _saveCommand; //Testcomment
         //private Order _selectedOrder;
         private Customer _selectedCustomer;
         private ICommand _addCustomerCommand;
