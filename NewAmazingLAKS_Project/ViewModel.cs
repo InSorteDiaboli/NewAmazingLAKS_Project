@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NewAmazingLAKS_Project.Annotations;
 using NewAmazingLAKS_Project.Model;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace NewAmazingLAKS_Project
 {
@@ -201,12 +203,16 @@ namespace NewAmazingLAKS_Project
                 CustomerList.TargetPage = "NewAmazingLAKS_Project.EditOrder";
                 Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
                 CustomerList.OrderToEdit = SelectedCustomer.SelectedOrder;
+                var frame = (Frame)Window.Current.Content;
+                frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
             }
             else if (SelectedCustomer != null)
             {
                 CustomerList.TargetPage = "NewAmazingLAKS_Project.EditCustomer";
                 Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
                 CustomerList.CustomerToEdit = SelectedCustomer;
+                var frame = (Frame)Window.Current.Content;
+                frame.Navigate(typeof(NewAmazingLAKS_Project.EditCustomer));
             }
             OnPropertyChanged();
         }
