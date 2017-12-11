@@ -26,7 +26,7 @@ namespace NewAmazingLAKS_Project
         private ICommand _addOrderCommand;
         private ObservableCollection<Order> _orderList;
         private ICommand _goToOrderCommand;
-        private Customer _customerToAddOrder;
+        //private Customer _customerToAddOrder;
         private ICommand _editCommand;
 
         #region Customer
@@ -202,16 +202,16 @@ namespace NewAmazingLAKS_Project
             {
                 if (SelectedCustomer.SelectedOrder != null)
                 {
-                    CustomerList.TargetPage = "NewAmazingLAKS_Project.EditOrder";
-                    Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
+                    //CustomerList.TargetPage = "NewAmazingLAKS_Project.EditOrder";
+                    //Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
                     CustomerList.OrderToEdit = SelectedCustomer.SelectedOrder;
                     var frame = (Frame)Window.Current.Content;
                     frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
                 }
                 else if (SelectedCustomer != null)
                 {
-                    CustomerList.TargetPage = "NewAmazingLAKS_Project.EditCustomer";
-                    Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
+                    //CustomerList.TargetPage = "NewAmazingLAKS_Project.EditCustomer";
+                    //Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
                     CustomerList.CustomerToEdit = SelectedCustomer;
                     var frame = (Frame)Window.Current.Content;
                     frame.Navigate(typeof(NewAmazingLAKS_Project.EditCustomer));
@@ -249,6 +249,8 @@ namespace NewAmazingLAKS_Project
                 OnPropertyChanged();
                 PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
                 PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Msg");
+                CustomerList.OrderToEdit =
+                    CustomerList.CustomerToAddOrder.OrderList[CustomerList.CustomerToAddOrder.OrderList.Count - 1]; //Hvis vi laver en ordre skal vi kunne tilføje produkter til den med det samme
             }
             else
             {
