@@ -198,23 +198,31 @@ namespace NewAmazingLAKS_Project
 
         public void Edit()
         {
-            if (SelectedCustomer.SelectedOrder != null)
+            try
             {
-                CustomerList.TargetPage = "NewAmazingLAKS_Project.EditOrder";
-                Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
-                CustomerList.OrderToEdit = SelectedCustomer.SelectedOrder;
-                var frame = (Frame)Window.Current.Content;
-                frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
+                if (SelectedCustomer.SelectedOrder != null)
+                {
+                    CustomerList.TargetPage = "NewAmazingLAKS_Project.EditOrder";
+                    Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
+                    CustomerList.OrderToEdit = SelectedCustomer.SelectedOrder;
+                    var frame = (Frame)Window.Current.Content;
+                    frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
+                }
+                else if (SelectedCustomer != null)
+                {
+                    CustomerList.TargetPage = "NewAmazingLAKS_Project.EditCustomer";
+                    Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
+                    CustomerList.CustomerToEdit = SelectedCustomer;
+                    var frame = (Frame)Window.Current.Content;
+                    frame.Navigate(typeof(NewAmazingLAKS_Project.EditCustomer));
+                }
+                OnPropertyChanged();
             }
-            else if (SelectedCustomer != null)
+            catch (NullReferenceException e)
             {
-                CustomerList.TargetPage = "NewAmazingLAKS_Project.EditCustomer";
-                Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
-                CustomerList.CustomerToEdit = SelectedCustomer;
-                var frame = (Frame)Window.Current.Content;
-                frame.Navigate(typeof(NewAmazingLAKS_Project.EditCustomer));
+                Debug.WriteLine(e);
             }
-            OnPropertyChanged();
+
         }
 
 
