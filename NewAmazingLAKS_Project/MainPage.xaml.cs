@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -54,15 +55,15 @@ namespace NewAmazingLAKS_Project
             PreviousIndex = lv.SelectedIndex;
         }
 
-        private void ListView_ClickEvent(object sender, ItemClickEventArgs e) //Kode til at reverte expand, virker ikke lige nu..
+        private async void IconGridView_ItemClick(object sender, ItemClickEventArgs e) //Kode til at deselecte
         {
-            ListView lv = sender as ListView;
-            ListViewItem item = (lv.ContainerFromIndex(PreviousIndex)) as ListViewItem;
-            if (item.ContentTemplate == Resources["SelectDataTemplate"] as DataTemplate)
-           {
-                item.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
-           }
-            
+            var gridView = sender as ListView;
+            if (e.ClickedItem == gridView.SelectedItem)
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => gridView.SelectedItem = null);
+                gridView.SelectedItem = null;
+            }
         }
+
     }
 }

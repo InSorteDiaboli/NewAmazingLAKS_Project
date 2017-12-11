@@ -44,7 +44,7 @@
                     <TextBlock TextWrapping="Wrap" Text="Status" Margin="0,0,160,0" TextDecorations="Underline"/>
                 </StackPanel>
 
-                <ListView ItemsSource="{Binding OrderList}" Grid.Row="1" SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ListView IsItemClickEnabled="True" ItemClick="IconGridView_ItemClick" SelectionMode="Single" ItemsSource="{Binding OrderList}" Grid.Row="1" SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -96,7 +96,7 @@
         </Button>
 
         <!--Expandable Listview-->
-        <ListView HorizontalAlignment="Left" Height="542" Margin="10,178,0,0" Width="818" VerticalAlignment="Top" ItemsSource="{Binding CustomerList.CustomerList}" SelectionChanged="ListView_SelectionChanged" ItemClick="ListView_ClickEvent" ItemTemplate="{StaticResource NoSelectDataTemplate}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView IsItemClickEnabled="True" ItemClick="IconGridView_ItemClick" SelectionMode="Single" HorizontalAlignment="Left" Height="542" Margin="10,178,0,0" Width="818" VerticalAlignment="Top" ItemsSource="{Binding CustomerList.CustomerList}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource NoSelectDataTemplate}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemContainerStyle >
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
