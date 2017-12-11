@@ -22,6 +22,10 @@ namespace NewAmazingLAKS_Project
         private Customer _selectedCustomer;
         private ICommand _addCustomerCommand;
         private ICommand _addOrderCommand;
+        private ObservableCollection<Order> _orderList;
+        private ICommand _goToOrderCommand;
+        private Customer _customerToAddOrder;
+        private ICommand _editCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -31,9 +35,38 @@ namespace NewAmazingLAKS_Project
         public int PostalNo { get; set; }
         public string PhoneNo { get; set; }
 
+        //private Customer CustomerToAddOrder
+        //{
+        //    get { return _customerToAddOrder; }
+        //    set
+        //    {
+        //        _customerToAddOrder = value;
+        //        if (CustomerToAddOrder != null)
+        //        {
+        //            Debug.WriteLine($"set customertoaddorder to {CustomerToAddOrder.CustomerName}");
+        //        }
+
+        //    }
+        //} //Den kunde der skal tilføjes ordre til
+
         public CustomerCatalog CustomerList => CustomerCatalog.Instance; //set 
 
-        public ObservableCollection<Order> OrderList { get; set; }
+        public ObservableCollection<Order> OrderList
+        {
+            get
+            {
+                //if (SelectedCustomer != null)
+                //{
+                //    return SelectedCustomer.OrderList;
+                //}
+                return _orderList;
+            }
+            set
+            {
+                _orderList = value;
+                Debug.WriteLine($"set orderlist to {SelectedCustomer.CustomerName}s {OrderList.Count} orders");
+            }
+        }
 
         public Customer SelectedCustomer
         {
@@ -41,7 +74,10 @@ namespace NewAmazingLAKS_Project
             set
             {
                 _selectedCustomer = value;
-                Debug.WriteLine($"set customer to {CustomerName}");
+                if (SelectedCustomer != null)
+                {
+                    Debug.WriteLine($"set customer to {SelectedCustomer.CustomerName}");
+                }
             }
         }
 
@@ -55,6 +91,20 @@ namespace NewAmazingLAKS_Project
         public int Blok { get; set; }
         public string FileDate { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
+        //private Order _selectedOrder;
+
+        //public Order SelectedOrder
+        //{
+        //    get { return _selectedOrder; }
+        //    set
+        //    {
+        //        _selectedOrder = value;
+        //        if (SelectedOrder != null)
+        //        {
+        //            Debug.WriteLine($"set order in viewmodel to no {SelectedOrder.OrderNo}");
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -84,23 +134,21 @@ namespace NewAmazingLAKS_Project
         //        Debug.WriteLine($"set order to no {SelectedOrder.OrderNo}");
         //    }
         //}
-
         public ViewModel()
         {
             _removeCommand = new RelayCommand(Remove);
             _addCustomerCommand = new RelayCommand(AddCustomer);
             _loadCommand = new RelayCommand(Load);
             _addOrderCommand = new RelayCommand(AddOrder);
+            _goToOrderCommand = new RelayCommand(GoToOrder);
+            _editCommand = new RelayCommand(Edit);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
-            foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
-            {
-                //customer.OrderList.Add(new Order("some date", 4, "filedate"));
-                OrderList = customer.OrderList;
-            }
-       
-
-
+            //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
+            //{
+            //    //customer.OrderList.Add(new Order("some date", 4, "filedate"));
+            //    OrderList = customer.OrderList;
+            //}
         }
 
         public ICommand RemoveCommand
@@ -132,20 +180,67 @@ namespace NewAmazingLAKS_Project
             get { return _addOrderCommand; }
             set { _addOrderCommand = value; }
         }
+        public ICommand GoToOrderCommand
+        {
+            get { return _goToOrderCommand; }
+            set { _goToOrderCommand = value; }
+        }
 
-        public void AddCustomer()
+        public ICommand EditCommand
+        {
+            get { return _editCommand; }
+            set { _editCommand = value; }
+        }
+
+
+
+        public void Edit()
+        {
+            if (SelectedCustomer.SelectedOrder != null)
+            {
+                CustomerList.TargetPage = "NewAmazingLAKS_Project.EditOrder";
+                Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
+                CustomerList.OrderToEdit = SelectedCustomer.SelectedOrder;
+            }
+            else if (SelectedCustomer != null)
+            {
+                CustomerList.TargetPage = "NewAmazingLAKS_Project.EditCustomer";
+                Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
+                CustomerList.CustomerToEdit = SelectedCustomer;
+            }
+            OnPropertyChanged();
+        }
+
+
+        public void GoToOrder() //Hvis vi går direkte til ordre fra mainscreen sætter vi CustomerToAddOrder til SelectedCustomer
+        {
+            CustomerList.CustomerToAddOrder = SelectedCustomer;
+            OnPropertyChanged();
+        }
+
+        public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
             CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
             OnPropertyChanged();
             PersistencyService.MessageDialogHelper.Show("Kunde tilføjet", "Msg");
+            CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
         }
 
-        public void AddOrder()
+        public void AddOrder() //Vi tilføjer en ordre til CustomerToAddOrder.OrderList
         {
-            OrderList.Add(new Order(LevDate, Blok, FileDate));
-            OnPropertyChanged();
-            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-            PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Msg");
+            if (CustomerList.CustomerToAddOrder != null)
+            {
+                Debug.WriteLine($"Trying to add order to {CustomerList.CustomerToAddOrder.CustomerName}");
+                CustomerList.CustomerToAddOrder.OrderList.Add(new Order(LevDate, Blok, FileDate));
+                OnPropertyChanged();
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Msg");
+            }
+            else
+            {
+                Debug.WriteLine("Hvorfor er der ingen kunde?");
+            }
+
         }
 
         public void AddProduct()
@@ -174,22 +269,29 @@ namespace NewAmazingLAKS_Project
 
         public async void Remove()
         {
+            try
+            {
+                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null)
+                {
+                    Debug.WriteLine("removing order");
+                    SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
+                }
+                else if (SelectedCustomer != null)
+                {
+                    Debug.WriteLine("removing customer");
+                    CustomerList.Remove(SelectedCustomer);
+                }
+                else
+                {
+                    Debug.WriteLine("No customer or order select");
+                }
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+            }
+            catch (System.NullReferenceException e)
+            {
+                Debug.WriteLine(e);
+            }
 
-            if (SelectedCustomer.SelectedOrder != null)
-            {
-                Debug.WriteLine("removing order");
-                SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
-            }
-            else if (SelectedCustomer != null)
-            {
-                Debug.WriteLine("removing customer");
-                CustomerList.Remove(SelectedCustomer);
-            }
-            else
-            {
-                Debug.WriteLine("No customer or order select");
-            }
-            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

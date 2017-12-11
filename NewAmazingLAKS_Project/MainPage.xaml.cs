@@ -28,6 +28,7 @@ namespace NewAmazingLAKS_Project
             this.InitializeComponent();
         }
 
+
         private int PreviousIndex;
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

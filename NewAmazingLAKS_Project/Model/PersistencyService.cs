@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,7 @@ namespace NewAmazingLAKS_Project.Model
             }
             catch (FileNotFoundException ex)
             {
-                MessageDialogHelper.Show("Første gang du loader? - Tilføj og gem nogle kunder før du loader", "File not Found");
+                Debug.WriteLine("Første gang du loader? - Tilføj og gem nogle kunder før du loader");
                 return null;
             }
         }

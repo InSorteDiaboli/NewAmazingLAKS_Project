@@ -34,7 +34,7 @@
                     <TextBlock TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,65,0" FontSize="20px"/>
                     <TextBlock TextWrapping="Wrap" Text="{Binding CustomerNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
                     <TextBlock TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
-                    <TextBlock TextWrapping="Wrap" Text="{Binding OrderStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding PhoneNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,90,0" FontSize="20px"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
@@ -71,22 +71,22 @@
         <local:ViewModel/>
     </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Horizontal" Margin="56,160,0,0">
-            <TextBlock TextWrapping="Wrap" Text="Navn" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
-            <TextBlock TextWrapping="Wrap" Text="Kundenr" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
-            <TextBlock TextWrapping="Wrap" Text="Adresse" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
-            <TextBlock TextWrapping="Wrap" Text="Oprettet" TextDecorations="Underline" Margin="0,0,50,0" FontSize="20"/>
+    <Grid Background="{ThemeResource ButtonBackgroundThemeBrush}">
+        <StackPanel Orientation="Horizontal" Margin="28,150,28,10">
+            <TextBlock TextWrapping="Wrap" Text="Navn" TextDecorations="Underline" Margin="0,-10,50,10" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Kundenr" TextDecorations="Underline" Margin="0,-10,50,10" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Adresse" TextDecorations="Underline" Margin="0,-10,50,10" FontSize="20"/>
+            <TextBlock TextWrapping="Wrap" Text="Oprettet" TextDecorations="Underline" Margin="0,-10,50,10" FontSize="20"/>
             <!--<TextBlock TextWrapping="Wrap" Text="Sorter"/>-->
         </StackPanel>
-        <Button Content="Kundearkiv" HorizontalAlignment="Left" Height="81" Margin="51,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20">
+        <Button Content="Hjem" HorizontalAlignment="Left" Height="87" VerticalAlignment="Top" Width="157" FontSize="20" Margin="857,10,0,0">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
                     <Core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.MainPage"/>
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
         </Button>
-        <Button Content="Opret kunde" HorizontalAlignment="Left" Height="81" Margin="381,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20" >
+        <Button Content="Opret kunde" HorizontalAlignment="Left" Height="65" Margin="857,178,0,0" VerticalAlignment="Top" Width="157" FontSize="15" >
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
                     <Core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.AddCustomer"/>
@@ -96,7 +96,7 @@
         </Button>
 
         <!--Expandable Listview-->
-        <ListView HorizontalAlignment="Left" Height="402" Margin="51,192,0,0" Width="825" VerticalAlignment="Top" ItemsSource="{Binding CustomerList.CustomerList}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource NoSelectDataTemplate}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView HorizontalAlignment="Left" Height="542" Margin="10,178,0,0" Width="818" VerticalAlignment="Top" ItemsSource="{Binding CustomerList.CustomerList}" SelectionChanged="ListView_SelectionChanged" ItemTemplate="{StaticResource NoSelectDataTemplate}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemContainerStyle >
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -109,7 +109,7 @@
         <!--gammelt Listview uden expand
         <ListView HorizontalAlignment="Left" Height="494" Margin="51,192,0,0" VerticalAlignment="Top" Width="886" ItemTemplate="{StaticResource CustomerDataTemplate}" ItemsSource="{Binding CustomerList.CustomerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
-        <Button Content="Opret ordre" HorizontalAlignment="Left" Height="85" Margin="56,599,0,0" VerticalAlignment="Top" Width="150">
+        <Button Content="Opret ordre" HorizontalAlignment="Left" Height="65" Margin="857,274,0,0" VerticalAlignment="Top" Width="157" Command="{Binding GoToOrderCommand}">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="Click">
                     <Core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.AddOrder"/>
@@ -117,9 +117,16 @@
             </Interactivity:Interaction.Behaviors>
 
         </Button>
-        <Button Content="Rediger" HorizontalAlignment="Left" Height="85" Margin="226,599,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
-        <Button Content="Slet" HorizontalAlignment="Left" Height="85" Margin="396,599,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
-        <Button Content="Godkend" HorizontalAlignment="Left" Height="85" Margin="566,599,0,0" VerticalAlignment="Top" Width="150" Command="{Binding RemoveCommand}"/>
+        <Button x:Name="EditButton" Content="Rediger" HorizontalAlignment="Left" Height="65" Margin="857,447,0,0" VerticalAlignment="Top" Width="157" Command="{Binding EditCommand}">
+            <Interactivity:Interaction.Behaviors>
+            <Core:EventTriggerBehavior EventName="Click">
+                    <Core:NavigateToPageAction TargetPage="{Binding CustomerList.TargetPage}"/>
+            </Core:EventTriggerBehavior>
+        </Interactivity:Interaction.Behaviors>
+        </Button>
+        <Button Content="Slet" HorizontalAlignment="Left" Height="65" Margin="857,645,0,0" VerticalAlignment="Top" Width="157" Command="{Binding RemoveCommand}" RenderTransformOrigin="-0.04,0.553"/>
+        <Button Content="Godkend" HorizontalAlignment="Left" Height="65" Margin="857,541,0,0" VerticalAlignment="Top" Width="157" Command="{Binding RemoveCommand}"/>
+        <Image HorizontalAlignment="Left" Height="145" Margin="10,0,0,0" VerticalAlignment="Top" Width="742" Source="Assets/logo.png"/>
 
     </Grid>
 </Page>

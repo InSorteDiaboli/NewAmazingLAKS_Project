@@ -27,7 +27,7 @@ namespace NewAmazingLAKS_Project.Model
                 _selectedOrder = value;
                 if (SelectedOrder != null)
                 { 
-                Debug.WriteLine($"set order to no {SelectedOrder.OrderNo}");
+                Debug.WriteLine($"set order in selectcustomer to no {SelectedOrder.OrderNo}");
                 }
             }
         }

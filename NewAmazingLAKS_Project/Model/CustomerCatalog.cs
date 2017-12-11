@@ -12,6 +12,54 @@ namespace NewAmazingLAKS_Project.Model
     class CustomerCatalog //Singleton
     {
         private static CustomerCatalog _instance = new CustomerCatalog();
+        private Customer _customerToAddOrder;
+        public Customer CustomerToAddOrder
+        {
+            get { return _customerToAddOrder; }
+            set
+            {
+                _customerToAddOrder = value;
+                if (CustomerToAddOrder != null)
+                {
+                    Debug.WriteLine($"set customertoaddorder to {CustomerToAddOrder.CustomerName}");
+                }
+
+            }
+        } //Den kunde der skal tilføjes ordre til
+
+        private Order _orderToEdit;
+        public Order OrderToEdit
+        {
+            get { return _orderToEdit; }
+            set
+            {
+                _orderToEdit = value;
+                if (OrderToEdit != null)
+                {
+                    Debug.WriteLine($"set order to edit to order number {OrderToEdit.OrderNo}");
+                }
+
+            }
+        } //Den ordre der skal redigeres
+
+        private Customer _customerToEdit;
+        public Customer CustomerToEdit
+        {
+            get { return _customerToEdit; }
+            set
+            {
+                _customerToEdit = value;
+                if (CustomerToEdit != null)
+                {
+                    Debug.WriteLine($"set customer to edit to {CustomerToEdit.CustomerName}");
+                }
+
+            }
+        } //Den kunde der skal redigeres
+
+        public string TargetPage { get; set; }
+
+
 
         public static CustomerCatalog Instance
         {
