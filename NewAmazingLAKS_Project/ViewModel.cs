@@ -238,6 +238,7 @@ namespace NewAmazingLAKS_Project
             OnPropertyChanged();
             PersistencyService.MessageDialogHelper.Show("Kunde tilføjet", "Msg");
             CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
+            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
         }
 
         public void AddOrder() //Vi tilføjer en ordre til CustomerToAddOrder.OrderList

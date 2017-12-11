@@ -30,7 +30,7 @@ namespace NewAmazingLAKS_Project
 
 
         private int PreviousIndex;
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e) //Kode til at expande listview
         {
             ListView lv = sender as ListView;
 
@@ -52,6 +52,17 @@ namespace NewAmazingLAKS_Project
                 item.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
             }
             PreviousIndex = lv.SelectedIndex;
+        }
+
+        private void ListView_ClickEvent(object sender, ItemClickEventArgs e) //Kode til at reverte expand, virker ikke lige nu..
+        {
+            ListView lv = sender as ListView;
+            ListViewItem item = (lv.ContainerFromIndex(PreviousIndex)) as ListViewItem;
+            if (item.ContentTemplate == Resources["SelectDataTemplate"] as DataTemplate)
+           {
+                item.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
+           }
+            
         }
     }
 }
