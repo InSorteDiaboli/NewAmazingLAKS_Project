@@ -309,7 +309,7 @@ namespace NewAmazingLAKS_Project
 
         public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
-            if (string.IsNullOrEmpty(CustomerName) && string.IsNullOrEmpty(Address) && PostalNo == 0 &&
+            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || PostalNo == 0 &&
                 string.IsNullOrEmpty(PhoneNo))
             {
                 PersistencyService.MessageDialogHelper.Show("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
@@ -321,6 +321,8 @@ namespace NewAmazingLAKS_Project
                 PersistencyService.MessageDialogHelper.Show("Kunde tilføjet", "Msg");
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
                 PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                var frame = (Frame)Window.Current.Content;
+                frame.Navigate(typeof(NewAmazingLAKS_Project.AddOrder));
             }
             
         }
@@ -356,7 +358,7 @@ namespace NewAmazingLAKS_Project
             {
                 CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
             }
-            if (Productname != null)
+            if (Productname != null || Productsize != null || Amount != 0)
             {
                 CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
                 OnPropertyChanged();
