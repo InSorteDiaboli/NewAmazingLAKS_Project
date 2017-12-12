@@ -33,6 +33,9 @@ namespace NewAmazingLAKS_Project
         private ICommand _clearCustomerListCommand;
         private ICommand _addProductCommand;
         private ICommand _goToEditOrderCommand;
+        private ICommand _addProdukttypeCommand;
+        private ICommand _addFolieCommand;
+        private ICommand _addLaminateCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -118,7 +121,7 @@ namespace NewAmazingLAKS_Project
         #region Product
 
         public string Productname { get; set; }
-        public double Productsize { get; set; }
+        public string Productsize { get; set; }
         public int Amount { get; set; }
         public string Media { get; set; }
         public string Folie { get; set; }
@@ -153,6 +156,10 @@ namespace NewAmazingLAKS_Project
             _clearCustomerListCommand = new RelayCommand(ClearCustomerList);
             _addProductCommand = new RelayCommand(AddProduct);
             _goToEditOrderCommand = new RelayCommand(GoToEditOrder);
+            _addFolieCommand = new RelayCommand(AddFolie);
+            _addProdukttypeCommand = new RelayCommand(AddType);
+            _addLaminateCommand = new RelayCommand(AddLaminate);
+
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -227,11 +234,30 @@ namespace NewAmazingLAKS_Project
             set { _goToEditOrderCommand = value; }
         }
 
+        public ICommand AddFolieCommand
+        {
+            get { return _addFolieCommand; }
+            set { _addFolieCommand = value; }
+        }
+        public ICommand AddLaminateCommand
+        {
+            get { return _addLaminateCommand; }
+            set { _addLaminateCommand = value; }
+        }
+        public ICommand AddProdukttypeCommand
+        {
+            get { return _addProdukttypeCommand; }
+            set { _addProdukttypeCommand = value; }
+        }
+
         public void GoBack()
         {
             var frame = (Frame) Window.Current.Content;
             frame.Navigate(typeof(NewAmazingLAKS_Project.MainPage));
         }
+
+
+
 
 
         public void Edit()
@@ -321,19 +347,37 @@ namespace NewAmazingLAKS_Project
 
         public void AddProduct()
         {
-            if (string.IsNullOrEmpty(Productname) && Productsize == 0 && Amount == 0 && string.IsNullOrEmpty(Media) && string.IsNullOrEmpty(Folie) && string.IsNullOrEmpty(Laminate) && string.IsNullOrEmpty(Producttype))
+            if (string.IsNullOrEmpty(Productname) && string.IsNullOrEmpty(Productsize) && Amount == 0 && string.IsNullOrEmpty(Media))
             {
                 PersistencyService.MessageDialogHelper.Show("Du skal skrive produktnavn, produktstørrelse, medie, folie, laminering og produkttype", "Error");
             }
             else
             {
-                CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Folie,
-                    Laminate, Producttype, Productprice, Levprice, Levamount, Percent));
+                CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
                 OnPropertyChanged();
                 PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
                 PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+                CustomerList.ProductToEdit =
+                    CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
             }
             
+        }
+
+        public void AddLaminate()
+        {
+            Debug.WriteLine($"Adding Laminate {Laminate} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
+            CustomerList.OrderToEdit.SelectedProduct.Laminate.Add(Laminate);
+
+        }
+
+        public void AddType()
+        {
+            CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
+        }
+
+        public void AddFolie()
+        {
+            CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
         }
 
         //public async void Save()

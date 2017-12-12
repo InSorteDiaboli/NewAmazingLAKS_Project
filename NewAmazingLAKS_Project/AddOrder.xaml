@@ -64,15 +64,24 @@
         <TextBox HorizontalAlignment="Left" Margin="818,517,0,0" TextWrapping="Wrap" Text="{Binding Levamount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <CheckBox Content="Solv." HorizontalAlignment="Left" Margin="979,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="52" Height="30"/>
         <CheckBox Content="SUV" HorizontalAlignment="Left" Margin="1099,199,0,0" VerticalAlignment="Top"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="979,236,0,0" VerticalAlignment="Top" Width="32"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="979,277,0,0" VerticalAlignment="Top" Width="32"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="979,318,0,0" VerticalAlignment="Top" Width="32"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="983,236,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddFolieCommand}"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="979,277,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddLaminateCommand}"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="979,318,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddProdukttypeCommand}"/>
         <Image HorizontalAlignment="Left" Height="145" VerticalAlignment="Top" Width="742" Source="Assets/logo.png"/>
-        <ListView HorizontalAlignment="Left" Height="246" Margin="35,674,0,0" VerticalAlignment="Top" Width="1189" ItemsSource="{Binding CustomerList.OrderToEdit.ProductList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView HorizontalAlignment="Left" Height="246" Margin="35,674,0,0" VerticalAlignment="Top" Width="589" ItemsSource="{Binding CustomerList.OrderToEdit.ProductList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CustomerList.OrderToEdit.SelectedProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView Height="334" Width="484"/>
         </ListView>
         <TextBlock HorizontalAlignment="Left" Margin="52,637,0,0" TextWrapping="Wrap" Text="Produktliste:" VerticalAlignment="Top" Height="32" Width="126" FontSize="22"/>
         <Button Content="Tilføj produkt" HorizontalAlignment="Left" Margin="818,575,0,0" VerticalAlignment="Top" Command="{Binding AddProductCommand}"/>
+        <ListView HorizontalAlignment="Left" Height="246" Margin="674,674,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding CustomerList.OrderToEdit.SelectedProduct.Folie, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView Height="334" Width="484"/>
+        </ListView>
+        <ListView HorizontalAlignment="Left" Height="246" Margin="836,674,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding CustomerList.OrderToEdit.SelectedProduct.Laminate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView Height="334" Width="484"/>
+        </ListView>
+        <ListView HorizontalAlignment="Left" Height="246" Margin="979,674,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding CustomerList.OrderToEdit.SelectedProduct.Producttype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView Height="334" Width="484"/>
+        </ListView>
 
     </Grid>
 </Page>

@@ -57,6 +57,21 @@ namespace NewAmazingLAKS_Project.Model
             }
         } //Den kunde der skal redigeres
 
+        private Product _productToEdit;
+        public Product ProductToEdit
+        {
+            get { return _productToEdit; }
+            set
+            {
+                _productToEdit = value;
+                if (ProductToEdit != null)
+                {
+                    Debug.WriteLine($"set customer to edit to {ProductToEdit.Productname}");
+                }
+
+            }
+        } //Den kunde der skal redigeres
+
         public string TargetPage { get; set; }
 
 
@@ -101,7 +116,7 @@ namespace NewAmazingLAKS_Project.Model
                     CustomerList.Add(new Customer("kundenavn", "att", "address", 4000, "tlfnr"));
                 }
             }
-            catch (Newtonsoft.Json.JsonReaderException ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Something went wrong with the load");
                 //CustomerList.Add(new Customer("2", "Eksamen", "lokale 122", 12, "Eksamen 1. semester"));
