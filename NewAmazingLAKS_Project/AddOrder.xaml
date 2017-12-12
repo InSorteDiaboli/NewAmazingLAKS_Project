@@ -38,12 +38,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="674,444,0,0" TextWrapping="Wrap" Text="Fragt Pris" VerticalAlignment="Top" Width="80" Height="25"/>
         <TextBlock HorizontalAlignment="Left" Margin="674,484,0,0" TextWrapping="Wrap" Text="Op til 10%" VerticalAlignment="Top" Height="25" Width="80"/>
         <TextBlock HorizontalAlignment="Left" Margin="674,524,0,0" TextWrapping="Wrap" Text="Lev. Antal" VerticalAlignment="Top" Height="25" Width="80"/>
-        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="1145,10,0,0" VerticalAlignment="Top" Height="74" Width="125">
-            <Interactivity:Interaction.Behaviors>
-                <Core:EventTriggerBehavior EventName="Click">
-                    <Core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.MainPage"/>
-                </Core:EventTriggerBehavior>
-            </Interactivity:Interaction.Behaviors>
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="1145,10,0,0" VerticalAlignment="Top" Height="74" Width="125" Command="{Binding GoBackCommand}">
         </Button>
         <Button Content="Godkend Ordre" HorizontalAlignment="Left" Margin="221,462,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
         <Path Data="M244,674" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="0" Margin="244,674,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="0"/>
