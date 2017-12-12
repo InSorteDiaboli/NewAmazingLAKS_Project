@@ -347,11 +347,16 @@ namespace NewAmazingLAKS_Project
 
         public void AddProduct()
         {
-            if (string.IsNullOrEmpty(Productname) && string.IsNullOrEmpty(Productsize) && Amount == 0 && string.IsNullOrEmpty(Media))
+            //if (string.IsNullOrEmpty(Productname) && string.IsNullOrEmpty(Productsize) && Amount == 0 && string.IsNullOrEmpty(Media))
+            //{
+            //    PersistencyService.MessageDialogHelper.Show("Du skal skrive produktnavn, produktstørrelse, medie, folie, laminering og produkttype", "Error");
+            //}
+            //else 
+            if (CustomerList.OrderToEdit.SelectedProduct == null)
             {
-                PersistencyService.MessageDialogHelper.Show("Du skal skrive produktnavn, produktstørrelse, medie, folie, laminering og produkttype", "Error");
+                CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
             }
-            else
+            if (Productname != null)
             {
                 CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
                 OnPropertyChanged();
@@ -360,24 +365,61 @@ namespace NewAmazingLAKS_Project
                 CustomerList.ProductToEdit =
                     CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
             }
+            else if (CustomerList.OrderToEdit.SelectedProduct.Productname != null)
+            {
+                CustomerList.OrderToEdit.ProductList.Add(new Product(CustomerList.OrderToEdit.SelectedProduct.Productname, CustomerList.OrderToEdit.SelectedProduct.Productsize, CustomerList.OrderToEdit.SelectedProduct.Amount, CustomerList.OrderToEdit.SelectedProduct.Media, CustomerList.OrderToEdit.SelectedProduct.Productprice, CustomerList.OrderToEdit.SelectedProduct.Levprice, CustomerList.OrderToEdit.SelectedProduct.Levamount, CustomerList.OrderToEdit.SelectedProduct.Procent));
+                OnPropertyChanged();
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+                CustomerList.ProductToEdit =
+                    CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+            }
+            else
+            {
+                Debug.WriteLine("noget gik galt med at tilføje produktet");
+            }
             
         }
 
         public void AddLaminate()
         {
-            Debug.WriteLine($"Adding Laminate {Laminate} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
-            CustomerList.OrderToEdit.SelectedProduct.Laminate.Add(Laminate);
+            try
+            {
+                Debug.WriteLine($"Adding Laminate {Laminate} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
+                CustomerList.OrderToEdit.SelectedProduct.Laminate.Add(Laminate);
+            }
+            catch (Exception e)
+            {
+                PersistencyService.MessageDialogHelper.Show("Marker et produkt at tilføje til", "Msg");
+            }
+
 
         }
 
         public void AddType()
         {
-            CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
+            try
+            {
+                CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
+
+            }
+            catch (Exception e)
+            {
+                PersistencyService.MessageDialogHelper.Show("Marker et produkt at tilføje til", "Msg");
+            }
         }
 
         public void AddFolie()
         {
-            CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
+            try
+            {
+                CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
+            }
+            catch (Exception e)
+            {
+                PersistencyService.MessageDialogHelper.Show("Marker et produkt at tilføje til", "Msg");
+            }
+            
         }
 
         //public async void Save()
