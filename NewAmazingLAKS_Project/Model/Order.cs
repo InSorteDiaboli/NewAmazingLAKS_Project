@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,20 @@ namespace NewAmazingLAKS_Project.Model
         public string FileDate { get; set; }
         public string OrderStatus { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
+        private Product _selectedProduct;
+
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set
+            {
+                _selectedProduct = value;
+                if (_selectedProduct != null)
+                {
+                    Debug.WriteLine($"set selectproduct to{_selectedProduct.Productname}");
+                }
+            }
+        }
         #endregion
 
 
