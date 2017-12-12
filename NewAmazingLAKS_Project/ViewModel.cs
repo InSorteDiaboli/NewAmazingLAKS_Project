@@ -260,11 +260,20 @@ namespace NewAmazingLAKS_Project
 
         public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
-            CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
-            OnPropertyChanged();
-            PersistencyService.MessageDialogHelper.Show("Kunde tilføjet", "Msg");
-            CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
-            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+            if (string.IsNullOrEmpty(CustomerName) && string.IsNullOrEmpty(Address) && PostalNo == 0 &&
+                string.IsNullOrEmpty(PhoneNo))
+            {
+                PersistencyService.MessageDialogHelper.Show("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
+            }
+            else
+            {
+                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
+                OnPropertyChanged();
+                PersistencyService.MessageDialogHelper.Show("Kunde tilføjet", "Msg");
+                CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+            }
+            
         }
 
         public void AddOrder() //Vi tilføjer en ordre til CustomerToAddOrder.OrderList

@@ -37,6 +37,7 @@ namespace NewAmazingLAKS_Project.Model
 
         public Customer(string kundenavn, string att, string adresse, int postnummer, string tlfnr)
         {
+            
             CustomerNo = _count++;
             CustomerName = kundenavn;
             Att = att;
@@ -44,8 +45,7 @@ namespace NewAmazingLAKS_Project.Model
             PostalNo = postnummer;
             PhoneNo = tlfnr;
             OrderList = new ObservableCollection<Order>();
-            OrderList.Add(new Order("levDate", 1, "fileDate")); //Dummydata
-            OrderList.Add(new Order("20/8/2016", 5, "1/1/2017"));
+
         }
 
         //public override string ToString()
