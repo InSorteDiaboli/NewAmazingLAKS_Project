@@ -141,7 +141,7 @@ namespace NewAmazingLAKS_Project
         //        Debug.WriteLine($"set order to no {SelectedOrder.OrderNo}");
         //    }
         //}
-        public ViewModel()
+        public ViewModel() //
         {
             _removeCommand = new RelayCommand(Remove);
             _addCustomerCommand = new RelayCommand(AddCustomer);
