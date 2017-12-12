@@ -29,6 +29,9 @@ namespace NewAmazingLAKS_Project
         //private Customer _customerToAddOrder;
         private ICommand _editCommand;
 
+        private ICommand _goBackCommand;
+        private ICommand _clearCustomerListCommand;
+
         #region Customer
         public int CustomerNo { get; set; }
         public string CustomerName { get; set; }
@@ -144,6 +147,7 @@ namespace NewAmazingLAKS_Project
             _addOrderCommand = new RelayCommand(AddOrder);
             _goToOrderCommand = new RelayCommand(GoToOrder);
             _editCommand = new RelayCommand(Edit);
+            _clearCustomerListCommand = new RelayCommand(ClearCustomerList);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -194,6 +198,23 @@ namespace NewAmazingLAKS_Project
             set { _editCommand = value; }
         }
 
+        public ICommand GoBackCommand
+        {
+            get { return _goBackCommand; }
+            set { _goBackCommand = value; }
+        }
+
+        public ICommand ClearCustomerListCommand
+        {
+            get { return _clearCustomerListCommand; }
+            set { _clearCustomerListCommand = value; }
+        }
+
+        public void GoBack()
+        {
+            var frame = (Frame) Window.Current.Content;
+            frame.Navigate(typeof(NewAmazingLAKS_Project.MainPage));
+        }
 
 
         public void Edit()
@@ -223,6 +244,11 @@ namespace NewAmazingLAKS_Project
                 Debug.WriteLine(e);
             }
 
+        }
+
+        public void ClearCustomerList()
+        {
+            CustomerList.CustomerList.Clear();
         }
 
 

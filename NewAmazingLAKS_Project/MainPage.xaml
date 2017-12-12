@@ -127,6 +127,7 @@
         <Button Content="Slet" HorizontalAlignment="Left" Height="65" Margin="857,645,0,0" VerticalAlignment="Top" Width="157" Command="{Binding RemoveCommand}" RenderTransformOrigin="-0.04,0.553"/>
         <Button Content="Godkend" HorizontalAlignment="Left" Height="65" Margin="857,541,0,0" VerticalAlignment="Top" Width="157" Command="{Binding RemoveCommand}"/>
         <Image HorizontalAlignment="Left" Height="145" Margin="10,0,0,0" VerticalAlignment="Top" Width="742" Source="Assets/logo.png"/>
+        <Button Content="Clear Kundeliste" HorizontalAlignment="Left" Height="65" Margin="1095,408,0,0" VerticalAlignment="Top" Width="157" Command="{Binding ClearCustomerListCommand}"/>
 
     </Grid>
 </Page>
