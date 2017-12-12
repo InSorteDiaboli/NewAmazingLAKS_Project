@@ -37,10 +37,16 @@ namespace NewAmazingLAKS_Project.Model
         {
             try
             {
-                StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                StorageFile localFile =
+                    await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName,
+                        CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteTextAsync(localFile, kundeListeJsonString);
             }
             catch (System.IO.FileNotFoundException e)
+            {
+                Debug.WriteLine(e);
+            }
+            catch (Exception e)
             {
                 Debug.WriteLine(e);
             }
