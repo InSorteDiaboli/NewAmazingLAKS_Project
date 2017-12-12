@@ -147,6 +147,7 @@ namespace NewAmazingLAKS_Project
             _addOrderCommand = new RelayCommand(AddOrder);
             _goToOrderCommand = new RelayCommand(GoToOrder);
             _editCommand = new RelayCommand(Edit);
+            _goBackCommand = new RelayCommand(GoBack);
             _clearCustomerListCommand = new RelayCommand(ClearCustomerList);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
