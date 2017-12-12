@@ -20,9 +20,6 @@
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </Button>
-        <Button Content="Opret kunde" HorizontalAlignment="Left" Height="81" Margin="381,39,0,0" VerticalAlignment="Top" Width="226" FontSize="20" Command="{Binding AddCustomerCommand}">
-
-        </Button>
         <TextBox x:Name="Navn_textbox" HorizontalAlignment="Left" Height="31" Margin="277,223,0,0" TextWrapping="Wrap" Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="157" PlaceholderText="Navn"/>
         <TextBox x:Name="ATT_textbox" HorizontalAlignment="Left" Height="32" Margin="277,261,0,0" TextWrapping="Wrap" Text="{Binding Att, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="157" PlaceholderText="ATT"/>
         <TextBox x:Name="Adresse_textbox" HorizontalAlignment="Left" Height="30" Margin="277,301,0,0" TextWrapping="Wrap" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="157" PlaceholderText="Adresse"/>
@@ -45,7 +42,7 @@
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </Button>
-        <Button x:Name="Opret_kunde_Button" Content="Opret kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding AddCustomerCommand}"/>
+        <Button x:Name="Opret_kunde_Button" Content="Gem kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding AddCustomerCommand}"/>
 
     </Grid>
 </Page>
