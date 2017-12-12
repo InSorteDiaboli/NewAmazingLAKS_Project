@@ -32,7 +32,7 @@ namespace NewAmazingLAKS_Project
         private ICommand _goBackCommand;
         private ICommand _clearCustomerListCommand;
         private ICommand _addProductCommand;
-
+        private ICommand _goToEditOrderCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -152,6 +152,7 @@ namespace NewAmazingLAKS_Project
             _goBackCommand = new RelayCommand(GoBack);
             _clearCustomerListCommand = new RelayCommand(ClearCustomerList);
             _addProductCommand = new RelayCommand(AddProduct);
+            _goToEditOrderCommand = new RelayCommand(GoToEditOrder);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -220,6 +221,12 @@ namespace NewAmazingLAKS_Project
             set { _addProductCommand = value; }
         }
 
+        public ICommand GoToEditOrderCommand
+        {
+            get { return _goToEditOrderCommand; }
+            set { _goToEditOrderCommand = value; }
+        }
+
         public void GoBack()
         {
             var frame = (Frame) Window.Current.Content;
@@ -266,6 +273,12 @@ namespace NewAmazingLAKS_Project
         {
             CustomerList.CustomerToAddOrder = SelectedCustomer;
             OnPropertyChanged();
+        }
+
+        public void GoToEditOrder()
+        {
+            var frame = (Frame)Window.Current.Content;
+            frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
         }
 
         public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
