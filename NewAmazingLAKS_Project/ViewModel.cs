@@ -31,6 +31,8 @@ namespace NewAmazingLAKS_Project
 
         private ICommand _goBackCommand;
         private ICommand _clearCustomerListCommand;
+        private ICommand _addProductCommand;
+
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -149,6 +151,7 @@ namespace NewAmazingLAKS_Project
             _editCommand = new RelayCommand(Edit);
             _goBackCommand = new RelayCommand(GoBack);
             _clearCustomerListCommand = new RelayCommand(ClearCustomerList);
+            _addProductCommand = new RelayCommand(AddProduct);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -209,6 +212,12 @@ namespace NewAmazingLAKS_Project
         {
             get { return _clearCustomerListCommand; }
             set { _clearCustomerListCommand = value; }
+        }
+
+        public ICommand AddProductCommand
+        {
+            get { return _addProductCommand; }
+            set { _addProductCommand = value; }
         }
 
         public void GoBack()
@@ -281,28 +290,37 @@ namespace NewAmazingLAKS_Project
         {
             if (CustomerList.CustomerToAddOrder != null)
             {
+                
                 Debug.WriteLine($"Trying to add order to {CustomerList.CustomerToAddOrder.CustomerName}");
                 CustomerList.CustomerToAddOrder.OrderList.Add(new Order(LevDate, Blok, FileDate));
                 OnPropertyChanged();
                 PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-                PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Msg");
+                PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Besked");
                 CustomerList.OrderToEdit =
                     CustomerList.CustomerToAddOrder.OrderList[CustomerList.CustomerToAddOrder.OrderList.Count - 1]; //Hvis vi laver en ordre skal vi kunne tilføje produkter til den med det samme
             }
             else
             {
-                Debug.WriteLine("Hvorfor er der ingen kunde?");
+                Debug.WriteLine("Ordren skal tilføjes til en kunde");
             }
 
         }
 
         public void AddProduct()
         {
-            SelectedCustomer.SelectedOrder.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Folie,
-                Laminate, Producttype, Productprice, Levprice, Levamount, Percent));
-            OnPropertyChanged();
-            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-            PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+            if (string.IsNullOrEmpty(Productname) && Productsize == 0 && Amount == 0 && string.IsNullOrEmpty(Media) && string.IsNullOrEmpty(Folie) && string.IsNullOrEmpty(Laminate) && string.IsNullOrEmpty(Producttype))
+            {
+                PersistencyService.MessageDialogHelper.Show("Du skal skrive produktnavn, produktstørrelse, medie, folie, laminering og produkttype", "Error");
+            }
+            else
+            {
+                CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Folie,
+                    Laminate, Producttype, Productprice, Levprice, Levamount, Percent));
+                OnPropertyChanged();
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+            }
+            
         }
 
         //public async void Save()

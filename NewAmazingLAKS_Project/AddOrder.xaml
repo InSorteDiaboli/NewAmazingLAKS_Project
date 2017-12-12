@@ -72,6 +72,7 @@
             <ListView Height="334" Width="484"/>
         </ListView>
         <TextBlock HorizontalAlignment="Left" Margin="52,637,0,0" TextWrapping="Wrap" Text="Produktliste:" VerticalAlignment="Top" Height="32" Width="126" FontSize="22"/>
+        <Button Content="Tilføj produkt" HorizontalAlignment="Left" Margin="818,575,0,0" VerticalAlignment="Top" Command="{Binding AddProductCommand}"/>
 
     </Grid>
 </Page>
