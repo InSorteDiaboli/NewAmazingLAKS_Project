@@ -22,7 +22,7 @@ namespace NewAmazingLAKS_Project.Model
                 if (CustomerToAddOrder != null)
                 {
                     Debug.WriteLine($"set customertoaddorder to {CustomerToAddOrder.CustomerName}");
-                    if (OrderToEdit == null)
+                    if (OrderToEdit == null && CustomerToAddOrder.OrderList.Count > 0)
                     {
                         OrderToEdit = CustomerToAddOrder.OrderList[CustomerToAddOrder.OrderList.Count - 1];
                         Debug.WriteLine($"Set Order to Edit to {OrderToEdit}");
