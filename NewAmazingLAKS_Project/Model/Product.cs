@@ -40,12 +40,14 @@ namespace NewAmazingLAKS_Project.Model
         public string SelectedFolie { get; set; }
 
         public string SelectedType { get; set; }
+        public bool Solv { get; set; }
+        public bool SUV { get; set; }
 
         #endregion
 
         #region CONSTRUCTOR
 
-        public Product(string productname, string productsize, int amount, string media, double productprice, double levprice, int levamount, double procent, double dtpPrice)
+        public Product(string productname, string productsize, int amount, string media, double productprice, double levprice, int levamount, double procent, double dtpPrice, bool solv, bool suv)
         {
             Productname = productname;
             Productsize = productsize;
@@ -59,6 +61,8 @@ namespace NewAmazingLAKS_Project.Model
             DtpPrice = dtpPrice;
             Levamount = levamount;
             Procent = Productprice + (Productprice/100*procent);
+            Solv = solv;
+            SUV = suv;
         }
 
         #endregion

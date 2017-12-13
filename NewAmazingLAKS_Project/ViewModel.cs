@@ -137,6 +137,8 @@ namespace NewAmazingLAKS_Project
         public double Levprice { get; set; }
         public double Percent { get; set; }
         public int Levamount { get; set; }
+        public bool Solv { get; set; }
+        public bool SUV { get; set; }
 
         #endregion
 
@@ -313,6 +315,8 @@ namespace NewAmazingLAKS_Project
                 {
                     SelectedCustomer.SelectedOrder.OrderStatus = "Ny Ordre";
                 }
+                OnPropertyChanged();
+                GoBack();
                 Save();
             }
             catch (Exception e)
@@ -425,7 +429,7 @@ namespace NewAmazingLAKS_Project
             {
                 if (Productname != null || Productsize != null || Amount != 0)
                 {
-                    CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent, Dtpprice));
+                    CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent, Dtpprice, Solv, SUV));
                     OnPropertyChanged();
 
                     Showbox("Produkt tilføjet", "Msg");
