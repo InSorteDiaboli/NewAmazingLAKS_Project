@@ -496,33 +496,41 @@ namespace NewAmazingLAKS_Project
 
         public void RemoveStuff()
         {
-            if (CustomerList.OrderToEdit.SelectedProduct.SelectedFolie != null)
+            try
             {
-                Debug.WriteLine("Removing Folie");
-                CustomerList.OrderToEdit.SelectedProduct.Folie.Remove(CustomerList.OrderToEdit.SelectedProduct
-                    .SelectedFolie);
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-            }
-            else if (CustomerList.OrderToEdit.SelectedProduct.SelectedLaminate != null)
-            {
-                Debug.WriteLine("Removing laminate");
+                if (CustomerList.OrderToEdit.SelectedProduct.SelectedFolie != null)
+                {
+                    Debug.WriteLine("Removing Folie");
+                    CustomerList.OrderToEdit.SelectedProduct.Folie.Remove(CustomerList.OrderToEdit.SelectedProduct
+                        .SelectedFolie);
+                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                }
+                else if (CustomerList.OrderToEdit.SelectedProduct.SelectedLaminate != null)
+                {
+                    Debug.WriteLine("Removing laminate");
 
-                CustomerList.OrderToEdit.SelectedProduct.Laminate.Remove(CustomerList.OrderToEdit.SelectedProduct
-                    .SelectedLaminate);
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-            }
-            else if (CustomerList.OrderToEdit.SelectedProduct.SelectedType != null)
-            {
-                Debug.WriteLine("Removing type");
+                    CustomerList.OrderToEdit.SelectedProduct.Laminate.Remove(CustomerList.OrderToEdit.SelectedProduct
+                        .SelectedLaminate);
+                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                }
+                else if (CustomerList.OrderToEdit.SelectedProduct.SelectedType != null)
+                {
+                    Debug.WriteLine("Removing type");
 
-                CustomerList.OrderToEdit.SelectedProduct.Producttype.Remove(CustomerList.OrderToEdit.SelectedProduct
-                    .SelectedType);
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                    CustomerList.OrderToEdit.SelectedProduct.Producttype.Remove(CustomerList.OrderToEdit.SelectedProduct
+                        .SelectedType);
+                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                }
+                else
+                {
+                    Debug.WriteLine("No stuff selected");
+                }
             }
-            else
+            catch (Exception e)
             {
-                Debug.WriteLine("No stuff selected");
+                Debug.WriteLine("DET KAN DU IKKE MOTHERFUCKER");
             }
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
