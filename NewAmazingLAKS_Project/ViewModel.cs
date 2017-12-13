@@ -284,6 +284,7 @@ namespace NewAmazingLAKS_Project
         {
             var frame = (Frame) Window.Current.Content;
             frame.Navigate(typeof(NewAmazingLAKS_Project.MainPage));
+            Save();
         }
 
         public void Showbox(string content, string title)
@@ -312,6 +313,7 @@ namespace NewAmazingLAKS_Project
                 {
                     SelectedCustomer.SelectedOrder.OrderStatus = "Ny Ordre";
                 }
+                Save();
             }
             catch (Exception e)
             {
@@ -423,7 +425,7 @@ namespace NewAmazingLAKS_Project
             {
                 if (Productname != null || Productsize != null || Amount != 0)
                 {
-                    CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
+                    CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent, Dtpprice));
                     OnPropertyChanged();
 
                     Showbox("Produkt tilføjet", "Msg");
@@ -571,6 +573,7 @@ namespace NewAmazingLAKS_Project
                 {
                     Showbox("Vælg et produkt at slette", "Error");
                 }
+                Save();
             }
             catch (Exception e)
             {
