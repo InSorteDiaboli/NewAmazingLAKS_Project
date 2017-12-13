@@ -46,7 +46,7 @@ namespace NewAmazingLAKS_Project.Model
 
         public Order(string levDate, int blok, string fileDate)
         {
-            OrderNo = _count++;
+            OrderNo = _count++ +1;
             OrderDate = DateTime.Now;
             LevDate = levDate;
             Blok = blok;

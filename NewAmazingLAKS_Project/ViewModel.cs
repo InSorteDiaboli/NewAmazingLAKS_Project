@@ -39,6 +39,7 @@ namespace NewAmazingLAKS_Project
         private ICommand _removeStuffCommand;
         private ICommand _godkendCommand;
         private ICommand _removeProductCommand;
+        private ICommand _goToNewProductCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -170,6 +171,7 @@ namespace NewAmazingLAKS_Project
             _removeStuffCommand = new RelayCommand(RemoveStuff);
             _removeProductCommand = new RelayCommand(RemoveProduct);
             _godkendCommand = new RelayCommand(Godkend);
+            _goToNewProductCommand = new RelayCommand(GoToNewProduct);
             //EmptyOrder = new Order("", 0, "");
             //EmptyOrder.OrderNo = -1;
             Order EmptyOrder;
@@ -281,6 +283,12 @@ namespace NewAmazingLAKS_Project
             set { _removeProductCommand = value; }
         }
 
+        public ICommand GoToNewProductCommand 
+        {
+            get { return _goToNewProductCommand; }
+            set { _goToNewProductCommand = value; }
+        }
+
 
         public void GoBack()
         {
@@ -366,6 +374,13 @@ namespace NewAmazingLAKS_Project
         {
             CustomerList.CustomerToAddOrder = SelectedCustomer;
             OnPropertyChanged();
+            CustomerList.OrderToEdit = EmptyOrder;
+        }
+
+        public void GoToNewProduct()
+        {
+            var frame = (Frame)Window.Current.Content;
+            frame.Navigate(typeof(NewAmazingLAKS_Project.AddOrder));
         }
 
         public void GoToEditOrder()

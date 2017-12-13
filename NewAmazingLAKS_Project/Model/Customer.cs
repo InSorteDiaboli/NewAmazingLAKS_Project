@@ -38,7 +38,7 @@ namespace NewAmazingLAKS_Project.Model
         public Customer(string kundenavn, string att, string adresse, int postnummer, string tlfnr)
         {
             
-            CustomerNo = _count++;
+            CustomerNo = _count++ +1;
             CustomerName = kundenavn;
             Att = att;
             Address = adresse;
