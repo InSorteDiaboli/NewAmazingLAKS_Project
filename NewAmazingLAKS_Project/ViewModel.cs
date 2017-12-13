@@ -373,6 +373,8 @@ namespace NewAmazingLAKS_Project
                 PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
                 CustomerList.ProductToEdit =
                     CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+                CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+                GoToEditOrder();
             }
             //else if (CustomerList.OrderToEdit != null && CustomerL)
             //{
