@@ -369,11 +369,24 @@ namespace NewAmazingLAKS_Project
             {
                 CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
                 OnPropertyChanged();
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+
                 PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
                 CustomerList.ProductToEdit =
                     CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
                 CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+                if (Folie != null)
+                {
+                    CustomerList.ProductToEdit.Folie.Add(Folie);
+                }
+                if (Laminate != null)
+                {
+                    CustomerList.ProductToEdit.Laminate.Add(Laminate);
+                }
+                if (Producttype != null)
+                {
+                    CustomerList.ProductToEdit.Producttype.Add(Producttype);
+                }
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
                 GoToEditOrder();
             }
             //else if (CustomerList.OrderToEdit != null && CustomerL)
@@ -398,6 +411,7 @@ namespace NewAmazingLAKS_Project
             {
                 Debug.WriteLine($"Adding Laminate {Laminate} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
                 CustomerList.OrderToEdit.SelectedProduct.Laminate.Add(Laminate);
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
             }
             catch (Exception e)
             {
@@ -413,6 +427,7 @@ namespace NewAmazingLAKS_Project
             {
                 Debug.WriteLine($"Adding Producttype {Producttype} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
                 CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
 
             }
             catch (Exception e)
@@ -428,6 +443,7 @@ namespace NewAmazingLAKS_Project
                 Debug.WriteLine($"Adding Folie {Folie} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
 
                 CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
             }
             catch (Exception e)
             {
@@ -485,6 +501,7 @@ namespace NewAmazingLAKS_Project
                 Debug.WriteLine("Removing Folie");
                 CustomerList.OrderToEdit.SelectedProduct.Folie.Remove(CustomerList.OrderToEdit.SelectedProduct
                     .SelectedFolie);
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
             }
             else if (CustomerList.OrderToEdit.SelectedProduct.SelectedLaminate != null)
             {
@@ -492,6 +509,7 @@ namespace NewAmazingLAKS_Project
 
                 CustomerList.OrderToEdit.SelectedProduct.Laminate.Remove(CustomerList.OrderToEdit.SelectedProduct
                     .SelectedLaminate);
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
             }
             else if (CustomerList.OrderToEdit.SelectedProduct.SelectedType != null)
             {
@@ -499,6 +517,7 @@ namespace NewAmazingLAKS_Project
 
                 CustomerList.OrderToEdit.SelectedProduct.Producttype.Remove(CustomerList.OrderToEdit.SelectedProduct
                     .SelectedType);
+                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
             }
             else
             {
