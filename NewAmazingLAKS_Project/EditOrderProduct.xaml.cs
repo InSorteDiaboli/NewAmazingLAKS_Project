@@ -26,5 +26,11 @@ namespace NewAmazingLAKS_Project
         {
             this.InitializeComponent();
         }
+
+        private async void IconGridView_ItemClick(object sender, ItemClickEventArgs e) //refresh
+        {
+            var frame = (Frame)Window.Current.Content;
+            frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrderProduct));
+        }
     }
 }

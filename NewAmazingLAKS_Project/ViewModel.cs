@@ -304,7 +304,7 @@ namespace NewAmazingLAKS_Project
         public void GoToEditOrder()
         {
             var frame = (Frame)Window.Current.Content;
-            frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
+            frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrderProduct));
         }
 
         public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
@@ -367,15 +367,15 @@ namespace NewAmazingLAKS_Project
                 CustomerList.ProductToEdit =
                     CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
             }
-            else if (CustomerList.OrderToEdit != null && CustomerList.OrderToEdit.SelectedProduct.Productname != null)
-            {
-                CustomerList.OrderToEdit.ProductList.Add(new Product(CustomerList.OrderToEdit.SelectedProduct.Productname, CustomerList.OrderToEdit.SelectedProduct.Productsize, CustomerList.OrderToEdit.SelectedProduct.Amount, CustomerList.OrderToEdit.SelectedProduct.Media, CustomerList.OrderToEdit.SelectedProduct.Productprice, CustomerList.OrderToEdit.SelectedProduct.Levprice, CustomerList.OrderToEdit.SelectedProduct.Levamount, CustomerList.OrderToEdit.SelectedProduct.Procent));
-                OnPropertyChanged();
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-                PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
-                CustomerList.ProductToEdit =
-                    CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
-            }
+            //else if (CustomerList.OrderToEdit != null && CustomerL)
+            //{
+            //    CustomerList.OrderToEdit.ProductList.Add(new Product(CustomerList.OrderToEdit.SelectedProduct.Productname, CustomerList.OrderToEdit.SelectedProduct.Productsize, CustomerList.OrderToEdit.SelectedProduct.Amount, CustomerList.OrderToEdit.SelectedProduct.Media, CustomerList.OrderToEdit.SelectedProduct.Productprice, CustomerList.OrderToEdit.SelectedProduct.Levprice, CustomerList.OrderToEdit.SelectedProduct.Levamount, CustomerList.OrderToEdit.SelectedProduct.Procent));
+            //    OnPropertyChanged();
+            //    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+            //    PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+            //    CustomerList.ProductToEdit =
+            //        CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+            //}
             else
             {
                 Debug.WriteLine("noget gik galt med at tilføje produktet");
