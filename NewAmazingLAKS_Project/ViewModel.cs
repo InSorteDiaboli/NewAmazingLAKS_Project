@@ -37,6 +37,8 @@ namespace NewAmazingLAKS_Project
         private ICommand _addFolieCommand;
         private ICommand _addLaminateCommand;
         private ICommand _removeStuffCommand;
+        private ICommand _godkendCommand;
+        private ICommand _removeProductCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -102,6 +104,8 @@ namespace NewAmazingLAKS_Project
         public int Blok { get; set; }
         public string FileDate { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
+
+        public Order EmptyOrder { get; set; }
         //private Order _selectedOrder;
 
         //public Order SelectedOrder
@@ -148,6 +152,7 @@ namespace NewAmazingLAKS_Project
         public ViewModel() //
         {
             _removeCommand = new RelayCommand(Remove);
+            _saveCommand = new RelayCommand(Save);
             _addCustomerCommand = new RelayCommand(AddCustomer);
             _loadCommand = new RelayCommand(Load);
             _addOrderCommand = new RelayCommand(AddOrder);
@@ -161,6 +166,10 @@ namespace NewAmazingLAKS_Project
             _addProdukttypeCommand = new RelayCommand(AddType);
             _addLaminateCommand = new RelayCommand(AddLaminate);
             _removeStuffCommand = new RelayCommand(RemoveStuff);
+            _removeProductCommand = new RelayCommand(RemoveProduct);
+            _godkendCommand = new RelayCommand(Godkend);
+            EmptyOrder = new Order("", 0, "");
+            EmptyOrder.OrderNo = -1;
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -168,6 +177,12 @@ namespace NewAmazingLAKS_Project
             //    //customer.OrderList.Add(new Order("some date", 4, "filedate"));
             //    OrderList = customer.OrderList;
             //}
+        }
+
+        public ICommand GodkendCommand
+        {
+            get { return _godkendCommand; }
+            set { _godkendCommand = value; }
         }
 
         public ICommand RemoveCommand
@@ -257,14 +272,52 @@ namespace NewAmazingLAKS_Project
             set { _removeStuffCommand = value; }
         }
 
+        public ICommand RemoveProductCommand
+        {
+            get { return _removeProductCommand; }
+            set { _removeProductCommand = value; }
+        }
+
+
         public void GoBack()
         {
             var frame = (Frame) Window.Current.Content;
             frame.Navigate(typeof(NewAmazingLAKS_Project.MainPage));
         }
 
+        public void Showbox(string content, string title)
+        {
+            PersistencyService.MessageDialogHelper.Show(content, title);
+        }
 
 
+        public void Godkend()
+        {
+            try
+            {
+                if (SelectedCustomer.SelectedOrder.OrderStatus == "Ny Ordre")
+                {
+                    SelectedCustomer.SelectedOrder.OrderStatus = "Godkendt";
+                }
+                else if (SelectedCustomer.SelectedOrder.OrderStatus == "Godkendt")
+                {
+                    SelectedCustomer.SelectedOrder.OrderStatus = "Udført";
+                }
+                else if (SelectedCustomer.SelectedOrder.OrderStatus == "Udført")
+                {
+                    SelectedCustomer.SelectedOrder.OrderStatus = "Inaktiv";
+                }
+                else if (SelectedCustomer.SelectedOrder.OrderStatus == "Inaktiv")
+                {
+                    SelectedCustomer.SelectedOrder.OrderStatus = "Ny Ordre";
+                }
+            }
+            catch (Exception e)
+            {
+                Showbox("No order selected", "Error");
+            }
+
+        }
 
 
         public void Edit()
@@ -319,15 +372,15 @@ namespace NewAmazingLAKS_Project
             if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || PostalNo == 0 &&
                 string.IsNullOrEmpty(PhoneNo))
             {
-                PersistencyService.MessageDialogHelper.Show("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
+                Showbox("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
             }
             else
             {
                 CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
                 OnPropertyChanged();
-                PersistencyService.MessageDialogHelper.Show("Kunde tilføjet", "Msg");
+                Showbox("Kunde tilføjet", "Msg");
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                Save();
                 var frame = (Frame)Window.Current.Content;
                 frame.Navigate(typeof(NewAmazingLAKS_Project.AddOrder));
             }
@@ -342,8 +395,8 @@ namespace NewAmazingLAKS_Project
                 Debug.WriteLine($"Trying to add order to {CustomerList.CustomerToAddOrder.CustomerName}");
                 CustomerList.CustomerToAddOrder.OrderList.Add(new Order(LevDate, Blok, FileDate));
                 OnPropertyChanged();
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-                PersistencyService.MessageDialogHelper.Show("Ordre tilføjet", "Besked");
+                Save();
+                Showbox("Ordre tilføjet", "Besked");
                 CustomerList.OrderToEdit =
                     CustomerList.CustomerToAddOrder.OrderList[CustomerList.CustomerToAddOrder.OrderList.Count - 1]; //Hvis vi laver en ordre skal vi kunne tilføje produkter til den med det samme
             }
@@ -372,7 +425,7 @@ namespace NewAmazingLAKS_Project
                     CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
                     OnPropertyChanged();
 
-                    PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+                    Showbox("Produkt tilføjet", "Msg");
                     CustomerList.ProductToEdit =
                         CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
                     CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
@@ -388,7 +441,7 @@ namespace NewAmazingLAKS_Project
                     {
                         CustomerList.ProductToEdit.Producttype.Add(Producttype);
                     }
-                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                    Save();
                     GoToEditOrder();
                 }
                 //else if (CustomerList.OrderToEdit != null && CustomerL)
@@ -419,11 +472,11 @@ namespace NewAmazingLAKS_Project
             {
                 Debug.WriteLine($"Adding Laminate {Laminate} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
                 CustomerList.OrderToEdit.SelectedProduct.Laminate.Add(Laminate);
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                Save();
             }
             catch (Exception e)
             {
-                PersistencyService.MessageDialogHelper.Show("Marker et produkt at tilføje til", "Msg");
+                Showbox("Marker et produkt at tilføje til", "Msg");
             }
 
 
@@ -435,12 +488,12 @@ namespace NewAmazingLAKS_Project
             {
                 Debug.WriteLine($"Adding Producttype {Producttype} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
                 CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                Save();
 
             }
             catch (Exception e)
             {
-                PersistencyService.MessageDialogHelper.Show("Marker et produkt at tilføje til", "Msg");
+                Showbox("Marker et produkt at tilføje til", "Msg");
             }
         }
 
@@ -451,19 +504,19 @@ namespace NewAmazingLAKS_Project
                 Debug.WriteLine($"Adding Folie {Folie} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
 
                 CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                Save();
             }
             catch (Exception e)
             {
-                PersistencyService.MessageDialogHelper.Show("Marker et produkt at tilføje til", "Msg");
+                Showbox("Marker et produkt at tilføje til", "Msg");
             }
             
         }
 
-        //public async void Save()
-        //{
-        //    PersistencyService.SaveKundeListeAsJsonAsync();
-        //}
+        public async void Save()
+        {
+            PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+        }
 
         public async void Load()
         {
@@ -479,27 +532,49 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
-                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null)
+
+                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null && SelectedCustomer.SelectedOrder.OrderNo != -1)
                 {
                     Debug.WriteLine("removing order");
                     SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
+                    CustomerList.OrderToEdit = EmptyOrder;
                 }
                 else if (SelectedCustomer != null)
                 {
                     Debug.WriteLine("removing customer");
                     CustomerList.Remove(SelectedCustomer);
+                    CustomerList.OrderToEdit = EmptyOrder;
                 }
                 else
                 {
                     Debug.WriteLine("No customer or order select");
                 }
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                Save();
             }
             catch (System.NullReferenceException e)
             {
                 Debug.WriteLine(e);
             }
 
+        }
+
+        public void RemoveProduct()
+        {
+            try
+            {
+                if (CustomerList.OrderToEdit.SelectedProduct != null)
+                {
+                    CustomerList.OrderToEdit.ProductList.Remove(CustomerList.OrderToEdit.SelectedProduct);
+                }
+                else
+                {
+                    Showbox("Vælg et produkt at slette", "Error");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("DET KAN DU IKKE MOTHERFUCKER");
+            }
         }
 
         public void RemoveStuff()
@@ -511,7 +586,7 @@ namespace NewAmazingLAKS_Project
                     Debug.WriteLine("Removing Folie");
                     CustomerList.OrderToEdit.SelectedProduct.Folie.Remove(CustomerList.OrderToEdit.SelectedProduct
                         .SelectedFolie);
-                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                    Save();
                 }
                 else if (CustomerList.OrderToEdit.SelectedProduct.SelectedLaminate != null)
                 {
@@ -519,7 +594,7 @@ namespace NewAmazingLAKS_Project
 
                     CustomerList.OrderToEdit.SelectedProduct.Laminate.Remove(CustomerList.OrderToEdit.SelectedProduct
                         .SelectedLaminate);
-                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                    Save();
                 }
                 else if (CustomerList.OrderToEdit.SelectedProduct.SelectedType != null)
                 {
@@ -527,7 +602,7 @@ namespace NewAmazingLAKS_Project
 
                     CustomerList.OrderToEdit.SelectedProduct.Producttype.Remove(CustomerList.OrderToEdit.SelectedProduct
                         .SelectedType);
-                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                    Save();
                 }
                 else
                 {
