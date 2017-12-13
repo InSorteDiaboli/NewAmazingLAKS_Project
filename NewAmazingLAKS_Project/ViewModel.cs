@@ -36,6 +36,7 @@ namespace NewAmazingLAKS_Project
         private ICommand _addProdukttypeCommand;
         private ICommand _addFolieCommand;
         private ICommand _addLaminateCommand;
+        private ICommand _removeStuffCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -159,7 +160,7 @@ namespace NewAmazingLAKS_Project
             _addFolieCommand = new RelayCommand(AddFolie);
             _addProdukttypeCommand = new RelayCommand(AddType);
             _addLaminateCommand = new RelayCommand(AddLaminate);
-
+            _removeStuffCommand = new RelayCommand(RemoveStuff);
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -248,6 +249,12 @@ namespace NewAmazingLAKS_Project
         {
             get { return _addProdukttypeCommand; }
             set { _addProdukttypeCommand = value; }
+        }
+
+        public ICommand RemoveStuffCommand
+        {
+            get { return _removeStuffCommand; }
+            set { _removeStuffCommand = value; }
         }
 
         public void GoBack()
@@ -467,6 +474,34 @@ namespace NewAmazingLAKS_Project
                 Debug.WriteLine(e);
             }
 
+        }
+
+        public void RemoveStuff()
+        {
+            if (CustomerList.OrderToEdit.SelectedProduct.SelectedFolie != null)
+            {
+                Debug.WriteLine("Removing Folie");
+                CustomerList.OrderToEdit.SelectedProduct.Folie.Remove(CustomerList.OrderToEdit.SelectedProduct
+                    .SelectedFolie);
+            }
+            else if (CustomerList.OrderToEdit.SelectedProduct.SelectedLaminate != null)
+            {
+                Debug.WriteLine("Removing laminate");
+
+                CustomerList.OrderToEdit.SelectedProduct.Laminate.Remove(CustomerList.OrderToEdit.SelectedProduct
+                    .SelectedLaminate);
+            }
+            else if (CustomerList.OrderToEdit.SelectedProduct.SelectedType != null)
+            {
+                Debug.WriteLine("Removing type");
+
+                CustomerList.OrderToEdit.SelectedProduct.Producttype.Remove(CustomerList.OrderToEdit.SelectedProduct
+                    .SelectedType);
+            }
+            else
+            {
+                Debug.WriteLine("No stuff selected");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -32,5 +32,15 @@ namespace NewAmazingLAKS_Project
             var frame = (Frame)Window.Current.Content;
             frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrderProduct));
         }
+
+        private async void Deselect_click(object sender, ItemClickEventArgs e) //Kode til at deselecte
+        {
+            var gridView = sender as ListView;
+            if (e.ClickedItem == gridView.SelectedItem)
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => gridView.SelectedItem = null);
+                gridView.SelectedItem = null;
+            }
+        }
     }
 }

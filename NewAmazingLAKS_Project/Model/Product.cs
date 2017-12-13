@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace NewAmazingLAKS_Project.Model
 {
     class Product
     {
+        private string _selectedLaminate;
+
         #region PRODUCT
 
         public string Productname { get; set; }
@@ -22,6 +25,20 @@ namespace NewAmazingLAKS_Project.Model
         public int Levamount { get; set; }
         public double Procent { get; set; }
         public ObservableCollection<string> Laminate { get; set; }
+
+        public string SelectedLaminate
+        {
+            get { return _selectedLaminate; }
+            set
+            {
+                _selectedLaminate = value;
+                Debug.WriteLine($"Selected stuff set to {SelectedLaminate}");
+            }
+        }
+
+        public string SelectedFolie { get; set; }
+
+        public string SelectedType { get; set; }
 
         #endregion
 
