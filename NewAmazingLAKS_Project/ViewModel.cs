@@ -168,8 +168,9 @@ namespace NewAmazingLAKS_Project
             _removeStuffCommand = new RelayCommand(RemoveStuff);
             _removeProductCommand = new RelayCommand(RemoveProduct);
             _godkendCommand = new RelayCommand(Godkend);
-            EmptyOrder = new Order("", 0, "");
-            EmptyOrder.OrderNo = -1;
+            //EmptyOrder = new Order("", 0, "");
+            //EmptyOrder.OrderNo = -1;
+            Order EmptyOrder;
             //_saveCommand = new RelayCommand(Save);
             //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
             //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
@@ -533,7 +534,7 @@ namespace NewAmazingLAKS_Project
             try
             {
 
-                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null && SelectedCustomer.SelectedOrder.OrderNo != -1 && CustomerList.OrderToEdit.OrderNo != -1)
+                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ && CustomerList.OrderToEdit != null)
                 {
                     Debug.WriteLine("removing order");
                     SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);

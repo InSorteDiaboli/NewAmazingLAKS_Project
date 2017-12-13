@@ -71,7 +71,7 @@ namespace NewAmazingLAKS_Project.Model
                 _productToEdit = value;
                 if (ProductToEdit != null)
                 {
-                    Debug.WriteLine($"set customer to edit to {ProductToEdit.Productname}");
+                    Debug.WriteLine($"set product to edit to {ProductToEdit.Productname}");
                 }
 
             }
