@@ -365,43 +365,51 @@ namespace NewAmazingLAKS_Project
             //{
             //    CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
             //}
-            if (Productname != null || Productsize != null || Amount != 0)
+            try
             {
-                CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
-                OnPropertyChanged();
+                if (Productname != null || Productsize != null || Amount != 0)
+                {
+                    CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
+                    OnPropertyChanged();
 
-                PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
-                CustomerList.ProductToEdit =
-                    CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
-                CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
-                if (Folie != null)
-                {
-                    CustomerList.ProductToEdit.Folie.Add(Folie);
+                    PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+                    CustomerList.ProductToEdit =
+                        CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+                    CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+                    if (Folie != null)
+                    {
+                        CustomerList.ProductToEdit.Folie.Add(Folie);
+                    }
+                    if (Laminate != null)
+                    {
+                        CustomerList.ProductToEdit.Laminate.Add(Laminate);
+                    }
+                    if (Producttype != null)
+                    {
+                        CustomerList.ProductToEdit.Producttype.Add(Producttype);
+                    }
+                    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                    GoToEditOrder();
                 }
-                if (Laminate != null)
+                //else if (CustomerList.OrderToEdit != null && CustomerL)
+                //{
+                //    CustomerList.OrderToEdit.ProductList.Add(new Product(CustomerList.OrderToEdit.SelectedProduct.Productname, CustomerList.OrderToEdit.SelectedProduct.Productsize, CustomerList.OrderToEdit.SelectedProduct.Amount, CustomerList.OrderToEdit.SelectedProduct.Media, CustomerList.OrderToEdit.SelectedProduct.Productprice, CustomerList.OrderToEdit.SelectedProduct.Levprice, CustomerList.OrderToEdit.SelectedProduct.Levamount, CustomerList.OrderToEdit.SelectedProduct.Procent));
+                //    OnPropertyChanged();
+                //    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
+                //    PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
+                //    CustomerList.ProductToEdit =
+                //        CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+                //}
+                else
                 {
-                    CustomerList.ProductToEdit.Laminate.Add(Laminate);
+                    Debug.WriteLine("noget gik galt med at tilføje produktet");
                 }
-                if (Producttype != null)
-                {
-                    CustomerList.ProductToEdit.Producttype.Add(Producttype);
-                }
-                PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-                GoToEditOrder();
             }
-            //else if (CustomerList.OrderToEdit != null && CustomerL)
-            //{
-            //    CustomerList.OrderToEdit.ProductList.Add(new Product(CustomerList.OrderToEdit.SelectedProduct.Productname, CustomerList.OrderToEdit.SelectedProduct.Productsize, CustomerList.OrderToEdit.SelectedProduct.Amount, CustomerList.OrderToEdit.SelectedProduct.Media, CustomerList.OrderToEdit.SelectedProduct.Productprice, CustomerList.OrderToEdit.SelectedProduct.Levprice, CustomerList.OrderToEdit.SelectedProduct.Levamount, CustomerList.OrderToEdit.SelectedProduct.Procent));
-            //    OnPropertyChanged();
-            //    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-            //    PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
-            //    CustomerList.ProductToEdit =
-            //        CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
-            //}
-            else
+            catch (Exception e)
             {
-                Debug.WriteLine("noget gik galt med at tilføje produktet");
+                Debug.WriteLine(e + "stop h8");
             }
+
             
         }
 
