@@ -533,7 +533,7 @@ namespace NewAmazingLAKS_Project
             try
             {
 
-                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null && SelectedCustomer.SelectedOrder.OrderNo != -1)
+                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null && SelectedCustomer.SelectedOrder.OrderNo != -1 && CustomerList.OrderToEdit.OrderNo != -1)
                 {
                     Debug.WriteLine("removing order");
                     SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
