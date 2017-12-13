@@ -354,10 +354,10 @@ namespace NewAmazingLAKS_Project
             //    PersistencyService.MessageDialogHelper.Show("Du skal skrive produktnavn, produktstørrelse, medie, folie, laminering og produkttype", "Error");
             //}
             //else 
-            if (CustomerList.OrderToEdit.SelectedProduct == null)
-            {
-                CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
-            }
+            //if (CustomerList.OrderToEdit.SelectedProduct == null)
+            //{
+            //    CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
+            //}
             if (Productname != null || Productsize != null || Amount != 0)
             {
                 CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent));
@@ -367,7 +367,7 @@ namespace NewAmazingLAKS_Project
                 CustomerList.ProductToEdit =
                     CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
             }
-            else if (CustomerList.OrderToEdit.SelectedProduct.Productname != null)
+            else if (CustomerList.OrderToEdit != null && CustomerList.OrderToEdit.SelectedProduct.Productname != null)
             {
                 CustomerList.OrderToEdit.ProductList.Add(new Product(CustomerList.OrderToEdit.SelectedProduct.Productname, CustomerList.OrderToEdit.SelectedProduct.Productsize, CustomerList.OrderToEdit.SelectedProduct.Amount, CustomerList.OrderToEdit.SelectedProduct.Media, CustomerList.OrderToEdit.SelectedProduct.Productprice, CustomerList.OrderToEdit.SelectedProduct.Levprice, CustomerList.OrderToEdit.SelectedProduct.Levamount, CustomerList.OrderToEdit.SelectedProduct.Procent));
                 OnPropertyChanged();
@@ -402,6 +402,7 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
+                Debug.WriteLine($"Adding Producttype {Producttype} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
                 CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
 
             }
@@ -415,6 +416,8 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
+                Debug.WriteLine($"Adding Folie {Folie} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
+
                 CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
             }
             catch (Exception e)

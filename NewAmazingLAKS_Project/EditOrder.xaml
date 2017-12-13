@@ -48,20 +48,20 @@
         <TextBox HorizontalAlignment="Left" Margin="221,282,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="221,320,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.Blok, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="23" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="221,357,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,87,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Productname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,124,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Productsize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,197,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Media, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,87,0,0" TextWrapping="Wrap" Text="{Binding Productname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,124,0,0" TextWrapping="Wrap" Text="{Binding Productsize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,197,0,0" TextWrapping="Wrap" Text="{Binding Media, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="818,237,0,0" TextWrapping="Wrap" Text="{Binding Folie, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" RenderTransformOrigin="0.535,0.531" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,161,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,161,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <Button Content="+" HorizontalAlignment="Left" Margin="894,161,0,0" VerticalAlignment="Top" Height="32" Width="32"/>
         <Button Content="-" HorizontalAlignment="Left" Margin="936,161,0,0" VerticalAlignment="Top" Width="32"/>
         <TextBox HorizontalAlignment="Left" Margin="818,277,0,0" TextWrapping="Wrap" Text="{Binding Laminate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="818,317,0,0" TextWrapping="Wrap" Text="{Binding Producttype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,357,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Productprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,357,0,0" TextWrapping="Wrap" Text="{Binding Productprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="818,399,0,0" TextWrapping="Wrap" Text="{Binding Dtpprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,441,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Levprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,477,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Procent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="818,517,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Levamount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,441,0,0" TextWrapping="Wrap" Text="{Binding Levprice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,477,0,0" TextWrapping="Wrap" Text="{Binding Percent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox HorizontalAlignment="Left" Margin="818,517,0,0" TextWrapping="Wrap" Text="{Binding Levamount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <CheckBox Content="Solv." HorizontalAlignment="Left" Margin="979,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="52" Height="30"/>
         <CheckBox Content="SUV" HorizontalAlignment="Left" Margin="1099,199,0,0" VerticalAlignment="Top"/>
         <Button Content="+" HorizontalAlignment="Left" Margin="983,236,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddFolieCommand}"/>
@@ -80,7 +80,7 @@
         <ListView HorizontalAlignment="Left" Height="246" Margin="836,674,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding CustomerList.OrderToEdit.SelectedProduct.Laminate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView Height="334" Width="484"/>
         </ListView>
-        <ListView HorizontalAlignment="Left" Height="246" Margin="979,674,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding CustomerList.OrderToEdit.SelectedProduct.Producttype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView HorizontalAlignment="Left" Height="246" Margin="998,674,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding CustomerList.OrderToEdit.SelectedProduct.Producttype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView Height="334" Width="484"/>
         </ListView>
 
