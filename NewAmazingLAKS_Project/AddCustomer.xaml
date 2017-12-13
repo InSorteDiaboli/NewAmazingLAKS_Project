@@ -42,7 +42,7 @@
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </Button>
-        <Button x:Name="Opret_kunde_Button" Content="Opret kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding AddCustomerCommand}"/>
+        <Button x:Name="Opret_kunde_Button" Content="Gem kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding AddCustomerCommand}" Click="Opret_kunde_Button_Click"/>
 
     </Grid>
 </Page>

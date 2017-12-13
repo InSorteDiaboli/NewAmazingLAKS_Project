@@ -26,5 +26,9 @@ namespace NewAmazingLAKS_Project
         {
             this.InitializeComponent();
         }
+
+        private void Opret_kunde_Button_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

@@ -42,7 +42,7 @@
         </Button>
         <Button Content="Godkend Ordre" HorizontalAlignment="Left" Margin="221,462,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
         <Path Data="M244,674" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="0" Margin="244,674,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="0"/>
-        <Button Content="Opret Ordre" HorizontalAlignment="Left" Margin="77,462,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
+        <Button Content="Opret Ordre(ligegyldig knap)" HorizontalAlignment="Left" Margin="67,527,0,0" VerticalAlignment="Top" Command="{Binding AddOrderCommand}"/>
         <TextBox HorizontalAlignment="Left" Margin="221,207,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
         <TextBox HorizontalAlignment="Left" Margin="221,244,0,0" TextWrapping="Wrap" Text="{Binding FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
         <TextBox HorizontalAlignment="Left" Margin="221,282,0,0" TextWrapping="Wrap" Text="{Binding LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="150"/>
