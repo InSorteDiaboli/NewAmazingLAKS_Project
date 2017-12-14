@@ -46,6 +46,7 @@ namespace NewAmazingLAKS_Project
         public string Address { get; set; }
         public int PostalNo { get; set; }
         public string PhoneNo { get; set; }
+        public string CVR { get; set; }
 
         //private Customer CustomerToAddOrder
         //{
@@ -339,6 +340,7 @@ namespace NewAmazingLAKS_Project
             }
             catch (NullReferenceException e)
             {
+                Showbox("Du skal vælge en kunde eller odre at redigere", "Error");
                 Debug.WriteLine(e);
             }
 
@@ -386,7 +388,7 @@ namespace NewAmazingLAKS_Project
             }
             else
             {
-                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
+                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR));
                 OnPropertyChanged();
                 Showbox("Kunde tilføjet", "Msg");
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
@@ -569,7 +571,7 @@ namespace NewAmazingLAKS_Project
             }
             catch (System.NullReferenceException e)
             {
-                Debug.WriteLine(e);
+                Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
             }
 
         }
