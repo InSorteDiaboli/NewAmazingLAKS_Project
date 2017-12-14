@@ -35,14 +35,14 @@
         <TextBlock x:Name="Post_nr_textblock" HorizontalAlignment="Left" Height="31" Margin="119,339,0,0" TextWrapping="Wrap" Text="Post Nr." VerticalAlignment="Top" Width="158"/>
         <TextBlock x:Name="Tlf_nr_textblock" HorizontalAlignment="Left" Height="32" Margin="119,378,0,0" TextWrapping="Wrap" Text="Telefon Nr." VerticalAlignment="Top" Width="158"/>
         <Button x:Name="Tilbage_Button" Content="Tilbage" Command="{Binding GoBackCommand}" HorizontalAlignment="Left" Height="47" Margin="71,487,0,0" VerticalAlignment="Top" Width="119" />
-        <Button x:Name="Opret_kunde_og_tilføg_ordre_button" Content="Tilføj ordre" HorizontalAlignment="Left" Height="47" Margin="488,487,0,0" VerticalAlignment="Top" Width="118" Command="{Binding AddCustomerCommand}">
+        <Button x:Name="Opret_kunde_og_tilføg_ordre_button" Content="Tilføj ordre" HorizontalAlignment="Left" Height="47" Margin="488,487,0,0" VerticalAlignment="Top" Width="118" Command="{Binding GoToNewProductCommand}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Click">
                     <core:NavigateToPageAction TargetPage="NewAmazingLAKS_Project.AddOrder"/>
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </Button>
-        <Button x:Name="Opret_kunde_Button" Content="Gem kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding AddCustomerCommand}"/>
+        <Button x:Name="Opret_kunde_Button" Content="Gem kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding SaveCommand}"/>
         <TextBox x:Name="Tlf__nr__textbox_Copy" HorizontalAlignment="Left" Height="32" Margin="277,415,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.CustomerToEdit.CVR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="157" PlaceholderText="Cvr. nr."/>
         <TextBlock x:Name="Tlf_nr_textblock_Copy" HorizontalAlignment="Left" Height="32" Margin="119,415,0,0" TextWrapping="Wrap" Text="Cvr Nr." VerticalAlignment="Top" Width="158"/>
 
