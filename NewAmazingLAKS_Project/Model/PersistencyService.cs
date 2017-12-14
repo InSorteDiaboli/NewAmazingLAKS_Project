@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 using Newtonsoft.Json;
 
 namespace NewAmazingLAKS_Project.Model
@@ -76,6 +77,16 @@ namespace NewAmazingLAKS_Project.Model
                 MessageDialog messageDialog = new MessageDialog(content, title);
                 await messageDialog.ShowAsync();
             }
+
+            public static async void Confirm(string content, string title)
+            {
+
+            }
+        }
+
+        public class ConfirmBox
+        {
+            
         }
     }
 }

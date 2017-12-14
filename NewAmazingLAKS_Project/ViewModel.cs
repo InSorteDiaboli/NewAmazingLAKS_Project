@@ -12,6 +12,7 @@ using NewAmazingLAKS_Project.Annotations;
 using NewAmazingLAKS_Project.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Popups;
 
 namespace NewAmazingLAKS_Project
 {
@@ -550,24 +551,34 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
+                var dialog = new MessageDialog("Er du sikker?", "Message");
 
-                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ && CustomerList.OrderToEdit != null)
+                dialog.Commands.Add(new UICommand("Yes", (command) =>
                 {
-                    Debug.WriteLine("removing order");
-                    SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
-                    CustomerList.OrderToEdit = EmptyOrder;
-                }
-                else if (SelectedCustomer != null)
-                {
-                    Debug.WriteLine("removing customer");
-                    CustomerList.Remove(SelectedCustomer);
-                    CustomerList.OrderToEdit = EmptyOrder;
-                }
-                else
+                    if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ && CustomerList.OrderToEdit != null)
+                    {
+                        Debug.WriteLine("removing order");
+                        SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
+                        CustomerList.OrderToEdit = EmptyOrder;
+                    }
+                    else if (SelectedCustomer != null)
+                    {
+                        Debug.WriteLine("removing customer");
+                        CustomerList.Remove(SelectedCustomer);
+                        CustomerList.OrderToEdit = EmptyOrder;
+                    }
+                    else
+                    {
+                        Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
+                    }
+                    Save();
+                }));
+
+                dialog.Commands.Add(new UICommand("No", (command) =>
                 {
                     Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
-                }
-                Save();
+                }));
+
             }
             catch (System.NullReferenceException e)
             {
