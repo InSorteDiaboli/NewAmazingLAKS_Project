@@ -14,7 +14,7 @@ namespace NewAmazingLAKS_Project.Model
         public string CustomerName { get; set; }
         public string Att { get; set; }
         public string Address { get; set; }
-        public int PostalNo { get; set; }
+        public string PostalNo { get; set; }
         public string PhoneNo { get; set; }
         private static int _count;
         public string CVR { get; set; }
@@ -36,7 +36,7 @@ namespace NewAmazingLAKS_Project.Model
 
         public ObservableCollection<Order> OrderList { get; set; }
 
-        public Customer(string kundenavn, string att, string adresse, int postnummer, string tlfnr, string cvr)
+        public Customer(string kundenavn, string att, string adresse, string postnummer, string tlfnr, string cvr)
         {
             
             CustomerNo = _count++ +1;

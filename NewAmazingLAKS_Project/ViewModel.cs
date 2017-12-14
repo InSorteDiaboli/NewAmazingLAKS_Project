@@ -46,7 +46,7 @@ namespace NewAmazingLAKS_Project
         public string CustomerName { get; set; }
         public string Att { get; set; }
         public string Address { get; set; }
-        public int PostalNo { get; set; }
+        public string PostalNo { get; set; }
         public string PhoneNo { get; set; }
         public string CVR { get; set; }
 
@@ -103,7 +103,7 @@ namespace NewAmazingLAKS_Project
         
         public int OrderNo { get; set; }
         public string LevDate { get; set; }
-        public int Blok { get; set; }
+        public string Blok { get; set; }
         public string FileDate { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
         public DateTime OrderDate { get; set; }
@@ -130,16 +130,16 @@ namespace NewAmazingLAKS_Project
 
         public string Productname { get; set; }
         public string Productsize { get; set; }
-        public int Amount { get; set; }
+        public string Amount { get; set; }
         public string Media { get; set; }
         public string Folie { get; set; }
         public string Laminate { get; set; }
         public string Producttype { get; set; }
-        public double Productprice { get; set; }
-        public double Dtpprice { get; set; }
-        public double Levprice { get; set; }
-        public double Percent { get; set; }
-        public int Levamount { get; set; }
+        public string Productprice { get; set; }
+        public string Dtpprice { get; set; }
+        public string Levprice { get; set; }
+        public string Percent { get; set; }
+        public string Levamount { get; set; }
         public bool Solv { get; set; }
         public bool SUV { get; set; }
 
@@ -334,6 +334,7 @@ namespace NewAmazingLAKS_Project
                 if (SelectedCustomer.SelectedOrder != null)
                 {
                     CustomerList.OrderToEdit = SelectedCustomer.SelectedOrder;
+                    CustomerList.CustomerToAddOrder = SelectedCustomer;
                     var frame = (Frame)Window.Current.Content;
                     frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
                 }
@@ -380,6 +381,10 @@ namespace NewAmazingLAKS_Project
 
         public void GoToNewProduct()
         {
+            if (CustomerList.CustomerToAddOrder == null)
+            {
+                CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
+            }
             var frame = (Frame)Window.Current.Content;
             frame.Navigate(typeof(NewAmazingLAKS_Project.AddOrder));
         }
@@ -392,7 +397,7 @@ namespace NewAmazingLAKS_Project
 
         public void AddCustomerPure() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
-            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || PostalNo == 0 &&
+            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(PostalNo) &&
                 string.IsNullOrEmpty(PhoneNo))
             {
                 Showbox("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
@@ -412,7 +417,7 @@ namespace NewAmazingLAKS_Project
 
         public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
-            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || PostalNo == 0 &&
+            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(PostalNo) &&
                 string.IsNullOrEmpty(PhoneNo))
             {
                 Showbox("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
@@ -458,7 +463,7 @@ namespace NewAmazingLAKS_Project
                 {
                     AddOrder();
                 }
-                if ((Productname != null || Productsize != null || Amount != 0) && CustomerList.OrderToEdit != null)
+                if ((Productname != null || Productsize != null || Amount != null) && CustomerList.OrderToEdit != null)
                 {
                     CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent, Dtpprice, Solv, SUV));
                     OnPropertyChanged();

@@ -16,15 +16,15 @@ namespace NewAmazingLAKS_Project.Model
 
         public string Productname { get; set; }
         public string Productsize { get; set; }
-        public int Amount { get; set; }
+        public string Amount { get; set; }
         public string Media { get; set; }
         public ObservableCollection<string> Folie { get; set; }
         public ObservableCollection<string> Producttype { get; set; }
-        public double Productprice { get; set; }
-        public double Levprice { get; set; }
-        public int Levamount { get; set; }
-        public double Procent { get; set; }
-        public double DtpPrice { get; set; }    
+        public string Productprice { get; set; }
+        public string Levprice { get; set; }
+        public string Levamount { get; set; }
+        public string Procent { get; set; }
+        public string DtpPrice { get; set; }    
         public ObservableCollection<string> Laminate { get; set; }
 
         public string SelectedLaminate
@@ -47,7 +47,7 @@ namespace NewAmazingLAKS_Project.Model
 
         #region CONSTRUCTOR
 
-        public Product(string productname, string productsize, int amount, string media, double productprice, double levprice, int levamount, double procent, double dtpPrice, bool solv, bool suv)
+        public Product(string productname, string productsize, string amount, string media, string productprice, string levprice, string levamount, string procent, string dtpPrice, bool solv, bool suv)
         {
             Productname = productname;
             Productsize = productsize;
@@ -60,7 +60,7 @@ namespace NewAmazingLAKS_Project.Model
             Levprice = levprice;
             DtpPrice = dtpPrice;
             Levamount = levamount;
-            Procent = Productprice + (Productprice/100*procent);
+            Procent = procent;
             Solv = solv;
             SUV = suv;
         }

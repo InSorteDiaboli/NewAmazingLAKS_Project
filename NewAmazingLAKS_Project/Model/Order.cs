@@ -19,7 +19,7 @@ namespace NewAmazingLAKS_Project.Model
         public int OrderNo { get; set; }
         public DateTime OrderDate { get; set; }
         public string LevDate { get; set; }
-        public int Blok { get; set; }
+        public string Blok { get; set; }
         public string FileDate { get; set; }
         public string OrderStatus { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
@@ -44,7 +44,7 @@ namespace NewAmazingLAKS_Project.Model
 
         #region Constructor
 
-        public Order(string levDate, int blok, string fileDate)
+        public Order(string levDate, string blok, string fileDate)
         {
             OrderNo = _count++ +1;
             OrderDate = DateTime.Now;
