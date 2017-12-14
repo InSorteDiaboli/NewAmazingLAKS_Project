@@ -19,14 +19,12 @@ namespace NewAmazingLAKS_Project
     {
         private ICommand _removeCommand;
         private ICommand _loadCommand;
-        private ICommand _saveCommand; //Testcomment
-        //private Order _selectedOrder;
+        private ICommand _saveCommand; 
         private Customer _selectedCustomer;
         private ICommand _addCustomerCommand;
         private ICommand _addOrderCommand;
         private ObservableCollection<Order> _orderList;
         private ICommand _goToOrderCommand;
-        //private Customer _customerToAddOrder;
         private ICommand _editCommand;
 
         private ICommand _goBackCommand;
@@ -48,7 +46,6 @@ namespace NewAmazingLAKS_Project
         public string Address { get; set; }
         public int PostalNo { get; set; }
         public string PhoneNo { get; set; }
-        public string CVR { get; set;} 
 
         //private Customer CustomerToAddOrder
         //{
@@ -144,18 +141,6 @@ namespace NewAmazingLAKS_Project
 
         #endregion
 
-        //public Order SelectedOrder
-        //{
-        //    get { return _selectedOrder; }
-        //    set
-        //    {
-        //        _selectedOrder = value;
-        //        Debug.WriteLine($"set order to no {SelectedOrder.OrderNo}");
-        //    }
-        //}
-
-        #region CTOR
-
         public ViewModel() //
         {
             _removeCommand = new RelayCommand(Remove);
@@ -176,21 +161,8 @@ namespace NewAmazingLAKS_Project
             _removeProductCommand = new RelayCommand(RemoveProduct);
             _godkendCommand = new RelayCommand(Godkend);
             _goToNewProductCommand = new RelayCommand(GoToNewProduct);
-            //EmptyOrder = new Order("", 0, "");
-            //EmptyOrder.OrderNo = -1;
             Order EmptyOrder;
-            //_saveCommand = new RelayCommand(Save);
-            //CustomerList.Add("name", "att", "adr", 4000, "tlf"); //Testdata
-            //foreach (var customer in CustomerList.CustomerList) //is this right??? ved ikke om det her er den rigtige måde at benytte OrderList proppen, for vi har den jo også i Customer-klassen
-            //{
-            //    //customer.OrderList.Add(new Order("some date", 4, "filedate"));
-            //    OrderList = customer.OrderList;
-            //}
         }
-
-        #endregion
-
-        #region ICommand Props
 
         public ICommand GodkendCommand
         {
@@ -297,8 +269,6 @@ namespace NewAmazingLAKS_Project
             set { _goToNewProductCommand = value; }
         }
 
-        #endregion
-
 
         public void GoBack()
         {
@@ -351,16 +321,12 @@ namespace NewAmazingLAKS_Project
             {
                 if (SelectedCustomer.SelectedOrder != null)
                 {
-                    //CustomerList.TargetPage = "NewAmazingLAKS_Project.EditOrder";
-                    //Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
                     CustomerList.OrderToEdit = SelectedCustomer.SelectedOrder;
                     var frame = (Frame)Window.Current.Content;
                     frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrder));
                 }
                 else if (SelectedCustomer != null)
                 {
-                    //CustomerList.TargetPage = "NewAmazingLAKS_Project.EditCustomer";
-                    //Debug.WriteLine($"Target Page set to {CustomerList.TargetPage}");
                     CustomerList.CustomerToEdit = SelectedCustomer;
                     var frame = (Frame)Window.Current.Content;
                     frame.Navigate(typeof(NewAmazingLAKS_Project.EditCustomer));
@@ -420,7 +386,7 @@ namespace NewAmazingLAKS_Project
             }
             else
             {
-                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR));
+                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
                 OnPropertyChanged();
                 Showbox("Kunde tilføjet", "Msg");
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
@@ -453,15 +419,6 @@ namespace NewAmazingLAKS_Project
 
         public void AddProduct()
         {
-            //if (string.IsNullOrEmpty(Productname) && string.IsNullOrEmpty(Productsize) && Amount == 0 && string.IsNullOrEmpty(Media))
-            //{
-            //    PersistencyService.MessageDialogHelper.Show("Du skal skrive produktnavn, produktstørrelse, medie, folie, laminering og produkttype", "Error");
-            //}
-            //else 
-            //if (CustomerList.OrderToEdit.SelectedProduct == null)
-            //{
-            //    CustomerList.OrderToEdit.SelectedProduct = CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
-            //}
             try
             {
                 if ((Productname != null || Productsize != null || Amount != 0) && CustomerList.OrderToEdit != null)
@@ -488,15 +445,6 @@ namespace NewAmazingLAKS_Project
                     Save();
                     GoToEditOrder();
                 }
-                //else if (CustomerList.OrderToEdit != null && CustomerL)
-                //{
-                //    CustomerList.OrderToEdit.ProductList.Add(new Product(CustomerList.OrderToEdit.SelectedProduct.Productname, CustomerList.OrderToEdit.SelectedProduct.Productsize, CustomerList.OrderToEdit.SelectedProduct.Amount, CustomerList.OrderToEdit.SelectedProduct.Media, CustomerList.OrderToEdit.SelectedProduct.Productprice, CustomerList.OrderToEdit.SelectedProduct.Levprice, CustomerList.OrderToEdit.SelectedProduct.Levamount, CustomerList.OrderToEdit.SelectedProduct.Procent));
-                //    OnPropertyChanged();
-                //    PersistencyService.SaveKundeListeAsJsonAsync(CustomerList.CustomerList);
-                //    PersistencyService.MessageDialogHelper.Show("Produkt tilføjet", "Msg");
-                //    CustomerList.ProductToEdit =
-                //        CustomerList.OrderToEdit.ProductList[CustomerList.OrderToEdit.ProductList.Count - 1];
-                //}
                 else
                 {
                     Showbox("Noget gik galt med at tilføje produktet, har du en ordre valgt? Opret en ordre til venstre på siden","Error");
