@@ -49,7 +49,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock TextWrapping="Wrap" Text="{Binding OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,190,0"/>
-                                <TextBlock TextWrapping="Wrap" Text="{Binding LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,110,0"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding SelectedProduct.Productname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,110,0"/>
                                 <TextBlock TextWrapping="Wrap" Text="{Binding OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,120,0"/>
                                 <TextBlock TextWrapping="Wrap" Text="{Binding OrderStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,100,0"/>
                             </StackPanel>
