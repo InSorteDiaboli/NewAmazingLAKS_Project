@@ -62,7 +62,7 @@
         <TextBox HorizontalAlignment="Left" Margin="818,517,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.SelectedProduct.Levamount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <CheckBox Content="Solv." HorizontalAlignment="Left" Margin="979,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="52" Height="30" IsChecked="{Binding CustomerList.OrderToEdit.SelectedProduct.Solv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <CheckBox Content="SUV" HorizontalAlignment="Left" Margin="1099,199,0,0" VerticalAlignment="Top" IsChecked="{Binding CustomerList.OrderToEdit.SelectedProduct.SUV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="983,236,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddFolieCommand}"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="979,236,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddFolieCommand}"/>
         <Button Content="+" HorizontalAlignment="Left" Margin="979,277,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddLaminateCommand}"/>
         <Button Content="+" HorizontalAlignment="Left" Margin="979,318,0,0" VerticalAlignment="Top" Width="32" Command="{Binding AddProdukttypeCommand}"/>
         <Image HorizontalAlignment="Left" Height="145" VerticalAlignment="Top" Width="742" Source="Assets/logo.png"/>
