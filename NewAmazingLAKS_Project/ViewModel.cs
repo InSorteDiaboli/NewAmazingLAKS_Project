@@ -577,27 +577,41 @@ namespace NewAmazingLAKS_Project
             }
         }
 
+        public void YesCommand(IUICommand command)
+        {
+            if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ /*&& CustomerList.OrderToEdit != null*/)
+            {
+                Debug.WriteLine("removing order");
+                SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
+                CustomerList.OrderToEdit = EmptyOrder;
+            }
+            else if (SelectedCustomer != null)
+            {
+                Debug.WriteLine("removing customer");
+                CustomerList.Remove(SelectedCustomer);
+                CustomerList.OrderToEdit = EmptyOrder;
+            }
+            else
+            {
+                Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
+            }
+            Save();
+
+        }
+
+        public void NoCommand(IUICommand command)
+        {
+            GoBack();
+        }
+
         public async void Remove()
         {
             try
             {
-                    if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ /*&& CustomerList.OrderToEdit != null*/)
-                    {
-                        Debug.WriteLine("removing order");
-                        SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
-                        CustomerList.OrderToEdit = EmptyOrder;
-                    }
-                    else if (SelectedCustomer != null)
-                    {
-                        Debug.WriteLine("removing customer");
-                        CustomerList.Remove(SelectedCustomer);
-                        CustomerList.OrderToEdit = EmptyOrder;
-                    }
-                    else
-                    {
-                        Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
-                    }
-                    Save();
+                MessageDialog dialog = new MessageDialog("", "Er du sikker på du vil slette?");
+                dialog.Commands.Add(new UICommand("Ja", YesCommand, 0));
+                dialog.Commands.Add(new UICommand("Nej", NoCommand, 0));
+                await dialog.ShowAsync();
 
             }
             catch (System.NullReferenceException e)
