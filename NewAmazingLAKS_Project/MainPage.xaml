@@ -105,11 +105,6 @@
         <Button Content="Opret ordre" HorizontalAlignment="Left" Height="65" Margin="857,274,0,0" VerticalAlignment="Top" Width="157" Command="{Binding GoToOrderCommand}">
         </Button>
         <Button x:Name="EditButton" Content="Rediger" HorizontalAlignment="Left" Height="65" Margin="857,447,0,0" VerticalAlignment="Top" Width="157" Command="{Binding EditCommand}">
-            <Interactivity:Interaction.Behaviors>
-            <Core:EventTriggerBehavior EventName="Click">
-                    <Core:NavigateToPageAction TargetPage="{Binding CustomerList.TargetPage}"/>
-            </Core:EventTriggerBehavior>
-        </Interactivity:Interaction.Behaviors>
         </Button>
         <Button Content="Slet" HorizontalAlignment="Left" Height="65" Margin="857,645,0,0" VerticalAlignment="Top" Width="157" Command="{Binding RemoveCommand}" RenderTransformOrigin="-0.04,0.553"/>
         <Button Content="Godkend" HorizontalAlignment="Left" Height="65" Margin="857,541,0,0" VerticalAlignment="Top" Width="157" Command="{Binding GodkendCommand}"/>

@@ -376,7 +376,7 @@ namespace NewAmazingLAKS_Project
 
         public void GoToOrder() //Hvis vi går direkte til ordre fra mainscreen sætter vi CustomerToAddOrder til SelectedCustomer
         {
-            if (CustomerList.CustomerList.Count > 0 && CustomerList.CustomerToAddOrder != null)
+            if (CustomerList.CustomerList.Count > 0 && SelectedCustomer != null)
             {
             CustomerList.CustomerToAddOrder = SelectedCustomer;
             OnPropertyChanged();
