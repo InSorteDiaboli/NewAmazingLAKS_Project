@@ -610,7 +610,7 @@ namespace NewAmazingLAKS_Project
             {
                 MessageDialog dialog = new MessageDialog("", "Er du sikker på du vil slette?");
                 dialog.Commands.Add(new UICommand("Ja", YesCommand, 0));
-                dialog.Commands.Add(new UICommand("Nej", NoCommand, 0));
+                dialog.Commands.Add(new UICommand("Nej", NoCommand, 1));
                 await dialog.ShowAsync();
 
             }
