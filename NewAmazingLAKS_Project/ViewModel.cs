@@ -454,6 +454,10 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
+                if (CustomerList.OrderToEdit == null)
+                {
+                    AddOrder();
+                }
                 if ((Productname != null || Productsize != null || Amount != 0) && CustomerList.OrderToEdit != null)
                 {
                     CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent, Dtpprice, Solv, SUV));
