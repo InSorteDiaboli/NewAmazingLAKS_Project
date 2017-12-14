@@ -417,7 +417,7 @@ namespace NewAmazingLAKS_Project
 
         public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
-            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(PostalNo) &&
+            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(PostalNo) ||
                 string.IsNullOrEmpty(PhoneNo))
             {
                 Showbox("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
@@ -588,23 +588,31 @@ namespace NewAmazingLAKS_Project
 
         public void YesCommand(IUICommand command)
         {
-            if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ /*&& CustomerList.OrderToEdit != null*/)
+            try
             {
-                Debug.WriteLine("removing order");
-                SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
-                CustomerList.OrderToEdit = EmptyOrder;
+                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ /*&& CustomerList.OrderToEdit != null*/)
+                {
+                    Debug.WriteLine("removing order");
+                    SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
+                    CustomerList.OrderToEdit = EmptyOrder;
+                }
+                else if (SelectedCustomer != null)
+                {
+                    Debug.WriteLine("removing customer");
+                    CustomerList.Remove(SelectedCustomer);
+                    CustomerList.OrderToEdit = EmptyOrder;
+                }
+                else
+                {
+                    Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
+                }
+                Save();
             }
-            else if (SelectedCustomer != null)
-            {
-                Debug.WriteLine("removing customer");
-                CustomerList.Remove(SelectedCustomer);
-                CustomerList.OrderToEdit = EmptyOrder;
-            }
-            else
+            catch (Exception e)
             {
                 Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
             }
-            Save();
+
 
         }
 
@@ -617,10 +625,17 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
+                if (SelectedCustomer.SelectedOrder != null || SelectedCustomer != null)
+                {
                 MessageDialog dialog = new MessageDialog("", "Er du sikker på du vil slette?");
                 dialog.Commands.Add(new UICommand("Ja", YesCommand, 0));
                 dialog.Commands.Add(new UICommand("Nej", NoCommand, 1));
                 await dialog.ShowAsync();
+                }
+                else
+                {
+                    Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
+                }
 
             }
             catch (System.NullReferenceException e)
