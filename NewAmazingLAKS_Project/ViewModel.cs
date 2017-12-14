@@ -355,6 +355,10 @@ namespace NewAmazingLAKS_Project
                     var frame = (Frame)Window.Current.Content;
                     frame.Navigate(typeof(NewAmazingLAKS_Project.EditCustomer));
                 }
+                else
+                {
+                    Showbox("Du skal vælge en kunde eller odre at redigere", "Error");
+                }
                 OnPropertyChanged();
             }
             catch (NullReferenceException e)
@@ -372,9 +376,17 @@ namespace NewAmazingLAKS_Project
 
         public void GoToOrder() //Hvis vi går direkte til ordre fra mainscreen sætter vi CustomerToAddOrder til SelectedCustomer
         {
+            if (CustomerList.CustomerList.Count > 0 && CustomerList.CustomerToAddOrder != null)
+            {
             CustomerList.CustomerToAddOrder = SelectedCustomer;
             OnPropertyChanged();
             CustomerList.OrderToEdit = EmptyOrder;
+                GoToNewProduct();
+            }
+            else
+            {
+                Showbox("Du skal vælge eller oprette en kunde før du kan lave ordrer", "Error");
+            }
         }
 
         public void GoToNewProduct()
@@ -424,7 +436,7 @@ namespace NewAmazingLAKS_Project
             }
             else
             {
-                Debug.WriteLine("Ordren skal tilføjes til en kunde");
+                Showbox("Du skal vælge en kunde at tilføje ordren til", "Error");
             }
 
         }
@@ -442,7 +454,7 @@ namespace NewAmazingLAKS_Project
             //}
             try
             {
-                if (Productname != null || Productsize != null || Amount != 0)
+                if ((Productname != null || Productsize != null || Amount != 0) && CustomerList.OrderToEdit != null)
                 {
                     CustomerList.OrderToEdit.ProductList.Add(new Product(Productname, Productsize, Amount, Media, Productprice, Levprice, Levamount, Percent, Dtpprice, Solv, SUV));
                     OnPropertyChanged();
@@ -477,7 +489,7 @@ namespace NewAmazingLAKS_Project
                 //}
                 else
                 {
-                    Debug.WriteLine("noget gik galt med at tilføje produktet");
+                    Showbox("Noget gik galt med at tilføje produktet, har du en ordre valgt? Opret en ordre til venstre på siden","Error");
                 }
             }
             catch (Exception e)
@@ -492,9 +504,17 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
-                Debug.WriteLine($"Adding Laminate {Laminate} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
-                CustomerList.OrderToEdit.SelectedProduct.Laminate.Add(Laminate);
-                Save();
+                if (!string.IsNullOrEmpty(Laminate))
+                {
+                    Debug.WriteLine($"Adding Laminate {Laminate} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
+                    CustomerList.OrderToEdit.SelectedProduct.Laminate.Add(Laminate);
+                    Save();
+                }
+                else
+                {
+                    Showbox("Du kan ikke tilføje laminering uden navn", "Error");
+                }
+
             }
             catch (Exception e)
             {
@@ -508,9 +528,17 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
-                Debug.WriteLine($"Adding Producttype {Producttype} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
-                CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
-                Save();
+                if (!string.IsNullOrEmpty(Producttype))
+                {
+                    Debug.WriteLine(
+                        $"Adding Producttype {Producttype} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
+                    CustomerList.OrderToEdit.SelectedProduct.Producttype.Add(Producttype);
+                    Save();
+                }
+                else
+                {
+                    Showbox("Du kan ikke tilføje produkttype uden navn", "Error");
+                }
 
             }
             catch (Exception e)
@@ -523,10 +551,18 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
-                Debug.WriteLine($"Adding Folie {Folie} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
+                if (!string.IsNullOrEmpty(Folie))
+                {
+                    Debug.WriteLine(
+                        $"Adding Folie {Folie} to product {CustomerList.OrderToEdit.SelectedProduct.Productname}");
 
-                CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
-                Save();
+                    CustomerList.OrderToEdit.SelectedProduct.Folie.Add(Folie);
+                    Save();
+                }
+                else
+                {
+                    Showbox("Du kan ikke tilføje folie uden navn", "Error");
+                }
             }
             catch (Exception e)
             {
@@ -569,7 +605,7 @@ namespace NewAmazingLAKS_Project
                 }
                 else
                 {
-                    Debug.WriteLine("No customer or order select");
+                    Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
                 }
                 Save();
             }
@@ -590,7 +626,7 @@ namespace NewAmazingLAKS_Project
                 }
                 else
                 {
-                    Showbox("Vælg et produkt at slette", "Error");
+                    Showbox("Du skal vælge et produkt at slette", "Error");
                 }
                 Save();
             }
@@ -629,7 +665,7 @@ namespace NewAmazingLAKS_Project
                 }
                 else
                 {
-                    Debug.WriteLine("No stuff selected");
+                    Showbox("Du skal vælge noget at slette", "Error");
                 }
             }
             catch (Exception e)
