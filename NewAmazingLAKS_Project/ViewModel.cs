@@ -39,6 +39,7 @@ namespace NewAmazingLAKS_Project
         private ICommand _godkendCommand;
         private ICommand _removeProductCommand;
         private ICommand _goToNewProductCommand;
+        private ICommand _addCustomerPureCommand;
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -105,6 +106,7 @@ namespace NewAmazingLAKS_Project
         public int Blok { get; set; }
         public string FileDate { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
+        public DateTime OrderDate { get; set; }
 
         public Order EmptyOrder { get; set; }
         //private Order _selectedOrder;
@@ -163,7 +165,9 @@ namespace NewAmazingLAKS_Project
             _removeProductCommand = new RelayCommand(RemoveProduct);
             _godkendCommand = new RelayCommand(Godkend);
             _goToNewProductCommand = new RelayCommand(GoToNewProduct);
+            _addCustomerPureCommand = new RelayCommand(AddCustomerPure);
             Order EmptyOrder;
+            OrderDate = DateTime.Now;
         }
 
         public ICommand GodkendCommand
@@ -269,6 +273,12 @@ namespace NewAmazingLAKS_Project
         {
             get { return _goToNewProductCommand; }
             set { _goToNewProductCommand = value; }
+        }
+
+        public ICommand AddCustomerPureCommand  
+        {
+            get { return _addCustomerPureCommand; }
+            set { _addCustomerPureCommand = value; }
         }
 
 
@@ -380,7 +390,7 @@ namespace NewAmazingLAKS_Project
             frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrderProduct));
         }
 
-        public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
+        public void AddCustomerPure() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
             if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || PostalNo == 0 &&
                 string.IsNullOrEmpty(PhoneNo))
@@ -395,7 +405,26 @@ namespace NewAmazingLAKS_Project
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
                 Save();
                 var frame = (Frame)Window.Current.Content;
-                frame.Navigate(typeof(NewAmazingLAKS_Project.AddOrder));
+                frame.Navigate(typeof(NewAmazingLAKS_Project.AddCustomer));
+            }
+
+        }
+
+        public void AddCustomer() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
+        {
+            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || PostalNo == 0 &&
+                string.IsNullOrEmpty(PhoneNo))
+            {
+                Showbox("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
+            }
+            else
+            {
+                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR));
+                OnPropertyChanged();
+                Showbox("Kunde tilføjet", "Msg");
+                CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
+                Save();
+                GoToNewProduct();
             }
             
         }
@@ -412,6 +441,7 @@ namespace NewAmazingLAKS_Project
                 Showbox("Ordre tilføjet", "Besked");
                 CustomerList.OrderToEdit =
                     CustomerList.CustomerToAddOrder.OrderList[CustomerList.CustomerToAddOrder.OrderList.Count - 1]; //Hvis vi laver en ordre skal vi kunne tilføje produkter til den med det samme
+                GoToNewProduct();
             }
             else
             {
@@ -551,11 +581,7 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
-                var dialog = new MessageDialog("Er du sikker?", "Message");
-
-                dialog.Commands.Add(new UICommand("Yes", (command) =>
-                {
-                    if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ && CustomerList.OrderToEdit != null)
+                    if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ /*&& CustomerList.OrderToEdit != null*/)
                     {
                         Debug.WriteLine("removing order");
                         SelectedCustomer.OrderList.Remove(SelectedCustomer.SelectedOrder);
@@ -572,12 +598,6 @@ namespace NewAmazingLAKS_Project
                         Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
                     }
                     Save();
-                }));
-
-                dialog.Commands.Add(new UICommand("No", (command) =>
-                {
-                    Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
-                }));
 
             }
             catch (System.NullReferenceException e)
