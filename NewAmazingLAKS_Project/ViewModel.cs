@@ -48,6 +48,7 @@ namespace NewAmazingLAKS_Project
         public string Address { get; set; }
         public int PostalNo { get; set; }
         public string PhoneNo { get; set; }
+        public string CVR { get; set;} 
 
         //private Customer CustomerToAddOrder
         //{
@@ -152,6 +153,9 @@ namespace NewAmazingLAKS_Project
         //        Debug.WriteLine($"set order to no {SelectedOrder.OrderNo}");
         //    }
         //}
+
+        #region CTOR
+
         public ViewModel() //
         {
             _removeCommand = new RelayCommand(Remove);
@@ -183,6 +187,10 @@ namespace NewAmazingLAKS_Project
             //    OrderList = customer.OrderList;
             //}
         }
+
+        #endregion
+
+        #region ICommand Props
 
         public ICommand GodkendCommand
         {
@@ -288,6 +296,8 @@ namespace NewAmazingLAKS_Project
             get { return _goToNewProductCommand; }
             set { _goToNewProductCommand = value; }
         }
+
+        #endregion
 
 
         public void GoBack()
@@ -410,7 +420,7 @@ namespace NewAmazingLAKS_Project
             }
             else
             {
-                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo));
+                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR));
                 OnPropertyChanged();
                 Showbox("Kunde tilføjet", "Msg");
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];

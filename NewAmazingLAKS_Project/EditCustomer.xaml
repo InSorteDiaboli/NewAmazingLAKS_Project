@@ -43,6 +43,8 @@
             </interactivity:Interaction.Behaviors>
         </Button>
         <Button x:Name="Opret_kunde_Button" Content="Gem kunde" HorizontalAlignment="Left" Height="47" Margin="278,487,0,0" VerticalAlignment="Top" Width="119" Command="{Binding AddCustomerCommand}"/>
+        <TextBox x:Name="Tlf__nr__textbox_Copy" HorizontalAlignment="Left" Height="32" Margin="277,415,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.CustomerToEdit.CVR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="157" PlaceholderText="Cvr. nr."/>
+        <TextBlock x:Name="Tlf_nr_textblock_Copy" HorizontalAlignment="Left" Height="32" Margin="119,415,0,0" TextWrapping="Wrap" Text="Cvr Nr." VerticalAlignment="Top" Width="158"/>
 
     </Grid>
 </Page>

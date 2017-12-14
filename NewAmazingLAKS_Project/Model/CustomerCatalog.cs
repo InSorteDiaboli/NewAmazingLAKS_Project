@@ -118,7 +118,7 @@ namespace NewAmazingLAKS_Project.Model
                 else
                 {
                     //Data til testformål
-                    CustomerList.Add(new Customer("kundenavn", "att", "address", 4000, "tlfnr"));
+                    CustomerList.Add(new Customer("kundenavn", "att", "address", 4000, "tlfnr", "cvr"));
                 }
             }
             catch (Exception ex)
@@ -136,9 +136,9 @@ namespace NewAmazingLAKS_Project.Model
             PersistencyService.SaveKundeListeAsJsonAsync(CustomerList);
         }
 
-        public void Add(string name, string att, string address, int postalNo, string phoneNo)
+        public void Add(string name, string att, string address, int postalNo, string phoneNo, string cvr)
         {
-            CustomerList.Add(new Customer(name, att, address, postalNo, phoneNo));
+            CustomerList.Add(new Customer(name, att, address, postalNo, phoneNo, cvr));
             PersistencyService.SaveKundeListeAsJsonAsync(CustomerList);
         }
 
