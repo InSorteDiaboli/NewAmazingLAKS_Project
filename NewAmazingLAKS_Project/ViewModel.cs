@@ -664,6 +664,7 @@ namespace NewAmazingLAKS_Project
                 if (CustomerList.OrderToEdit.SelectedProduct != null)
                 {
                     CustomerList.OrderToEdit.ProductList.Remove(CustomerList.OrderToEdit.SelectedProduct);
+                    GoToNewProduct();
                 }
                 else
                 {

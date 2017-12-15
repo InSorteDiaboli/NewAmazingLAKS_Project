@@ -16,7 +16,7 @@ namespace NewAmazingLAKS_Project.Model
         public string Address { get; set; }
         public string PostalNo { get; set; }
         public string PhoneNo { get; set; }
-        private static int _count;
+        private static int _count=1;
         public string CVR { get; set; }
         private Order _selectedOrder;
 
@@ -38,8 +38,8 @@ namespace NewAmazingLAKS_Project.Model
 
         public Customer(string kundenavn, string att, string adresse, string postnummer, string tlfnr, string cvr)
         {
-            
-            CustomerNo = _count++ +1;
+
+            CustomerNo = _count++;
             CustomerName = kundenavn;
             Att = att;
             Address = adresse;

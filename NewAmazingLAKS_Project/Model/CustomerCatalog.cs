@@ -63,6 +63,8 @@ namespace NewAmazingLAKS_Project.Model
         } //Den kunde der skal redigeres
 
         private Product _productToEdit;
+        private int _customerCounter;
+
         public Product ProductToEdit
         {
             get { return _productToEdit; }
@@ -79,6 +81,11 @@ namespace NewAmazingLAKS_Project.Model
 
         public string TargetPage { get; set; }
 
+        public int CustomerCounter
+        {
+            get { return _customerCounter; }
+            set { _customerCounter = value; }
+        }
 
 
         public static CustomerCatalog Instance

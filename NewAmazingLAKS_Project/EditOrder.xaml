@@ -53,10 +53,10 @@
         <Path Data="M244,674" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="0" Margin="244,674,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="0"/>
         <Button Content="Gem Ordre" HorizontalAlignment="Left" Margin="77,462,0,0" VerticalAlignment="Top" Command="{Binding SaveCommand}"/>
         <TextBox HorizontalAlignment="Left" Margin="221,207,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
-        <TextBox HorizontalAlignment="Left" Margin="221,244,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
-        <TextBox HorizontalAlignment="Left" Margin="221,282,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="150"/>
+        <TextBox x:Name="tb1" HorizontalAlignment="Left" Margin="221,244,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.OrderDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
+        <TextBox x:Name="tb2" HorizontalAlignment="Left" Margin="221,282,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.LevDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="30" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="221,320,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.Blok, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="23" Width="150"/>
-        <TextBox HorizontalAlignment="Left" Margin="221,357,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="tb3" HorizontalAlignment="Left" Margin="221,357,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.OrderToEdit.FileDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="818,87,0,0" TextWrapping="Wrap" Text="{Binding Productname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="818,124,0,0" TextWrapping="Wrap" Text="{Binding Productsize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
         <TextBox HorizontalAlignment="Left" Margin="818,197,0,0" TextWrapping="Wrap" Text="{Binding Media, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150"/>
@@ -96,6 +96,10 @@
         <TextBlock HorizontalAlignment="Left" Margin="221,651,0,0" TextWrapping="Wrap" Text="Produktmål" VerticalAlignment="Top" Height="32" Width="126" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="369,651,0,0" TextWrapping="Wrap" Text="Antal" VerticalAlignment="Top" Height="32" Width="126" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="495,651,0,0" TextWrapping="Wrap" Text="Pris" VerticalAlignment="Top" Height="32" Width="126" FontSize="16"/>
+        <Button x:Name="Opret_kunde_Button_Copy" Content="Slet valgte produkt" HorizontalAlignment="Left" Height="67" Margin="221,564,0,0" VerticalAlignment="Top" Width="195" Command="{Binding RemoveProductCommand}"/>
+        <CalendarDatePicker x:Name="OrdDate" DateChanged="CalendarDatePicker_DateChanged" HorizontalAlignment="Left" Margin="383,244,0,0" VerticalAlignment="Top" Width="132"/>
+        <CalendarDatePicker x:Name="LevDate" DateChanged="CalendarDatePicker2_DateChanged" HorizontalAlignment="Left" Margin="383,284,0,0" VerticalAlignment="Top" Width="132"/>
+        <CalendarDatePicker x:Name="FilDate" DateChanged="CalendarDatePicker3_DateChanged" HorizontalAlignment="Left" Margin="383,357,0,0" VerticalAlignment="Top" Width="132"/>
 
     </Grid>
 </Page>

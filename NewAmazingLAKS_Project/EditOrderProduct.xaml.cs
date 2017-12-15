@@ -42,5 +42,18 @@ namespace NewAmazingLAKS_Project
                 gridView.SelectedItem = null;
             }
         }
+
+        private void CalendarDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            tb1.Text = OrdDate.Date.ToString();
+        }
+        private void CalendarDatePicker2_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            tb2.Text = LevDate.Date.ToString();
+        }
+        private void CalendarDatePicker3_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
+        {
+            tb3.Text = FilDate.Date.ToString();
+        }
     }
 }
