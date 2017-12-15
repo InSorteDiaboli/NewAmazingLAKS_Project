@@ -422,7 +422,7 @@ namespace NewAmazingLAKS_Project
 
         public void AddCustomerPure() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme
         {
-            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(PostalNo) &&
+            if (string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(PostalNo) ||
                 string.IsNullOrEmpty(PhoneNo))
             {
                 Showbox("Du skal skrive navn, adresse, postnummer og telefonnummer", "Error");
@@ -514,7 +514,7 @@ namespace NewAmazingLAKS_Project
                 }
                 else
                 {
-                    Showbox("Noget gik galt med at tilføje produktet, har du en ordre valgt? Opret en ordre til venstre på siden","Error");
+                    Showbox("Noget gik galt med at tilføje produktet, indtast oplysninger eller vælg en ordre","Error");
                 }
             }
             catch (Exception e)
