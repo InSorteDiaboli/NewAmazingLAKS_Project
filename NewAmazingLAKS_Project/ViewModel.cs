@@ -625,13 +625,21 @@ namespace NewAmazingLAKS_Project
         {
             try
             {
-                if (SelectedCustomer.SelectedOrder != null || SelectedCustomer != null)
+                if (SelectedCustomer.SelectedOrder != null && SelectedCustomer != null /*&& SelectedCustomer.SelectedOrder.OrderNo != -1*/ /*&& CustomerList.OrderToEdit != null*/)
                 {
-                MessageDialog dialog = new MessageDialog("", "Er du sikker på du vil slette?");
+                    MessageDialog dialog = new MessageDialog("", "Er du sikker på du vil slette ordre nr " + SelectedCustomer.SelectedOrder.OrderNo + "?");
                 dialog.Commands.Add(new UICommand("Ja", YesCommand, 0));
                 dialog.Commands.Add(new UICommand("Nej", NoCommand, 1));
                 await dialog.ShowAsync();
                 }
+                else if (SelectedCustomer != null)
+                {
+                    MessageDialog dialog = new MessageDialog("", "Er du sikker på du vil slette kunde: " + SelectedCustomer.CustomerName + "?");
+                    dialog.Commands.Add(new UICommand("Ja", YesCommand, 0));
+                    dialog.Commands.Add(new UICommand("Nej", NoCommand, 1));
+                    await dialog.ShowAsync();
+                }
+
                 else
                 {
                     Showbox("Du skal vælge en kunde eller ordre at slette", "Error");
