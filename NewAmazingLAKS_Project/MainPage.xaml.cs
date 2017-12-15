@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,26 +34,34 @@ namespace NewAmazingLAKS_Project
         private int PreviousIndex;
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e) //Kode til at expande listview
         {
-            ListView lv = sender as ListView;
+            try
+            {
+                ListView lv = sender as ListView;
 
-            if (PreviousIndex >= 0)
+                if (PreviousIndex >= 0)
+                {
+                    ListViewItem prevItem = (lv.ContainerFromIndex(PreviousIndex)) as ListViewItem;
+                    prevItem.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
+                }
+
+                ListViewItem item = (lv.ContainerFromIndex(lv.SelectedIndex)) as ListViewItem;
+                if (item != null)
+                {
+                    item.ContentTemplate = Resources["SelectDataTemplate"] as DataTemplate;
+                    //lv.IsItemClickEnabled = false;
+                }
+                else
+                {
+                    item = (lv.ContainerFromIndex(PreviousIndex)) as ListViewItem;
+                    item.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
+                }
+                PreviousIndex = lv.SelectedIndex;
+            }
+            catch (Exception exception)
             {
-                ListViewItem prevItem = (lv.ContainerFromIndex(PreviousIndex)) as ListViewItem;
-                prevItem.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
+                Debug.WriteLine("oh no");
             }
 
-            ListViewItem item = (lv.ContainerFromIndex(lv.SelectedIndex)) as ListViewItem;
-            if (item != null)
-            {
-                item.ContentTemplate = Resources["SelectDataTemplate"] as DataTemplate;
-                //lv.IsItemClickEnabled = false;
-            }
-            else
-            {
-                item = (lv.ContainerFromIndex(PreviousIndex)) as ListViewItem;
-                item.ContentTemplate = Resources["NoSelectDataTemplate"] as DataTemplate;
-            }
-            PreviousIndex = lv.SelectedIndex;
         }
 
         private async void IconGridView_ItemClick(object sender, ItemClickEventArgs e) //Kode til at deselecte

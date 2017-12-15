@@ -416,8 +416,17 @@ namespace NewAmazingLAKS_Project
 
         public void GoToEditOrder()
         {
-            var frame = (Frame)Window.Current.Content;
-            frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrderProduct));
+            if (CustomerList.OrderToEdit.SelectedProduct != null)
+            {
+                var frame = (Frame)Window.Current.Content;
+                frame.Navigate(typeof(NewAmazingLAKS_Project.EditOrderProduct));
+
+            }
+            else
+            {
+                Showbox("Du skal vælge et produkt at redigere", "");
+            }
+
         }
 
         public void AddCustomerPure() //Når vi laver en kunde sætter vi CustomerToAddOrder til den seneste kunde vi har lavet, for at kunne oprette ordrer til den med det samme

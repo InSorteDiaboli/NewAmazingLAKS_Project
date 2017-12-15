@@ -84,7 +84,7 @@
         <ListView IsItemClickEnabled="True" ItemClick="Deselect_click" SelectionMode="Single" SelectedItem="{Binding CustomerList.OrderToEdit.SelectedProduct.SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="246" Margin="998,674,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding CustomerList.OrderToEdit.SelectedProduct.Producttype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView Height="334" Width="484"/>
         </ListView>
-        <Button Content="Fjern valgt Folie/Laminering/Type" HorizontalAlignment="Left" Margin="749,577,0,0" VerticalAlignment="Top" Height="74" Width="301" Command="{Binding RemoveStuffCommand}"/>
+        <Button Content="Fjern valgt Folie/Laminering/Type" HorizontalAlignment="Left" Margin="749,557,0,0" VerticalAlignment="Top" Height="74" Width="301" Command="{Binding RemoveStuffCommand}"/>
         <Button Content="Nyt Produkt" HorizontalAlignment="Left" Margin="998,9,0,0" VerticalAlignment="Top" Height="74" Width="125" Command="{Binding GoToNewProductCommand}"/>
         <TextBlock HorizontalAlignment="Left" Margin="144,156,0,0" TextWrapping="Wrap" Text="Kunde:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="195,156,0,0" TextWrapping="Wrap" Text="{Binding CustomerList.CustomerToAddOrder.CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" Height="25"/>
@@ -96,9 +96,12 @@
         <TextBlock HorizontalAlignment="Left" Margin="495,651,0,0" TextWrapping="Wrap" Text="Pris" VerticalAlignment="Top" Height="32" Width="126" FontSize="16"/>
         <Button x:Name="Opret_kunde_Button" Content="Gem produkt" HorizontalAlignment="Left" Height="47" Margin="1004,107,0,0" VerticalAlignment="Top" Width="119" Command="{Binding SaveCommand}"/>
         <Button x:Name="Opret_kunde_Button_Copy" Content="Slet valgte produkt" HorizontalAlignment="Left" Height="67" Margin="221,564,0,0" VerticalAlignment="Top" Width="195" Command="{Binding RemoveProductCommand}"/>
-        <CalendarDatePicker x:Name="OrdDate" DateChanged="CalendarDatePicker_DateChanged" HorizontalAlignment="Left" Margin="383,244,0,0" VerticalAlignment="Top" Width="132"/>
-        <CalendarDatePicker x:Name="LevDate" DateChanged="CalendarDatePicker2_DateChanged" HorizontalAlignment="Left" Margin="383,284,0,0" VerticalAlignment="Top" Width="132"/>
-        <CalendarDatePicker x:Name="FilDate" DateChanged="CalendarDatePicker3_DateChanged" HorizontalAlignment="Left" Margin="383,357,0,0" VerticalAlignment="Top" Width="132"/>
+        <CalendarDatePicker DateFormat="{}{day.integer}/{month.integer}/{year.full}" x:Name="OrdDate" DateChanged="CalendarDatePicker_DateChanged" HorizontalAlignment="Left" Margin="383,244,0,0" VerticalAlignment="Top" Width="132"/>
+        <CalendarDatePicker DateFormat="{}{day.integer}/{month.integer}/{year.full}" x:Name="LevDate" DateChanged="CalendarDatePicker2_DateChanged" HorizontalAlignment="Left" Margin="383,284,0,0" VerticalAlignment="Top" Width="132"/>
+        <CalendarDatePicker DateFormat="{}{day.integer}/{month.integer}/{year.full}" x:Name="FilDate" DateChanged="CalendarDatePicker3_DateChanged" HorizontalAlignment="Left" Margin="383,357,0,0" VerticalAlignment="Top" Width="132"/>
+        <TextBlock HorizontalAlignment="Left" Margin="692,637,0,0" TextWrapping="Wrap" Text="Folie:" VerticalAlignment="Top" Height="32" Width="126" FontSize="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="823,637,0,0" TextWrapping="Wrap" Text="Laminering:" VerticalAlignment="Top" Height="32" Width="126" FontSize="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="973,637,0,0" TextWrapping="Wrap" Text="Type:" VerticalAlignment="Top" Height="32" Width="126" FontSize="22"/>
 
     </Grid>
 </Page>

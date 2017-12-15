@@ -45,15 +45,17 @@ namespace NewAmazingLAKS_Project
 
         private void CalendarDatePicker_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            tb1.Text = OrdDate.Date.ToString();
+
+            tb1.Text = String.Format("{0:dd/MM/yyyy}", OrdDate.Date);
         }
         private void CalendarDatePicker2_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            tb2.Text = LevDate.Date.ToString();
+            tb2.Text = String.Format("{0:dd/MM/yyyy}", LevDate.Date);
         }
         private void CalendarDatePicker3_DateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
         {
-            tb3.Text = FilDate.Date.ToString();
+
+            tb3.Text = String.Format("{0:dd/MM/yyyy}", FilDate.Date);
         }
     }
 }
