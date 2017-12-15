@@ -500,8 +500,6 @@ namespace NewAmazingLAKS_Project
             {
                 Debug.WriteLine(e + "stop h8");
             }
-
-            
         }
 
         public void AddLaminate()
