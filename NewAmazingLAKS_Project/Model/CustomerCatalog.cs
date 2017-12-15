@@ -32,6 +32,8 @@ namespace NewAmazingLAKS_Project.Model
             }
         } //Den kunde der skal tilføjes ordre til
 
+
+
         private Order _orderToEdit;
         public Order OrderToEdit
         {
@@ -63,7 +65,6 @@ namespace NewAmazingLAKS_Project.Model
         } //Den kunde der skal redigeres
 
         private Product _productToEdit;
-        private int _customerCounter;
 
         public Product ProductToEdit
         {
@@ -80,13 +81,6 @@ namespace NewAmazingLAKS_Project.Model
         } //Den kunde der skal redigeres
 
         public string TargetPage { get; set; }
-
-        public int CustomerCounter
-        {
-            get { return _customerCounter; }
-            set { _customerCounter = value; }
-        }
-
 
         public static CustomerCatalog Instance
         {
@@ -125,7 +119,7 @@ namespace NewAmazingLAKS_Project.Model
                 else
                 {
                     //Data til testformål
-                    CustomerList.Add(new Customer("kundenavn", "att", "address", "4000", "tlfnr", "cvr"));
+                    CustomerList.Add(new Customer("kundenavn", "att", "address", "4000", "tlfnr", "cvr", 55));
                 }
             }
             catch (Exception ex)
@@ -143,9 +137,9 @@ namespace NewAmazingLAKS_Project.Model
             PersistencyService.SaveKundeListeAsJsonAsync(CustomerList);
         }
 
-        public void Add(string name, string att, string address, string postalNo, string phoneNo, string cvr)
+        public void Add(string name, string att, string address, string postalNo, string phoneNo, string cvr, int customerNo)
         {
-            CustomerList.Add(new Customer(name, att, address, postalNo, phoneNo, cvr));
+            CustomerList.Add(new Customer(name, att, address, postalNo, phoneNo, cvr, customerNo));
             PersistencyService.SaveKundeListeAsJsonAsync(CustomerList);
         }
 

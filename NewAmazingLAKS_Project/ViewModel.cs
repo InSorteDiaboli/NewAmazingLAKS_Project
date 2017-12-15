@@ -41,10 +41,30 @@ namespace NewAmazingLAKS_Project
         private ICommand _removeProductCommand;
         private ICommand _goToNewProductCommand;
         private ICommand _addCustomerPureCommand;
+        private int _customerNo;
+
         #endregion
 
         #region Customer
-        public int CustomerNo { get; set; }
+
+        public int CustomerNo
+        {
+            get
+            {
+                if (CustomerList.CustomerList.Count >= 1)
+                {
+
+                    _customerNo = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1].CustomerNo + 1;
+                }
+                else
+                {
+                    _customerNo = 1;
+                }
+                return _customerNo;
+            }
+            set { _customerNo = value; }
+        }
+
         public string CustomerName { get; set; }
         public string Att { get; set; }
         public string Address { get; set; }
@@ -170,6 +190,7 @@ namespace NewAmazingLAKS_Project
             _addCustomerPureCommand = new RelayCommand(AddCustomerPure);
             Order EmptyOrder;
             OrderDate = DateTime.Now;
+
         }
 
         #region Props
@@ -408,7 +429,7 @@ namespace NewAmazingLAKS_Project
             }
             else
             {
-                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR));
+                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR, CustomerNo));
                 OnPropertyChanged();
                 Showbox("Kunde tilføjet", "Msg");
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
@@ -428,7 +449,7 @@ namespace NewAmazingLAKS_Project
             }
             else
             {
-                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR));
+                CustomerList.Add(new Customer(CustomerName, Att, Address, PostalNo, PhoneNo, CVR, CustomerNo));
                 OnPropertyChanged();
                 Showbox("Kunde tilføjet", "Msg");
                 CustomerList.CustomerToAddOrder = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];

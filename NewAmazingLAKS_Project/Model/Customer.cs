@@ -16,11 +16,9 @@ namespace NewAmazingLAKS_Project.Model
         public string Address { get; set; }
         public string PostalNo { get; set; }
         public string PhoneNo { get; set; }
-        private static int _count=1;
         public string CVR { get; set; }
         private Order _selectedOrder;
-
-        public CustomerCatalog CustomerList = CustomerCatalog.Instance;
+        private int _count;
 
         public Order SelectedOrder
         {   
@@ -35,23 +33,15 @@ namespace NewAmazingLAKS_Project.Model
             }
         }
 
-        public Customer LastCustomer { get; set; }
+
 
 
 
         public ObservableCollection<Order> OrderList { get; set; }
 
-        public Customer(string kundenavn, string att, string adresse, string postnummer, string tlfnr, string cvr)
+        public Customer(string kundenavn, string att, string adresse, string postnummer, string tlfnr, string cvr, int customerNo)
         {
-            if (CustomerList.CustomerList.Count >= 1)
-            {
-                LastCustomer = CustomerList.CustomerList[CustomerList.CustomerList.Count - 1];
-                CustomerNo = LastCustomer.CustomerNo + 1;
-            }
-            else
-            {
-                CustomerNo = 1;
-            }
+            CustomerNo = customerNo;
             CustomerName = kundenavn;
             Att = att;
             Address = adresse;

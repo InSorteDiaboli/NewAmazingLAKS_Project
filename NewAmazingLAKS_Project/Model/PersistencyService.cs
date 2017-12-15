@@ -20,16 +20,10 @@ namespace NewAmazingLAKS_Project.Model
         //async metode originalt, men uden wait (redundant?)
         public static void SaveKundeListeAsJsonAsync(ObservableCollection<Customer> kundeListe)
         {
-            try
-            {
+
                 string kundeListeJsonString = JsonConvert.SerializeObject(kundeListe);
                 SerializeKundeListeFileAsync(kundeListeJsonString, JsonFileName);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("oh no");
-            }
-
+            
         }
 
         public static async Task<List<Customer>> LoadKundeListeFromJsonAsync()
