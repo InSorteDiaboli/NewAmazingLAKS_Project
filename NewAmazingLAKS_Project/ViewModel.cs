@@ -18,6 +18,7 @@ namespace NewAmazingLAKS_Project
 {
     class ViewModel : INotifyPropertyChanged
     {
+        #region ICommands
         private ICommand _removeCommand;
         private ICommand _loadCommand;
         private ICommand _saveCommand; 
@@ -40,6 +41,7 @@ namespace NewAmazingLAKS_Project
         private ICommand _removeProductCommand;
         private ICommand _goToNewProductCommand;
         private ICommand _addCustomerPureCommand;
+        #endregion
 
         #region Customer
         public int CustomerNo { get; set; }
@@ -170,6 +172,7 @@ namespace NewAmazingLAKS_Project
             OrderDate = DateTime.Now;
         }
 
+        #region Props
         public ICommand GodkendCommand
         {
             get { return _godkendCommand; }
@@ -280,8 +283,9 @@ namespace NewAmazingLAKS_Project
             get { return _addCustomerPureCommand; }
             set { _addCustomerPureCommand = value; }
         }
+        #endregion
 
-
+        #region Methods
         public void GoBack()
         {
             var frame = (Frame) Window.Current.Content;
@@ -719,5 +723,6 @@ namespace NewAmazingLAKS_Project
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
 }
