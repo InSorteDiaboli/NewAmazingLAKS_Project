@@ -129,22 +129,7 @@ namespace NewAmazingLAKS_Project
         public string FileDate { get; set; }
         public ObservableCollection<Product> ProductList { get; set; }
         public DateTime OrderDate { get; set; }
-
         public Order EmptyOrder { get; set; }
-        //private Order _selectedOrder;
-
-        //public Order SelectedOrder
-        //{
-        //    get { return _selectedOrder; }
-        //    set
-        //    {
-        //        _selectedOrder = value;
-        //        if (SelectedOrder != null)
-        //        {
-        //            Debug.WriteLine($"set order in viewmodel to no {SelectedOrder.OrderNo}");
-        //        }
-        //    }
-        //}
 
         #endregion
 
@@ -167,7 +152,7 @@ namespace NewAmazingLAKS_Project
 
         #endregion
 
-        public ViewModel() //
+        public ViewModel() 
         {
             _removeCommand = new RelayCommand(Remove);
             _saveCommand = new RelayCommand(Save);
@@ -307,7 +292,7 @@ namespace NewAmazingLAKS_Project
         #endregion
 
         #region Methods
-        public void GoBack()
+        public void GoBack() //Gå til MainPage
         {
             var frame = (Frame) Window.Current.Content;
             frame.Navigate(typeof(NewAmazingLAKS_Project.MainPage));
@@ -371,13 +356,13 @@ namespace NewAmazingLAKS_Project
                 }
                 else
                 {
-                    Showbox("Du skal vælge en kunde eller odre at redigere", "Error");
+                    Showbox("Du skal vælge en kunde eller ordre at redigere", "Error");
                 }
                 OnPropertyChanged();
             }
             catch (NullReferenceException e)
             {
-                Showbox("Du skal vælge en kunde eller odre at redigere", "Error");
+                Showbox("Du skal vælge en kunde eller ordre at redigere", "Error");
                 Debug.WriteLine(e);
             }
 
@@ -702,7 +687,7 @@ namespace NewAmazingLAKS_Project
             }
             catch (Exception e)
             {
-                Debug.WriteLine("DET KAN DU IKKE MOTHERFUCKER");
+                Debug.WriteLine(e);
             }
         }
 
@@ -740,7 +725,7 @@ namespace NewAmazingLAKS_Project
             }
             catch (Exception e)
             {
-                Debug.WriteLine("DET KAN DU IKKE MOTHERFUCKER");
+                Debug.WriteLine(e);
             }
 
         }
